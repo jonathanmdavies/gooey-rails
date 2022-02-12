@@ -1,0 +1,12 @@
+{
+  "name": "Gooey",
+  "description": "An RSS Reader.",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
