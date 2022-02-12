@@ -90,6 +90,7 @@ GEM
       reline (>= 0.2.7)
     diff-lcs (1.4.4)
     digest (3.1.0)
+    dry-cli (0.7.0)
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -149,6 +150,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-proxy (0.7.2)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.2.2)
@@ -234,6 +237,13 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
+    vite_rails (3.0.6)
+      railties (>= 5.1, < 8)
+      vite_ruby (~> 3.0)
+    vite_ruby (3.0.9)
+      dry-cli (~> 0.7.0)
+      rack-proxy (~> 0.6, >= 0.6.1)
+      zeitwerk (~> 2.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -267,6 +277,7 @@ DEPENDENCIES
   rubocop-rails
   sprockets-rails
   tzinfo-data
+  vite_rails
   web-console
   webdrivers
 
