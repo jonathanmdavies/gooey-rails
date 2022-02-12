@@ -36,6 +36,9 @@ gem "bootsnap", require: false
 # Vite Ruby for managing Javascript and CSS Asssets
 gem 'vite_rails'
 
+# Enables sending Intertia Requests from Controllers [https://inertiajs.com]
+gem 'inertia_rails'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
