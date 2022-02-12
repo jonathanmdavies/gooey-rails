@@ -103,6 +103,8 @@ GEM
       activesupport (>= 5.0)
     i18n (1.9.1)
       concurrent-ruby (~> 1.0)
+    inertia_rails (1.11.1)
+      rails (>= 5)
     io-console (0.5.11)
     io-wait (0.2.1)
     irb (1.4.1)
@@ -269,6 +271,7 @@ DEPENDENCIES
   debug
   factory_bot_rails
   faker
+  inertia_rails
   jbuilder
   pg (~> 1.1)
   puma (~> 5.0)
