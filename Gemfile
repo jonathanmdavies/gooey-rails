@@ -42,6 +42,8 @@ gem 'vite_rails'
 # Enables sending Intertia Requests from Controllers [https://inertiajs.com]
 gem 'inertia_rails'
 
+gem 'byebug'
+
 
 gem "js-routes"
 
