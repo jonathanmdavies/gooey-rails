@@ -34,7 +34,6 @@ module GooeyRails
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-
     config.exceptions_app = ->(env) do
       Class.new(ActionController::Base) do
         def show
