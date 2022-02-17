@@ -7,15 +7,15 @@ RSpec.describe 'Login', type: :system do
       visit new_account_session_path
       fill_in 'Email', with: account.email
       fill_in 'Password', with: account.password
-      click_on 'Log in'
-      expect(page).to have_content('Signed in successfully.')
+      click_on 'Sign in'
+      expect(page).to have_content('Welcome! You have signed up successfully.')
     end
 
     it 'unsuccessfully' do
       visit new_account_session_path
       fill_in 'Email', with: 'hello@example.com'
       fill_in 'Password', with: 'password'
-      click_on 'Log in'
+      click_on 'Sign in'
       expect(page).to have_content('Invalid Email or password')
     end
   end
