@@ -5,6 +5,7 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'config/cuprite'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -39,7 +40,16 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  # Enable Creating Factories in Specs
   config.include FactoryBot::Syntax::Methods
+
+  # Enable Logging in before tests run with Warden Helpers
+  config.include Warden::Test::Helpers
+
+  # Use Cuprite for JavaScript Testing
+  config.before(:each, type: :system) do
+    driven_by :cuprite
+  end
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
