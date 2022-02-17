@@ -42,6 +42,9 @@ gem 'vite_rails'
 # Enables sending Intertia Requests from Controllers [https://inertiajs.com]
 gem 'inertia_rails'
 
+
+gem "js-routes"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
