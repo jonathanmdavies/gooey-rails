@@ -6,7 +6,7 @@ import { account_session_path } from "@/routes";
 import { useForm } from "@inertiajs/inertia-react";
 
 export default function New() {
-  const { data, setData, post, processing } = useForm({
+  const { data, setData, post, processing, transform } = useForm({
     email: "",
     password: "",
     remember_me: false,
@@ -14,7 +14,10 @@ export default function New() {
 
   function submit(e) {
     e.preventDefault();
-    post(account_session_path({ account: data }));
+    transform((data) => ({
+      account: { ...data },
+    }));
+    post(account_session_path());
   }
 
   return (
