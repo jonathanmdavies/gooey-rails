@@ -9,6 +9,7 @@ export default function New() {
   const { data, setData, post, processing } = useForm({
     email: "",
     password: "",
+    remember_me: false,
   });
 
   function submit(e) {
@@ -66,6 +67,8 @@ export default function New() {
           <div className="flex justify-between">
             <div className="flex items-center">
               <input
+                value={data.remember_me}
+                onChange={(e) => setData("remember_me", e.target.checked)}
                 type="checkbox"
                 className="mr-2 rounded border-slate-300 text-cyan-600 focus:ring-1 focus:ring-cyan-500"
                 id="remember"
