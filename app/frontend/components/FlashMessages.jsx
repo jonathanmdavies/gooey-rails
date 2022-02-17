@@ -7,7 +7,7 @@ export default function FlashMessages() {
 
   if (flash.alert) {
     return (
-      <div className="mb-6 flex items-center rounded-lg bg-rose-50 px-3 py-2 font-mono text-sm font-medium text-rose-600">
+      <div className="mb-6 flex items-center rounded-lg bg-rose-50 px-3 py-2 font-mono text-xs font-medium text-rose-600">
         <ExclamationIcon className="mr-1 mt-px h-4 w-4" />
         {flash.alert}
       </div>

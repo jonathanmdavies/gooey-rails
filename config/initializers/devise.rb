@@ -185,7 +185,6 @@ Devise.setup do |config|
   # to give user feedback and not to assert the e-mail validity.
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
 
-
   config.warden do |manager|
     manager.failure_app = AuthFailure
   end

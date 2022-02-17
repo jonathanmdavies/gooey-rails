@@ -44,7 +44,6 @@ gem 'inertia_rails'
 
 gem 'byebug'
 
-
 gem "js-routes"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
