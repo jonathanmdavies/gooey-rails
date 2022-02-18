@@ -2,8 +2,14 @@ Rails.application.routes.draw do
   devise_for :accounts, controllers: {
     sessions: 'accounts/sessions'
   }
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  root 'hello_world#index'
+  devise_scope :account do
+    authenticated :account do
+      root to: 'hello_world#index', as: :authenticated_account_root
+    end
+  end
+
+  unauthenticated do
+    root 'accounts/sessions#new', as: :root
+  end
 end
