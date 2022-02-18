@@ -535,6 +535,14 @@ export const account_session_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"acc
 
 /**
  * Generates rails route to
+ * /
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const authenticated_account_root_path = __jsr.r({}, [7,"/"]);
+
+/**
+ * Generates rails route to
  * /accounts/cancel(.:format)
  * @param {object | undefined} options
  * @returns {string} route path

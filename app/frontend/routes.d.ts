@@ -115,6 +115,16 @@ export const account_session_path: ((
 
 /**
  * Generates rails route to
+ * /
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const authenticated_account_root_path: ((
+  options?: {} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /accounts/cancel(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
