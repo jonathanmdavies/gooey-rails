@@ -12,10 +12,14 @@ export default function Unauthenticated({ children }) {
         </div>
       </div>
       <div className="relative hidden w-0 flex-1 items-center justify-center lg:flex">
-        <span className="absolute inset-x-1/2 h-screen w-px bg-slate-200"></span>
-        <h1 className="z-20 -mr-3 bg-white  p-4 font-mono font-medium uppercase tracking-wide text-slate-800">
-          Gooey Reader
+        <h1 className="z-10 font-mono text-base font-semibold uppercase tracking-wide text-white opacity-80">
+          Reader
         </h1>
+        <div class="absolute h-40 w-40">
+          <div class="absolute h-40 w-40 transform-gpu animate-move rounded-full bg-cyan-500 opacity-50 mix-blend-multiply blur-xl"></div>
+          <div class="animation-delay-2000 absolute h-40 w-40 transform-gpu animate-move rounded-full bg-indigo-300 opacity-50 mix-blend-multiply blur-xl"></div>
+          <div class="animation-delay-4000 absolute h-40 w-40 transform-gpu animate-move rounded-full bg-rose-300 opacity-30 mix-blend-multiply blur-xl"></div>
+        </div>
       </div>
     </div>
   );
