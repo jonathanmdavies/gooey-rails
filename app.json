@@ -8,5 +8,10 @@
     {
       "url": "heroku/ruby"
     }
-  ]
+  ],
+  "environments": {
+    "review": {
+      "postdeploy": "heroku run rails db:migrate"
+    }
+  }
 }
