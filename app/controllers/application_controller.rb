@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
       alert: flash.alert,
     }
   }
+
+  inertia_share current_account: -> {
+    {
+      email: current_account.email
+    }
+  }
 end
