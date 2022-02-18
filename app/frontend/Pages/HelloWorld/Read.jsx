@@ -15,158 +15,79 @@ import {
 } from "@heroicons/react/solid";
 import NewFeedButton from "../../components/new-feed-button";
 import { Tab, Disclosure, Menu, Transition } from "@headlessui/react";
+import Authenticated from "@/Layouts/Authenticated";
 
 export default function ({ hello }) {
   const [show, setShow] = useState(true);
 
   return (
-    <div className="h-screen">
-      {/* header */}
-      <header className="flex items-center justify-between border-b border-slate-100 bg-white py-2 px-4">
-        <div className="flex w-60 items-center">
-          <Menu as="div" className="relative h-8">
-            <Menu.Button className="mr-3 h-8 w-8  transition active:scale-95">
-              <img src="images/avatar.jpg" alt="" className="rounded-full" />
-            </Menu.Button>
+    <Authenticated>
+      <div className="h-screen">
+        <div className="">
+          <div className="flex">
             <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="trasform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
+              show={show}
+              as="div"
+              enter="transition-all ease-in duration-500"
+              enterFrom="max-w-0 transition-all"
+              enterTo="max-w-80 transition-all"
+              leave="transition-all ease-out duration-500"
+              leaveFrom="max-w-80 transition-all"
+              leaveTo="max-w-0 transition-all"
             >
-              <Menu.Items className="absolute left-0 z-20 w-56 origin-top-left rounded-lg border border-slate-100 bg-white shadow-sm">
-                <div className="">
-                  <Menu.Item>
-                    <a
-                      href="#"
-                      className="group flex items-center px-4 py-2 font-mono text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              {show && (
+                <div
+                  className={`${
+                    show ? "w-80" : "max-w-0"
+                  } relative border-r border-slate-100 px-3 pt-2`}
+                >
+                  <div className="absolute inset-y-0 -right-3 flex h-screen flex-col justify-center">
+                    <button
+                      onClick={() => setShow(false)}
+                      className="relative flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 text-slate-50"
                     >
-                      <UserIcon className="mr-2 h-4 w-4 text-slate-500" />
-                      Account
-                    </a>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <a
-                      href="#"
-                      className="group flex items-center px-4 py-2 font-mono text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-                    >
-                      <CogIcon className="mr-2 h-4 w-4 text-slate-500" />
-                      Settings
-                    </a>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <a
-                      href="#"
-                      className="group flex items-center px-4 py-2 font-mono text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-                    >
-                      <DocumentTextIcon className="mr-2 h-4 w-4 text-slate-500" />
-                      Docs
-                    </a>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <a
-                      href="#"
-                      className="group flex items-center border-t border-slate-100 px-4 py-2 font-mono text-sm font-medium text-red-700 transition hover:bg-red-50"
-                    >
-                      <LogoutIcon className="mr-2 h-4 w-4 text-red-700" />
-                      Log Out
-                    </a>
-                  </Menu.Item>
-                </div>
-              </Menu.Items>
-            </Transition>
-          </Menu>
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <a
-            href="#"
-            className="rounded-full bg-gradient-to-br from-slate-800 to-slate-700 px-6 py-2 text-sm font-medium text-white transition hover:text-slate-100 active:scale-95"
-          >
-            Read
-          </a>
-          <a href="#" className="px-6 py-2 text-sm font-medium text-slate-500">
-            Manage
-          </a>
-        </div>
-
-        <div className="flex w-60 justify-end space-x-2">
-          <NewFeedButton />
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500">
-            <LightningBoltIcon className="h-4 w-4 text-white" />
-          </div>
-        </div>
-      </header>
-
-      {/* page content */}
-
-      <div className="">
-        <div className="flex">
-          <Transition
-            show={show}
-            as="div"
-            enter="transition-all ease-in duration-500"
-            enterFrom="max-w-0 transition-all"
-            enterTo="max-w-80 transition-all"
-            leave="transition-all ease-out duration-500"
-            leaveFrom="max-w-80 transition-all"
-            leaveTo="max-w-0 transition-all"
-          >
-            {show && (
-              <div
-                className={`${
-                  show ? "w-80" : "max-w-0"
-                } relative border-r border-slate-100 px-3 pt-2`}
-              >
-                <div className="absolute inset-y-0 -right-3 flex h-screen flex-col justify-center">
-                  <button
-                    onClick={() => setShow(false)}
-                    className="relative flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 text-slate-50"
-                  >
-                    <ChevronDoubleLeftIcon className=" h-4 w-4" />
-                  </button>
-                </div>
-                <SidebarTabs />
-              </div>
-            )}
-          </Transition>
-          <div className="flex h-screen flex-1 flex-col overflow-y-scroll bg-white">
-            <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90  px-6 py-2 backdrop-blur-sm">
-              <div className="mx-auto flex max-w-3xl items-center justify-between">
-                <div className="">
-                  <div className="">
-                    Welcome! You have signed up successfully.
+                      <ChevronDoubleLeftIcon className=" h-4 w-4" />
+                    </button>
                   </div>
-                  <h1 className="font-mono text-sm font-semibold text-slate-800">
-                    Going Dutch
-                  </h1>
-                  <h6 className="font-mono text-xs text-slate-400">
-                    7 February 2022
-                  </h6>
+                  <SidebarTabs />
                 </div>
-                <div className="flex space-x-2">
-                  <button className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95">
-                    <StarIcon className="h-4 w-4 text-white" />
-                  </button>
-                  <button className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95">
-                    <EyeOffIcon className="h-4 w-4 text-white" />
-                  </button>
-                  <button className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-slate-500 to-slate-400 text-white hover:text-slate-200 active:scale-95">
-                    <ExternalLinkIcon className="h-4 w-4 " />
-                  </button>
+              )}
+            </Transition>
+            <div className="flex h-screen flex-1 flex-col overflow-y-scroll bg-white">
+              <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90  px-6 py-2 backdrop-blur-sm">
+                <div className="mx-auto flex max-w-3xl items-center justify-between">
+                  <div className="">
+                    <div className="">
+                      Welcome! You have signed up successfully.
+                    </div>
+                    <h1 className="font-mono text-sm font-semibold text-slate-800">
+                      Going Dutch
+                    </h1>
+                    <h6 className="font-mono text-xs text-slate-400">
+                      7 February 2022
+                    </h6>
+                  </div>
+                  <div className="flex space-x-2">
+                    <button className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95">
+                      <StarIcon className="h-4 w-4 text-white" />
+                    </button>
+                    <button className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95">
+                      <EyeOffIcon className="h-4 w-4 text-white" />
+                    </button>
+                    <button className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-slate-500 to-slate-400 text-white hover:text-slate-200 active:scale-95">
+                      <ExternalLinkIcon className="h-4 w-4 " />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="prose prose-cyan max-w-3xl self-center">
-              <CopyExample />
+              <div className="prose prose-cyan max-w-3xl self-center">
+                <CopyExample />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Authenticated>
   );
 }
 
