@@ -11,7 +11,7 @@
   ],
   "environments": {
     "review": {
-      "postdeploy": "heroku run rails db:seed"
+      "postdeploy": "heroku run rails db:setup"
     }
   }
 }
