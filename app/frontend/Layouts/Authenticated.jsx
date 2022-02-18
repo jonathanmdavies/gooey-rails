@@ -57,6 +57,7 @@ function Header() {
                   <InertiaLink
                     href={destroy_account_session_path()}
                     method="delete"
+                    as="button"
                     className="group flex items-center border-t border-slate-100 px-4 py-2 font-mono text-sm font-medium text-rose-700 transition hover:bg-rose-50"
                   >
                     <LogoutIcon className="mr-2 h-4 w-4 text-rose-700" />
