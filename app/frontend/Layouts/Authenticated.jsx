@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
-import { usePage } from "@inertiajs/inertia-react";
-
+import { usePage, InertiaLink } from "@inertiajs/inertia-react";
+import { destroy_account_session_path } from "@/routes";
+import { Menu, Transition } from "@headlessui/react";
 import {
+  CogIcon,
   LightningBoltIcon,
   LogoutIcon,
   UserIcon,
 } from "@heroicons/react/solid";
-import { Menu, Transition } from "@headlessui/react";
 
 export default function Authenticated({ children }) {
   return (
@@ -24,8 +25,12 @@ function Header() {
     <header className="flex items-center justify-between border-b border-slate-100 bg-white py-2 px-4">
       <div className="flex w-40 items-center">
         <Menu as="div" className="relative h-8">
-          <Menu.Button className="mr-3 h-8 w-8  transition active:scale-95">
-            <img src="images/avatar.jpg" alt="" className="rounded-full" />
+          <Menu.Button
+            id="settings-menu"
+            className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-slate-100 to-slate-200 transition active:scale-95"
+          >
+            <CogIcon className="h-6 w-6 text-slate-600" />
+            <span className="sr-only">Settings</span>
           </Menu.Button>
           <Transition
             as={Fragment}
@@ -36,7 +41,7 @@ function Header() {
             leaveFrom="trasform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute left-0 z-20 w-56 origin-top-left rounded-lg border border-slate-100 bg-white shadow-sm">
+            <Menu.Items className="absolute left-0 z-10 mt-1 w-56 origin-top-left rounded-lg border border-slate-100 bg-white shadow-sm">
               <div className="">
                 <Menu.Item>
                   <a
@@ -49,13 +54,14 @@ function Header() {
                 </Menu.Item>
 
                 <Menu.Item>
-                  <a
-                    href="#"
-                    className="group flex items-center border-t border-slate-100 px-4 py-2 font-mono text-sm font-medium text-red-700 transition hover:bg-red-50"
+                  <InertiaLink
+                    href={destroy_account_session_path()}
+                    method="delete"
+                    className="group flex items-center border-t border-slate-100 px-4 py-2 font-mono text-sm font-medium text-rose-700 transition hover:bg-rose-50"
                   >
-                    <LogoutIcon className="mr-2 h-4 w-4 text-red-700" />
-                    Log Out
-                  </a>
+                    <LogoutIcon className="mr-2 h-4 w-4 text-rose-700" />
+                    Log out
+                  </InertiaLink>
                 </Menu.Item>
               </div>
             </Menu.Items>
