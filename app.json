@@ -11,7 +11,9 @@
   ],
   "environments": {
     "review": {
-      "postdeploy": "bundle exec rake db:schema:load db:seed"
+      "scripts": {
+        "postdeploy": "bundle exec rake db:schema:load db:seed"
+      }
     }
   }
 }
