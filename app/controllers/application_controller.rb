@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   inertia_share current_account: -> {
     if current_account
       {
-        email: current_account.email
+        email: current_account.email,
       }
     end
   }

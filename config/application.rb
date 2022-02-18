@@ -35,7 +35,7 @@ module GooeyRails
     config.generators.system_tests = nil
 
     config.exceptions_app = ->(env) do
-      Class.new(ActionController::Base) do
+      Class.new(ApplicationController) do
         def show
           # Get the status code from the path, which is /500 or /404 etc.
           status = request.path_info.delete_prefix('/').to_i

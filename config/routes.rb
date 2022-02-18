@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :accounts, controllers: {
-    sessions: 'accounts/sessions'
+    sessions: 'accounts/sessions',
   }
 
   devise_scope :account do
