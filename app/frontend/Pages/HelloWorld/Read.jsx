@@ -1,23 +1,17 @@
-import React, { Fragment, useEffect, useState, useRef } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import {
   ChevronDoubleLeftIcon,
   ChevronRightIcon,
-  CogIcon,
   CollectionIcon,
-  DocumentTextIcon,
   ExternalLinkIcon,
   EyeIcon,
   EyeOffIcon,
-  LightningBoltIcon,
-  LogoutIcon,
   StarIcon,
-  UserIcon,
 } from "@heroicons/react/solid";
-import NewFeedButton from "../../components/new-feed-button";
-import { Tab, Disclosure, Menu, Transition } from "@headlessui/react";
+import { Tab, Disclosure, Transition } from "@headlessui/react";
 import Authenticated from "@/Layouts/Authenticated";
 
-export default function ({ hello }) {
+export default function Read() {
   const [show, setShow] = useState(true);
 
   return (
@@ -43,6 +37,7 @@ export default function ({ hello }) {
                 >
                   <div className="absolute inset-y-0 -right-3 flex h-screen flex-col justify-center">
                     <button
+                      type="button"
                       onClick={() => setShow(false)}
                       className="relative flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 text-slate-50"
                     >
@@ -68,13 +63,22 @@ export default function ({ hello }) {
                     </h6>
                   </div>
                   <div className="flex space-x-2">
-                    <button className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95">
+                    <button
+                      type="button"
+                      className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95"
+                    >
                       <StarIcon className="h-4 w-4 text-white" />
                     </button>
-                    <button className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95">
+                    <button
+                      type="button"
+                      className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95"
+                    >
                       <EyeOffIcon className="h-4 w-4 text-white" />
                     </button>
-                    <button className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-slate-500 to-slate-400 text-white hover:text-slate-200 active:scale-95">
+                    <button
+                      type="button"
+                      className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-slate-500 to-slate-400 text-white hover:text-slate-200 active:scale-95"
+                    >
                       <ExternalLinkIcon className="h-4 w-4 " />
                     </button>
                   </div>
@@ -93,10 +97,6 @@ export default function ({ hello }) {
 
 function SidebarTabs() {
   const accordianRef = useRef(null);
-
-  useEffect(() => {
-    console.log(accordianRef.current);
-  });
 
   const feeds = [
     {
@@ -132,7 +132,7 @@ function SidebarTabs() {
         </Tab.List>
         <Tab.Panels className="mt-4">
           <Tab.Panel className="">
-            <Disclosure as="div" defaultOpen={true} className="mb-4">
+            <Disclosure as="div" defaultOpen className="mb-4">
               {({ open }) => (
                 <>
                   <Disclosure.Button className="flex w-full items-center px-2">
@@ -156,7 +156,7 @@ function SidebarTabs() {
                   >
                     <Disclosure.Panel
                       as="div"
-                      className={`mx-7 space-y-3 overflow-hidden`}
+                      className="mx-7 space-y-3 overflow-hidden"
                     >
                       <div ref={accordianRef} className="space-y-3 py-4">
                         {feeds.map((feed) => (
@@ -195,6 +195,7 @@ function SidebarTabs() {
 }
 
 function CopyExample() {
+  /* eslint-disable no-irregular-whitespace */
   return (
     <div className="">
       <p>

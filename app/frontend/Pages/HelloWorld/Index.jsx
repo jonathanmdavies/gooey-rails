@@ -3,7 +3,7 @@ import { DotsHorizontalIcon, SearchIcon } from "@heroicons/react/solid";
 import SelectMenu from "../../components/select-menu";
 import NewFeedButton from "../../components/new-feed-button";
 
-export default function ({ hello }) {
+export default function Index() {
   const feeds = [
     {
       name: "Daring Fireball",
@@ -41,11 +41,11 @@ export default function ({ hello }) {
         </div>
 
         <div className="flex items-center space-x-2">
-          <a href="#" className="px-6 py-2 text-sm font-medium text-slate-500">
+          <a href="/" className="px-6 py-2 text-sm font-medium text-slate-500">
             Read
           </a>
           <a
-            href="#"
+            href="/"
             className="rounded-full bg-slate-800 px-5 py-2 text-sm font-medium text-white hover:bg-slate-900"
           >
             Manage
@@ -54,7 +54,7 @@ export default function ({ hello }) {
 
         <div className="flex w-60 justify-end space-x-3">
           <NewFeedButton />
-          <div className="h-8 w-8 rounded-full bg-cyan-600"></div>
+          <div className="h-8 w-8 rounded-full bg-cyan-600" />
         </div>
       </header>
 
@@ -165,7 +165,7 @@ export default function ({ hello }) {
                           </td>
                           <td className="px-6 py-4">
                             <div className="inline-flex items-center rounded-full border border-emerald-500 bg-green-50 py-2 px-4">
-                              <div className="mr-2 h-2 w-2 rounded-full bg-emerald-500"></div>
+                              <div className="mr-2 h-2 w-2 rounded-full bg-emerald-500" />
                               <span className=" text-sm font-medium text-emerald-500">
                                 {feed.status}
                               </span>
@@ -180,7 +180,10 @@ export default function ({ hello }) {
                           </td>
                           <td className="px-6 py-4">
                             <div className="flex items-center justify-end">
-                              <button className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-800">
+                              <button
+                                type="button"
+                                className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-800"
+                              >
                                 <span className="sr-only">Edit</span>
                                 <DotsHorizontalIcon className="h-4 w-4 text-slate-100 hover:text-slate-50" />
                               </button>

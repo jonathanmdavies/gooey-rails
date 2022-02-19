@@ -23,5 +23,5 @@ export default function FlashMessages() {
     );
   }
 
-  return <></>;
+  return null;
 }

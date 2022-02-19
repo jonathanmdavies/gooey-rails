@@ -1,5 +1,4 @@
-import React from "react";
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
@@ -62,7 +61,7 @@ export default function SelectMenu() {
                     }
                     value={state}
                   >
-                    {({ selected, active }) => (
+                    {({ active }) => (
                       <>
                         <div className="flex items-center">
                           <span

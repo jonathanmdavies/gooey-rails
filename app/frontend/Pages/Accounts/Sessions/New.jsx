@@ -1,9 +1,9 @@
 import React from "react";
+import { useForm } from "@inertiajs/inertia-react";
 import Unauthenticated from "@/Layouts/Unauthenticated";
 import FlashMessages from "@/components/FlashMessages";
 
 import { account_session_path } from "@/routes";
-import { useForm } from "@inertiajs/inertia-react";
 
 export default function New() {
   const { data, setData, post, processing, transform } = useForm({
@@ -14,7 +14,7 @@ export default function New() {
 
   function submit(e) {
     e.preventDefault();
-    transform((data) => ({
+    transform(() => ({
       account: { ...data },
     }));
     post(account_session_path());
@@ -28,7 +28,7 @@ export default function New() {
           <h2 className="text-2xl font-semibold text-slate-800">Sign in</h2>
           <p className="mt-2 font-mono text-sm font-medium text-slate-600">
             New to Gooey?{" "}
-            <a href="#" className="text-cyan-600 hover:text-cyan-700">
+            <a href="/" className="text-cyan-600 hover:text-cyan-700">
               Sign up for an account.
             </a>
           </p>
@@ -76,17 +76,18 @@ export default function New() {
                 className="mr-2 rounded border-slate-300 text-cyan-600 focus:ring-1 focus:ring-cyan-500"
                 id="remember"
               />
-              <label labelfor="remember" className="text-sm text-slate-500">
+              <label htmlFor="remember" className="text-sm text-slate-500">
                 Remember Me
               </label>
             </div>
             <div className="">
-              <a href="#" className="text-sm text-slate-500">
+              <a href="/" className="text-sm text-slate-500">
                 Forgot your Password?
               </a>
             </div>
           </div>
           <button
+            type="submit"
             disabled={processing}
             className="rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 px-5 py-2 font-mono text-xs font-medium text-white transition hover:bg-cyan-700 active:scale-95"
           >
