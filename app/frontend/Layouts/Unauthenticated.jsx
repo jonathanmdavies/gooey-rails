@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Unauthenticated({ children }) {
   return (
@@ -15,12 +16,15 @@ export default function Unauthenticated({ children }) {
         <h1 className="z-10 font-mono text-base font-semibold uppercase tracking-wide text-white opacity-80">
           Reader
         </h1>
-        <div class="absolute h-40 w-40">
-          <div class="absolute h-40 w-40 transform-gpu animate-move rounded-full bg-cyan-500 opacity-50 mix-blend-multiply blur-xl"></div>
-          <div class="animation-delay-2000 absolute h-40 w-40 transform-gpu animate-move rounded-full bg-indigo-300 opacity-50 mix-blend-multiply blur-xl"></div>
-          <div class="animation-delay-4000 absolute h-40 w-40 transform-gpu animate-move rounded-full bg-rose-300 opacity-30 mix-blend-multiply blur-xl"></div>
+        <div className="absolute h-40 w-40">
+          <div className="absolute h-40 w-40 transform-gpu animate-move rounded-full bg-cyan-500 opacity-50 mix-blend-multiply blur-xl" />
+          <div className="animation-delay-2000 absolute h-40 w-40 transform-gpu animate-move rounded-full bg-indigo-300 opacity-50 mix-blend-multiply blur-xl" />
+          <div className="animation-delay-4000 absolute h-40 w-40 transform-gpu animate-move rounded-full bg-rose-300 opacity-30 mix-blend-multiply blur-xl" />
         </div>
       </div>
     </div>
   );
 }
+Unauthenticated.propTypes = {
+  children: PropTypes.node.isRequired,
+};
