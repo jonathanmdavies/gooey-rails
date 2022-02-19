@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import { usePage, InertiaLink } from "@inertiajs/inertia-react";
-import { destroy_account_session_path } from "@/routes";
 import { Menu, Transition } from "@headlessui/react";
 import {
   CogIcon,
@@ -8,6 +8,7 @@ import {
   LogoutIcon,
   UserIcon,
 } from "@heroicons/react/solid";
+import { destroy_account_session_path } from "@/routes";
 
 export default function Authenticated({ children }) {
   return (
@@ -45,7 +46,7 @@ function Header() {
               <div className="">
                 <Menu.Item>
                   <a
-                    href="#"
+                    href="/"
                     className="group flex items-center px-4 py-2 font-mono text-sm font-medium text-slate-700 transition hover:bg-slate-50"
                   >
                     <UserIcon className="mr-2 h-4 w-4 text-slate-500" />
@@ -72,12 +73,12 @@ function Header() {
 
       <div className="flex items-center space-x-2">
         <a
-          href="#"
+          href="/"
           className="rounded-full bg-gradient-to-br from-slate-800 to-slate-700 px-6 py-2 text-sm font-medium text-white transition hover:text-slate-100 active:scale-95"
         >
           Read
         </a>
-        <a href="#" className="px-6 py-2 text-sm font-medium text-slate-500">
+        <a href="/" className="px-6 py-2 text-sm font-medium text-slate-500">
           Manage
         </a>
       </div>
@@ -90,3 +91,7 @@ function Header() {
     </header>
   );
 }
+
+Authenticated.propTypes = {
+  children: PropTypes.node.isRequired,
+};
