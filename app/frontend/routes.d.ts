@@ -177,6 +177,16 @@ export const edit_rails_conductor_inbound_email_path: ((
 
 /**
  * Generates rails route to
+ * /feeds(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feeds_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /accounts/password/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
