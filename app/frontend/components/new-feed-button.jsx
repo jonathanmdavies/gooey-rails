@@ -1,10 +1,27 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusSmIcon, RssIcon } from "@heroicons/react/solid";
+import { useForm } from "@inertiajs/inertia-react";
+import { feeds_path } from "@/routes";
 
 export default function NewFeedButton() {
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
+
+  const { data, setData, post, processing, transform, errors } = useForm({
+    url: "",
+  });
+
+  function submit(e) {
+    e.preventDefault();
+
+    transform(() => ({ feed: { ...data } }));
+    post(feeds_path());
+  }
+
+  useEffect(() => {
+    console.log(errors);
+  });
 
   return (
     <div className="relative">
@@ -31,7 +48,10 @@ export default function NewFeedButton() {
               &#8203;
             </span>
 
-            <div className="inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
+            <form
+              onSubmit={submit}
+              className="inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
+            >
               <div className="border-b border-slate-200 bg-gradient-to-tl from-slate-100 to-slate-50 p-6">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500">
                   <RssIcon className="h-4 w-4 text-white" />
@@ -50,7 +70,7 @@ export default function NewFeedButton() {
                   </div>
                 </div>
               </div>
-              <div className="p-6">
+              <div onSubmit={submit} className="p-6">
                 <div className="relative rounded-lg border border-slate-300 px-3 py-2 focus-within:border-cyan-600 focus-within:ring-0 focus-within:ring-cyan-600">
                   <label
                     htmlFor="name"
@@ -59,6 +79,8 @@ export default function NewFeedButton() {
                     URL
                   </label>
                   <input
+                    value={data.url}
+                    onChange={(e) => setData("url", e.target.value)}
                     type="text"
                     name="name"
                     id="name"
@@ -66,11 +88,13 @@ export default function NewFeedButton() {
                     placeholder="https://daringfireball.net/feed"
                   />
                 </div>
+
+                <div className="">{errors.url && <p>{errors.url}</p>}</div>
               </div>
               <div className="p-6 pt-0 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                 <button
-                  type="button"
-                  onClick={() => setOpen(false)}
+                  disabled={processing}
+                  type="submit"
                   className="rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 px-5 py-2 font-mono text-xs font-medium text-white hover:bg-cyan-700"
                 >
                   Add Feed
@@ -83,7 +107,7 @@ export default function NewFeedButton() {
                   Cancel
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </Dialog>
       </Transition.Root>

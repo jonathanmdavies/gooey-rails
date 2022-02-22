@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Login', type: :system do
   describe 'logging in' do
     it 'successfully' do
-      account = FactoryBot.create(:account)
+      account = create(:account)
       visit new_account_session_path
       fill_in 'Email', with: account.email
       fill_in 'Password', with: account.password

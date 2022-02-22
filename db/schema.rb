@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_20_125403) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_21_143345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,11 +31,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_20_125403) do
   create_table "feeds", force: :cascade do |t|
     t.integer "status"
     t.bigint "account_id", null: false
-    t.string "url"
+    t.string "url", null: false
+    t.string "name", null: false
+    t.datetime "last_fetched_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_feeds_on_account_id"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.text "body"
+    t.datetime "published_at"
+    t.string "entry_id"
+    t.string "permalink"
+    t.boolean "read"
+    t.boolean "bookmarked"
+    t.bigint "feed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id"], name: "index_items_on_feed_id"
+  end
+
   add_foreign_key "feeds", "accounts"
+  add_foreign_key "items", "feeds"
 end

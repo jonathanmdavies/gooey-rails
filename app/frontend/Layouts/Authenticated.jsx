@@ -9,11 +9,13 @@ import {
   UserIcon,
 } from "@heroicons/react/solid";
 import { destroy_account_session_path } from "@/routes";
+import FlashMessages from "@/components/FlashMessages";
 
 export default function Authenticated({ children }) {
   return (
     <div className="h-screen">
       <Header />
+      <FlashMessages />
       <div className="">{children}</div>
     </div>
   );
@@ -72,15 +74,18 @@ function Header() {
       </div>
 
       <div className="flex items-center space-x-2">
-        <a
+        <InertiaLink
           href="/"
           className="rounded-full bg-gradient-to-br from-slate-800 to-slate-700 px-6 py-2 text-sm font-medium text-white transition hover:text-slate-100 active:scale-95"
         >
           Read
-        </a>
-        <a href="/" className="px-6 py-2 text-sm font-medium text-slate-500">
+        </InertiaLink>
+        <InertiaLink
+          href="/feeds"
+          className="px-6 py-2 text-sm font-medium text-slate-500"
+        >
           Manage
-        </a>
+        </InertiaLink>
       </div>
 
       <div className="flex w-40 justify-end space-x-2">

@@ -3,7 +3,9 @@ class CreateFeeds < ActiveRecord::Migration[7.0]
     create_table :feeds do |t|
       t.integer :status
       t.belongs_to :account, null: false, foreign_key: true
-      t.string :url
+      t.string :url, null: false
+      t.string :name, null: false
+      t.datetime :last_fetched_at
 
       t.timestamps
     end
