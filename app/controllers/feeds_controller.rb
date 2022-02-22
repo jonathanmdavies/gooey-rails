@@ -12,7 +12,7 @@ class FeedsController < ApplicationController
       flash[:notice] = 'Feed was successfully added.'
       redirect_to feeds_path
     else
-      redirect_back feeds_path, inertia: { errors: result.feed.errors.messages }
+      redirect_back fallback_location: feeds_path, inertia: { errors: result.feed.errors.messages }
     end
   end
 

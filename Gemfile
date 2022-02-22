@@ -65,6 +65,8 @@ group :development, :test do
   gem 'capybara'
   gem 'cuprite'
   gem 'faker'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

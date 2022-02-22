@@ -12,7 +12,7 @@ class FeedCreator
     feed.save
 
     Result.new(created: feed.valid?, feed: feed)
-  rescue Errno::ECONNREFUSED, Feedjira::NoParserAvailable
+  rescue Errno::ECONNREFUSED, Feedjira::NoParserAvailable, Addressable::URI::InvalidURIError
     feed.errors.add(:url, message: "We couldn't find a feed at that URL.")
     Result.new(created: false, feed: feed)
   end

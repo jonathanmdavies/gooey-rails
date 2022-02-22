@@ -3,19 +3,21 @@ require 'rails_helper'
 RSpec.describe FeedCreator, type: :model do
   context '.create_feed' do
     it 'returns successful result object' do
-      account = create(:account)
-      url = 'https://daringfireball.net/feeds/main'
+      VCR.use_cassette :valid_feed do
+        account = create(:account)
+        url = 'https://daringfireball.net/feeds/main'
 
-      result = FeedCreator.new.create_feed(account, url: url)
+        result = FeedCreator.new.create_feed(account, url: url)
 
-      expect(result.created?).to eq(true)
-      expect(result.feed.name).to eq("Daring Fireball")
-      expect(result.feed.url).to eq("https://daringfireball.net/feeds/main")
+        expect(result.created?).to eq(true)
+        expect(result.feed.name).to eq("Daring Fireball")
+        expect(result.feed.url).to eq("https://daringfireball.net/feeds/main")
+      end
     end
 
     it 'returns failure result object with invalid url' do
       account = create(:account)
-      url = 'invalid_url'
+      url = 'wefwef'
 
       result = FeedCreator.new.create_feed(account, url: url)
 
@@ -24,13 +26,15 @@ RSpec.describe FeedCreator, type: :model do
     end
 
     it 'returns failure result object with for valid url without feed' do
-      account = create(:account)
-      url = 'https://daringfireball.net/feeds/main12312'
+      VCR.use_cassette :valid_url_without_feed do
+        account = create(:account)
+        url = 'https://daringfireball.net/feeds/main12312'
 
-      result = FeedCreator.new.create_feed(account, url: url)
+        result = FeedCreator.new.create_feed(account, url: url)
 
-      expect(result.created?).to eq(false)
-      expect(result.feed.errors.messages[:url]).to include("We couldn't find a feed at that URL.")
+        expect(result.created?).to eq(false)
+        expect(result.feed.errors.messages[:url]).to include("We couldn't find a feed at that URL.")
+      end
     end
   end
 end

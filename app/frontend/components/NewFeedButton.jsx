@@ -8,11 +8,24 @@ export default function NewFeedButton() {
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
-  const { data, setData, post, errors, processing, transform, reset } = useForm(
-    {
-      url: "",
-    }
-  );
+  const {
+    data,
+    setData,
+    post,
+    errors,
+    processing,
+    transform,
+    reset,
+    clearErrors,
+  } = useForm({
+    url: "",
+  });
+
+  function closeModal() {
+    reset();
+    clearErrors();
+    setOpen(false);
+  }
 
   function submit(e) {
     e.preventDefault();
@@ -20,8 +33,7 @@ export default function NewFeedButton() {
 
     post(feeds_path(), {
       onSuccess: () => {
-        setOpen(false);
-        reset();
+        closeModal();
       },
     });
   }
@@ -41,7 +53,7 @@ export default function NewFeedButton() {
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
           initialFocus={cancelButtonRef}
-          onClose={setOpen}
+          onClose={() => closeModal()}
         >
           <div className="flex min-h-screen items-end justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
             <Dialog.Overlay className="fixed inset-0 bg-slate-500 bg-opacity-50 backdrop-blur-sm transition-opacity " />
@@ -104,7 +116,7 @@ export default function NewFeedButton() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setOpen(false)}
+                  onClick={() => closeModal()}
                   className="rounded-full bg-slate-200 px-5 py-2 font-mono text-xs font-medium text-slate-800 hover:bg-slate-300"
                 >
                   Cancel
