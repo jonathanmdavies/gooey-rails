@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :feed do
-    status { 1 }
-    account { nil }
-    url { "MyString" }
-    name { "MyString" }
-    last_fetched_at { "2022-02-22 15:21:02" }
+    status { :active }
+    url { Faker::Internet.url(path: '/feed') }
+    name { "My Feed" }
+    last_fetched_at { 1.day.ago }
+    association :account
   end
 end
