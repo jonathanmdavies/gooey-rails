@@ -1,14 +1,35 @@
 import React, { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusSmIcon, RssIcon } from "@heroicons/react/solid";
+import { useForm } from "@inertiajs/inertia-react";
+import { feeds_path } from "@/routes";
 
 export default function NewFeedButton() {
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
+  const { data, setData, post, errors, processing, transform, reset } = useForm(
+    {
+      url: "",
+    }
+  );
+
+  function submit(e) {
+    e.preventDefault();
+    transform(() => ({ feed: { ...data } }));
+
+    post(feeds_path(), {
+      onSuccess: () => {
+        setOpen(false);
+        reset();
+      },
+    });
+  }
+
   return (
     <div className="relative">
       <button
+        id="new-feed-button"
         type="button"
         onClick={() => setOpen(!open)}
         className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 active:scale-95"
@@ -31,7 +52,10 @@ export default function NewFeedButton() {
               &#8203;
             </span>
 
-            <div className="inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle">
+            <form
+              onSubmit={submit}
+              className="inline-block transform overflow-hidden rounded-lg bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle"
+            >
               <div className="border-b border-slate-200 bg-gradient-to-tl from-slate-100 to-slate-50 p-6">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500">
                   <RssIcon className="h-4 w-4 text-white" />
@@ -59,6 +83,8 @@ export default function NewFeedButton() {
                     URL
                   </label>
                   <input
+                    value={data.url}
+                    onChange={(e) => setData("url", e.target.value)}
                     type="text"
                     name="name"
                     id="name"
@@ -66,11 +92,12 @@ export default function NewFeedButton() {
                     placeholder="https://daringfireball.net/feed"
                   />
                 </div>
+                {errors.url && <div className="">{errors.url}</div>}
               </div>
               <div className="p-6 pt-0 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                 <button
-                  type="button"
-                  onClick={() => setOpen(false)}
+                  disabled={processing}
+                  type="submit"
                   className="rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 px-5 py-2 font-mono text-xs font-medium text-white hover:bg-cyan-700"
                 >
                   Add Feed
@@ -83,7 +110,7 @@ export default function NewFeedButton() {
                   Cancel
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </Dialog>
       </Transition.Root>

@@ -2,18 +2,16 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { usePage, InertiaLink } from "@inertiajs/inertia-react";
 import { Menu, Transition } from "@headlessui/react";
-import {
-  CogIcon,
-  LightningBoltIcon,
-  LogoutIcon,
-  UserIcon,
-} from "@heroicons/react/solid";
+import { CogIcon, LogoutIcon, UserIcon } from "@heroicons/react/solid";
+import FlashMessages from "@/components/FlashMessages";
 import { destroy_account_session_path } from "@/routes";
+import NewFeedButton from "@/components/NewFeedButton";
 
 export default function Authenticated({ children }) {
   return (
     <div className="h-screen">
       <Header />
+      <FlashMessages />
       <div className="">{children}</div>
     </div>
   );
@@ -84,9 +82,7 @@ function Header() {
       </div>
 
       <div className="flex w-40 justify-end space-x-2">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500">
-          <LightningBoltIcon className="h-4 w-4 text-white" />
-        </div>
+        <NewFeedButton />
       </div>
     </header>
   );
