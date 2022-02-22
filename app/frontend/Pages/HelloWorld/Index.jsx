@@ -1,7 +1,7 @@
 import React from "react";
 import { DotsHorizontalIcon, SearchIcon } from "@heroicons/react/solid";
 import SelectMenu from "../../components/select-menu";
-import NewFeedButton from "../../components/new-feed-button";
+import NewFeedButton from "@/components/NewFeedButton";
 
 export default function Index() {
   const feeds = [
