@@ -52,9 +52,6 @@ export default function Read() {
               <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90  px-6 py-2 backdrop-blur-sm">
                 <div className="mx-auto flex max-w-3xl items-center justify-between">
                   <div className="">
-                    <div className="">
-                      Welcome! You have signed up successfully.
-                    </div>
                     <h1 className="font-mono text-sm font-semibold text-slate-800">
                       Going Dutch
                     </h1>
