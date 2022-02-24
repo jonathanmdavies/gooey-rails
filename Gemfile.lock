@@ -46,6 +46,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_model_serializers (0.10.13)
+      actionpack (>= 4.1, < 7.1)
+      activemodel (>= 4.1, < 7.1)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (7.0.2.2)
       activesupport (= 7.0.2.2)
       globalid (>= 0.3.6)
@@ -84,6 +89,8 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    case_transform (0.2)
+      activesupport
     cliver (0.3.2)
     concurrent-ruby (1.1.9)
     crack (0.4.5)
@@ -139,6 +146,7 @@ GEM
       activesupport (>= 5.0.0)
     js-routes (2.2.2)
       railties (>= 4)
+    jsonapi-renderer (0.2.2)
     loofah (2.14.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -311,6 +319,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.12)
   bootsnap
   byebug
   capybara

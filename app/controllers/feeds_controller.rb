@@ -2,7 +2,8 @@ class FeedsController < ApplicationController
   before_action :authenticate_account!
 
   def index
-    render inertia: 'Feeds/Index', props: {}
+    feeds = current_account.feeds.map { |feed| FeedSerializer.new(feed) }
+    render inertia: 'Feeds/Index', props: { feeds: feeds }
   end
 
   def create
