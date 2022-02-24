@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include InertiaCsrf
+  include Pagy::Backend
 
   inertia_share flash: -> {
     {
