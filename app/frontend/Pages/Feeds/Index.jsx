@@ -1,28 +1,28 @@
 import React from "react";
-import { usePage } from "@inertiajs/inertia-react";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 import { SearchIcon, DotsHorizontalIcon } from "@heroicons/react/solid";
 
 import Authenticated from "@/Layouts/Authenticated";
 
 export default function Index() {
-  const { feeds } = usePage().props;
+  const { feeds, pagy } = usePage().props;
   return (
     <Authenticated>
-      <div className="mb-12">
-        <div className="container mx-auto my-12 max-w-7xl">
-          <div className="overflow-hidden rounded-lg border border-slate-200">
+      <div className="">
+        <div className="container mx-auto max-w-7xl">
+          <div className="my-12 overflow-hidden rounded-lg border border-slate-200">
             <div className="grid grid-cols-8 gap-6 bg-slate-50 p-6">
               <div className="col-span-4">
                 <label
                   htmlFor="email"
-                  className="block font-mono text-sm font-medium text-gray-700"
+                  className="block font-mono text-sm font-medium text-slate-700"
                 >
                   Search for a feed
                 </label>
                 <div className="relative mt-1 rounded-md shadow-sm">
                   <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                     <SearchIcon
-                      className="h-5 w-5 text-gray-400"
+                      className="h-5 w-5 text-slate-400"
                       aria-hidden="true"
                     />
                   </div>
@@ -30,7 +30,7 @@ export default function Index() {
                     type="text"
                     name="search"
                     id="search"
-                    className="block w-full rounded-lg border-gray-300 pl-10 text-sm focus:border-cyan-600 focus:ring-0 focus:ring-cyan-600"
+                    className="block w-full rounded-lg border-slate-300 pl-10 text-sm focus:border-cyan-600 focus:ring-0 focus:ring-cyan-600"
                     placeholder="Daring Fireball"
                   />
                 </div>
@@ -131,6 +131,56 @@ export default function Index() {
                       </tbody>
                     </table>
                   </div>
+                  <nav
+                    className="flex items-center justify-between bg-slate-50 px-4 py-3 sm:px-6"
+                    aria-label="pagination"
+                  >
+                    <div className="hidden sm:block">
+                      <p className="font-mono text-sm text-slate-500">
+                        Showing{" "}
+                        <span className="font-medium text-slate-600">
+                          {pagy.from}
+                        </span>{" "}
+                        to{" "}
+                        <span className="font-medium text-slate-600">
+                          {pagy.to}
+                        </span>{" "}
+                        of your{" "}
+                        <span className="font-medium text-slate-600">
+                          {pagy.count}
+                        </span>{" "}
+                        feeds
+                      </p>
+                    </div>
+
+                    <div className="space-x-3">
+                      <InertiaLink
+                        as="button"
+                        disabled={pagy.page === pagy.from}
+                        href={pagy.prev_url}
+                        className={`${
+                          pagy.page === pagy.from
+                            ? " text-slate-400"
+                            : "text-slate-700 hover:text-slate-800"
+                        } rounded-full bg-gradient-to-br from-slate-200 to-slate-100 px-5 py-2 font-mono text-xs font-medium active:scale-95`}
+                      >
+                        Previous
+                      </InertiaLink>
+
+                      <InertiaLink
+                        as="button"
+                        disabled={pagy.page === pagy.last}
+                        href={pagy.next_url}
+                        className={`${
+                          pagy.page === pagy.last
+                            ? " text-slate-400"
+                            : "text-slate-700 hover:text-slate-800"
+                        } rounded-full bg-gradient-to-br from-slate-200 to-slate-100 px-5 py-2 font-mono text-xs font-medium active:scale-95`}
+                      >
+                        Next
+                      </InertiaLink>
+                    </div>
+                  </nav>
                 </div>
               </div>
             </div>
