@@ -9,7 +9,7 @@ import NewFeedButton from "@/components/NewFeedButton";
 
 export default function Authenticated({ children }) {
   return (
-    <div className="h-screen">
+    <div className="min-h-screen">
       <Header />
       <FlashMessages />
       <div className="">{children}</div>
