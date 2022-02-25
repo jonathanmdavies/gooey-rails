@@ -73,6 +73,7 @@ group :development, :test do
   gem 'cuprite'
   gem 'vcr'
   gem 'webmock'
+  gem 'simplecov'
 end
 
 group :development do
