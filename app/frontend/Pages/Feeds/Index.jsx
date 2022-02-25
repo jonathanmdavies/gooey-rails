@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { Inertia } from "@inertiajs/inertia";
 import { InertiaLink, usePage } from "@inertiajs/inertia-react";
-import { SearchIcon, DotsHorizontalIcon } from "@heroicons/react/solid";
+import {
+  SearchIcon,
+  DotsHorizontalIcon,
+  ChevronUpIcon,
+} from "@heroicons/react/solid";
 
 import Authenticated from "@/Layouts/Authenticated";
 
 export default function Index() {
   const { feeds, pagy } = usePage().props;
+
+  const [sorted, setSorted] = useState({
+    column: "",
+    order: "",
+  });
+
+  useEffect(() => {
+    Inertia.get(
+      `/feeds`,
+      {
+        column: sorted.column,
+        order: sorted.order,
+      },
+      {
+        only: ["feeds", "pagy"],
+        preserveState: true,
+      }
+    );
+  }, [sorted]);
+
+  const sortResults = (column, order) => {
+    setSorted({ column, order });
+  };
+
   return (
     <Authenticated>
       <div className="">
@@ -48,13 +78,23 @@ export default function Index() {
                             scope="col"
                             className="px-6 py-3 text-left text-sm font-semibold text-slate-800"
                           >
-                            Feed
+                            <SortableButton
+                              activeSort={sorted.column}
+                              onSort={sortResults}
+                              order={sorted.order}
+                              column="Name"
+                            />
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-sm font-semibold text-slate-800"
+                            className="px-6 py-3 text-left text-sm "
                           >
-                            Status
+                            <SortableButton
+                              activeSort={sorted.column}
+                              onSort={sortResults}
+                              order={sorted.order}
+                              column="Status"
+                            />
                           </th>
                           <th
                             scope="col"
@@ -70,7 +110,7 @@ export default function Index() {
                       <tbody className="divide-y divide-slate-200 bg-white">
                         {feeds.map(({ id, name, url, status }) => (
                           <tr key={id}>
-                            <td className="whitespace-nowrap px-6 py-4">
+                            <td className="w-96 whitespace-nowrap px-6 py-4">
                               <div className="flex items-center">
                                 <div className="">
                                   <div className="text-sm font-medium text-slate-800">
@@ -83,30 +123,7 @@ export default function Index() {
                               </div>
                             </td>
                             <td className="px-2 py-2">
-                              <div
-                                className={`${
-                                  status === "Active"
-                                    ? "border-emerald-300 bg-green-50"
-                                    : "border-rose-200 bg-rose-50"
-                                } inline-flex items-center rounded-full border py-2 px-4`}
-                              >
-                                <div
-                                  className={`${
-                                    status === "Active"
-                                      ? "bg-emerald-400"
-                                      : "bg-rose-400"
-                                  } mr-2 h-2 w-2 rounded-full`}
-                                />
-                                <span
-                                  className={`${
-                                    status === "Active"
-                                      ? "text-emerald-400"
-                                      : "text-rose-400"
-                                  } font-mono text-xs font-medium`}
-                                >
-                                  {status}
-                                </span>
-                              </div>
+                              <StatusIndicator status={status} />
                             </td>
                             <td className="px-6 py-4">
                               <div className="inline-flex items-center rounded-full bg-sky-50 py-2 px-4">
@@ -156,6 +173,7 @@ export default function Index() {
                     <div className="space-x-3">
                       <InertiaLink
                         as="button"
+                        preserveState
                         disabled={pagy.page === pagy.from}
                         href={pagy.prev_url}
                         className={`${
@@ -169,6 +187,7 @@ export default function Index() {
 
                       <InertiaLink
                         as="button"
+                        preserveState
                         disabled={pagy.page === pagy.last}
                         href={pagy.next_url}
                         className={`${
@@ -190,3 +209,58 @@ export default function Index() {
     </Authenticated>
   );
 }
+
+function StatusIndicator({ status }) {
+  return (
+    <div
+      className={`${
+        status === "Active"
+          ? "border-emerald-300 bg-green-50"
+          : "border-rose-200 bg-rose-50"
+      } inline-flex items-center rounded-full border py-1 px-3`}
+    >
+      <div
+        className={`${
+          status === "Active" ? "bg-emerald-400" : "bg-rose-400"
+        } mr-2 h-1.5 w-1.5 rounded-full`}
+      />
+      <span
+        className={`${
+          status === "Active" ? "text-emerald-400" : "text-rose-400"
+        } font-mono text-xs font-medium`}
+      >
+        {status}
+      </span>
+    </div>
+  );
+}
+
+StatusIndicator.propTypes = {
+  status: PropTypes.string.isRequired,
+};
+
+function SortableButton({ activeSort, onSort, column, order }) {
+  return (
+    <button
+      type="button"
+      className="flex items-center font-semibold text-slate-800"
+      onClick={() => onSort(column, order === "desc" ? "asc" : "desc")}
+    >
+      {column}
+      {activeSort === column && (
+        <ChevronUpIcon
+          className={`${
+            order === "desc" ? "rotate-180" : ""
+          } h-4 w-4 transform transition`}
+        />
+      )}
+    </button>
+  );
+}
+
+SortableButton.propTypes = {
+  column: PropTypes.string.isRequired,
+  order: PropTypes.string.isRequired,
+  onSort: PropTypes.func.isRequired,
+  activeSort: PropTypes.string.isRequired,
+};

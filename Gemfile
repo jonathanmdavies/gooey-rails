@@ -54,6 +54,9 @@ gem 'active_model_serializers', '~> 0.10.12'
 
 gem 'pagy'
 
+# In Production for Test Seed Data Generation
+gem 'faker'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -68,7 +71,6 @@ group :development, :test do
   gem 'rubocop-airbnb'
   gem 'capybara'
   gem 'cuprite'
-  gem 'faker'
   gem 'vcr'
   gem 'webmock'
 end
