@@ -40,3 +40,5 @@ node_modules
 *.local
 
 .byebug_history
+
+coverage
