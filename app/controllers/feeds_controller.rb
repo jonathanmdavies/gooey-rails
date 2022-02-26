@@ -25,6 +25,18 @@ class FeedsController < ApplicationController
     end
   end
 
+  def destroy
+    feed = current_account.feeds.find(params[:id])
+
+    if feed.destroy
+      flash[:notice] = "You've successfully unsubscribed from the feed."
+      redirect_to feeds_path
+    else
+      flash[:alert] = 'There was a problem unsubscribing from this feed.'
+      redirect_to feeds_path
+    end
+  end
+
   private
 
   def feed_params
