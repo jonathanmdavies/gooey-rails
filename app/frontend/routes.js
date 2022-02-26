@@ -584,6 +584,15 @@ export const edit_rails_conductor_inbound_email_path = __jsr.r({"id":{"r":true},
 
 /**
  * Generates rails route to
+ * /feeds/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
  * /feeds(.:format)
  * @param {object | undefined} options
  * @returns {string} route path

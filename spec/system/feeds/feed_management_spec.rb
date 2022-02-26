@@ -24,4 +24,15 @@ describe 'Managing Feeds', type: :system do
 
     expect(page).to have_content feed.name
   end
+
+  it 'removes a feed' do
+    feed = create(:feed, account: @account)
+
+    visit feeds_path
+    find('.feed-menu-button').click
+    click_on 'Unsubscribe'
+
+    expect(page).not_to have_content feed.name
+    expect(page).to have_content 'Feed was successfully removed.'
+  end
 end
