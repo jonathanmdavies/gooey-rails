@@ -41,7 +41,7 @@ function Header() {
             leaveFrom="trasform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute left-0 z-10 mt-1 w-56 origin-top-left rounded-lg border border-slate-100 bg-white shadow-sm">
+            <Menu.Items className="absolute left-0 z-10 mt-1 w-56 origin-top-left overflow-hidden rounded-lg border border-slate-100 bg-white shadow-sm">
               <div className="">
                 <Menu.Item>
                   <a
