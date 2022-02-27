@@ -74,6 +74,8 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'simplecov'
+  gem 'lefthook'
+  gem "brakeman"
 end
 
 group :development do

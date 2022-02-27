@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: "*.{js,ts,jsx}"
+      run: yarn lint {staged_files}
+    rubocop:
+      tags: backend style
+      glob: "*.rb"
+      exclude: "application.rb|routes.rb"
+      run: bundle exec rubocop --force-exclusion {all_files}
+    brakeman:
+      tags: backend security
+      run: bundle exec brakeman -A -q --no-pager
