@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { usePage, InertiaLink } from "@inertiajs/inertia-react";
+import { usePage, Link } from "@inertiajs/inertia-react";
 import { CogIcon } from "@heroicons/react/solid";
 
 import { destroy_account_session_path, feeds_path, root_path } from "@/routes";
@@ -62,7 +62,7 @@ function Header() {
       </div>
 
       <div className="flex items-center space-x-2">
-        <InertiaLink
+        <Link
           href={root_path()}
           className={`${
             url === root_path()
@@ -71,9 +71,9 @@ function Header() {
           } rounded-full  px-6 py-2 text-sm font-medium  transition  active:scale-95`}
         >
           Read
-        </InertiaLink>
+        </Link>
 
-        <InertiaLink
+        <Link
           href={feeds_path()}
           className={`${
             url.startsWith(feeds_path())
@@ -82,7 +82,7 @@ function Header() {
           } rounded-full px-6 py-2 text-sm font-medium transition active:scale-95`}
         >
           Manage
-        </InertiaLink>
+        </Link>
       </div>
 
       <div className="flex w-40 justify-end space-x-2">
