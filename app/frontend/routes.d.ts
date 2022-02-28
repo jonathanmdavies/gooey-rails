@@ -489,6 +489,18 @@ export const rails_service_blob_proxy_path: ((
 
 /**
  * Generates rails route to
+ * /feeds/:id/refresh(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const refresh_feed_path: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /
  * @param {object | undefined} options
  * @returns {string} route path
