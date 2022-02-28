@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Inertia } from "@inertiajs/inertia";
-import { InertiaLink, usePage } from "@inertiajs/inertia-react";
+import { Link, usePage } from "@inertiajs/inertia-react";
 import {
   SearchIcon,
   DotsHorizontalIcon,
@@ -186,7 +186,7 @@ export default function Index() {
                     </div>
 
                     <div className="space-x-3">
-                      <InertiaLink
+                      <Link
                         as="button"
                         preserveState
                         disabled={pagy.page === pagy.from}
@@ -198,9 +198,9 @@ export default function Index() {
                         } rounded-full bg-gradient-to-br from-slate-200 to-slate-100 px-5 py-2 font-mono text-xs font-medium active:scale-95`}
                       >
                         Previous
-                      </InertiaLink>
+                      </Link>
 
-                      <InertiaLink
+                      <Link
                         as="button"
                         preserveState
                         disabled={pagy.page === pagy.last}
@@ -212,7 +212,7 @@ export default function Index() {
                         } rounded-full bg-gradient-to-br from-slate-200 to-slate-100 px-5 py-2 font-mono text-xs font-medium active:scale-95`}
                       >
                         Next
-                      </InertiaLink>
+                      </Link>
                     </div>
                   </nav>
                 </div>
