@@ -7,7 +7,7 @@ import {
   DotsHorizontalIcon,
   ChevronUpIcon,
 } from "@heroicons/react/solid";
-import { feed_path } from "@/routes";
+import { feed_path, refresh_feed_path } from "@/routes";
 
 import Authenticated from "@/Layouts/Authenticated";
 import Dropdown from "@/components/Dropdown";
@@ -146,6 +146,14 @@ export default function Index() {
                                       <DotsHorizontalIcon className="h-4 w-4 text-slate-100 hover:text-slate-50" />
                                     </button>
                                   }
+                                  primaryItems={[
+                                    {
+                                      label: "Refresh",
+                                      href: refresh_feed_path(id),
+                                      icon: "RefreshIcon",
+                                      method: "patch",
+                                    },
+                                  ]}
                                   secondaryItems={[
                                     {
                                       label: "Unsubscribe",

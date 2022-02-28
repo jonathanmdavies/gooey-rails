@@ -35,4 +35,16 @@ describe 'Managing Feeds', type: :system do
     expect(page).not_to have_content feed.name
     expect(page).to have_content "You've successfully unsubscribed from the feed."
   end
+
+  it 'refreshes a feed' do
+    VCR.use_cassette :valid_feed do
+      feed = create(:feed, account: @account, url: 'https://daringfireball.net/feeds/main')
+
+      visit feeds_path
+      find('.feed-menu-button').click
+      click_on 'Refresh'
+
+      expect(page).to have_content "48 new item added to #{feed.name}."
+    end
+  end
 end
