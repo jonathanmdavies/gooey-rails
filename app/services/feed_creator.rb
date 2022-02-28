@@ -7,7 +7,6 @@ class FeedCreator
   def create_feed(current_account, url:)
     feed = current_account.feeds.build
     title, feed_url = retreive_feed(url)
-
     feed.assign_attributes(name: title, url: feed_url)
     feed.save
 

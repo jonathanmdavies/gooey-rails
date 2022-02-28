@@ -1,5 +1,6 @@
 class Feed < ApplicationRecord
   belongs_to :account
+  has_many :items, dependent: :destroy
 
   enum status: { active: 0, inactive: 1 }
 
