@@ -33,6 +33,6 @@ describe 'Managing Feeds', type: :system do
     click_on 'Unsubscribe'
 
     expect(page).not_to have_content feed.name
-    expect(page).to have_content 'Feed was successfully removed.'
+    expect(page).to have_content "You've successfully unsubscribed from the feed."
   end
 end

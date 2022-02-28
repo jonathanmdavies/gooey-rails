@@ -6,12 +6,11 @@ import {
   SearchIcon,
   DotsHorizontalIcon,
   ChevronUpIcon,
-  TrashIcon,
 } from "@heroicons/react/solid";
-import { Menu } from "@headlessui/react";
 import { feed_path } from "@/routes";
 
 import Authenticated from "@/Layouts/Authenticated";
+import Dropdown from "@/components/Dropdown";
 
 export default function Index() {
   const { feeds, pagy } = usePage().props;
@@ -137,7 +136,26 @@ export default function Index() {
                             </td>
                             <td className="px-6 py-4">
                               <div className="flex items-center justify-end">
-                                <FeedOptionsMenu id={id} />
+                                <Dropdown
+                                  button={
+                                    <button
+                                      type="button"
+                                      className="feed-menu-button flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-bl from-slate-800 to-slate-700 transition active:scale-95"
+                                    >
+                                      <span className="sr-only">Edit</span>
+                                      <DotsHorizontalIcon className="h-4 w-4 text-slate-100 hover:text-slate-50" />
+                                    </button>
+                                  }
+                                  secondaryItems={[
+                                    {
+                                      label: "Unsubscribe",
+                                      href: feed_path(id),
+                                      icon: "TrashIcon",
+                                      method: "delete",
+                                    },
+                                  ]}
+                                  position="top-7 right-0"
+                                />
                               </div>
                             </td>
                           </tr>
@@ -260,32 +278,4 @@ SortableButton.propTypes = {
   order: PropTypes.string.isRequired,
   onSort: PropTypes.func.isRequired,
   activeSort: PropTypes.string.isRequired,
-};
-
-function FeedOptionsMenu({ id }) {
-  return (
-    <Menu as="div" className="relative">
-      <Menu.Button className="feed-menu-button flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-bl from-slate-800 to-slate-700 transition active:scale-95">
-        <span className="sr-only">Edit</span>
-        <DotsHorizontalIcon className="h-4 w-4 text-slate-100 hover:text-slate-50" />
-      </Menu.Button>
-      <Menu.Items className="absolute top-8 right-0 z-10 w-56 origin-top-left overflow-hidden rounded-lg border border-slate-100 bg-white shadow-sm">
-        <Menu.Item>
-          <InertiaLink
-            href={feed_path(id)}
-            as="button"
-            method="delete"
-            className="group flex w-full items-center px-4 py-2 font-mono text-sm font-medium text-rose-700 transition hover:bg-rose-50"
-          >
-            <TrashIcon className="mr-2 h-4 w-4 text-rose-700" />
-            Unsubscribe
-          </InertiaLink>
-        </Menu.Item>
-      </Menu.Items>
-    </Menu>
-  );
-}
-
-FeedOptionsMenu.propTypes = {
-  id: PropTypes.string.isRequired,
 };
