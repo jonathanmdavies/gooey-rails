@@ -57,6 +57,9 @@ gem 'pagy'
 # In Production for Test Seed Data Generation
 gem 'faker'
 
+# Sanitize HTML from RSS Feeds
+gem 'loofah-activerecord'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
