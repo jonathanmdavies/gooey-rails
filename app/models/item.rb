@@ -7,4 +7,6 @@ class Item < ApplicationRecord
   validates_presence_of :entry_id
   validates_presence_of :published_at
   validates_uniqueness_of :entry_id, scope: :feed_id
+
+  html_fragment :content, scrub: :prune
 end
