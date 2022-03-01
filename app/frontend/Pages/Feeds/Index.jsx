@@ -84,7 +84,8 @@ export default function Index() {
                               activeSort={sorted.column}
                               onSort={sortResults}
                               order={sorted.order}
-                              column="Name"
+                              column="name"
+                              label="Feed"
                             />
                           </th>
                           <th
@@ -95,14 +96,28 @@ export default function Index() {
                               activeSort={sorted.column}
                               onSort={sortResults}
                               order={sorted.order}
-                              column="Status"
+                              column="status"
+                              label="Status"
                             />
                           </th>
+
                           <th
                             scope="col"
                             className="px-6 py-3 text-left text-sm font-semibold text-slate-800"
                           >
                             Category
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-left text-sm "
+                          >
+                            <SortableButton
+                              activeSort={sorted.column}
+                              onSort={sortResults}
+                              order={sorted.order}
+                              column="created_at"
+                              label="Added"
+                            />
                           </th>
                           <th scope="col" className="relative px-6 py-3">
                             <span className="sr-only">Edit</span>
@@ -110,7 +125,7 @@ export default function Index() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-200 bg-white">
-                        {feeds.map(({ id, name, url, status }) => (
+                        {feeds.map(({ id, name, url, status, created_at }) => (
                           <tr key={id}>
                             <td className="w-96 whitespace-nowrap px-6 py-4">
                               <div className="flex items-center">
@@ -133,6 +148,11 @@ export default function Index() {
                                   Not Implemented
                                 </span>
                               </div>
+                            </td>
+                            <td className="px-6 py-4">
+                              <span className="text-sm text-slate-500">
+                                {created_at}
+                              </span>
                             </td>
                             <td className="px-6 py-4">
                               <div className="flex items-center justify-end">
@@ -262,14 +282,14 @@ StatusIndicator.propTypes = {
   status: PropTypes.string.isRequired,
 };
 
-function SortableButton({ activeSort, onSort, column, order }) {
+function SortableButton({ activeSort, onSort, column, order, label }) {
   return (
     <button
       type="button"
       className="flex items-center font-semibold text-slate-800"
       onClick={() => onSort(column, order === "desc" ? "asc" : "desc")}
     >
-      {column}
+      {label}
       {activeSort === column && (
         <ChevronUpIcon
           className={`${
@@ -286,4 +306,5 @@ SortableButton.propTypes = {
   order: PropTypes.string.isRequired,
   onSort: PropTypes.func.isRequired,
   activeSort: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
