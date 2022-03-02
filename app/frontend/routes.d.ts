@@ -189,11 +189,71 @@ export const feed_path: ((
 
 /**
  * Generates rails route to
+ * /feeds/:feed_id/items(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_items_path: ((
+  feed_id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /feeds/:feed_id/unread/:id(.:format)
+ * @param {any} feed_id
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_unread_path: ((
+  feed_id: RequiredRouteParameter,
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /feeds/:feed_id/unread(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_unread_index_path: ((
+  feed_id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /feeds(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const feeds_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /items/:item_id/read(.:format)
+ * @param {any} item_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const item_read_path: ((
+  item_id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /items(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const items_path: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
@@ -507,6 +567,16 @@ export const refresh_feed_path: ((
  */
 export const root_path: ((
   options?: {} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /unread(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_index_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
 /**

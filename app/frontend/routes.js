@@ -593,11 +593,56 @@ export const feed_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6
 
 /**
  * Generates rails route to
+ * /feeds/:feed_id/items(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_items_path = __jsr.r({"feed_id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"items"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /feeds/:feed_id/unread/:id(.:format)
+ * @param {any} feed_id
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_unread_path = __jsr.r({"feed_id":{"r":true},"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"unread"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /feeds/:feed_id/unread(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_unread_index_path = __jsr.r({"feed_id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"unread"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /feeds(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
  */
 export const feeds_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
+ * /items/:item_id/read(.:format)
+ * @param {any} item_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const item_read_path = __jsr.r({"item_id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"items"],[2,[7,"/"],[2,[3,"item_id"],[2,[7,"/"],[2,[6,"read"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /items(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const items_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"items"],[1,[2,[8,"."],[3,"format"]]]]]);
 
 /**
  * Generates rails route to
@@ -838,6 +883,14 @@ export const refresh_feed_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/
  * @returns {string} route path
  */
 export const root_path = __jsr.r({}, [7,"/"]);
+
+/**
+ * Generates rails route to
+ * /unread(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_index_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"unread"],[1,[2,[8,"."],[3,"format"]]]]]);
 
 /**
  * Generates rails route to
