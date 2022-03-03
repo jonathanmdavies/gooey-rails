@@ -199,6 +199,16 @@ export const feeds_path: ((
 
 /**
  * Generates rails route to
+ * /items(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const items_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /accounts/password/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path

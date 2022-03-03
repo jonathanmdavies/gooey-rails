@@ -19,4 +19,13 @@ RSpec.describe Item, type: :model do
       expect(item.content).to eq('<p>content</p>')
     end
   end
+
+  context '.unread' do
+    it 'only returns unread items' do
+      unread = create(:item, read_at: nil)
+      create(:item, read_at: Time.now)
+
+      expect(Item.unread).to eq([unread])
+    end
+  end
 end
