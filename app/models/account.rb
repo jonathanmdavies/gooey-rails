@@ -5,4 +5,5 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :feeds, dependent: :destroy
+  has_many :items, through: :feeds
 end

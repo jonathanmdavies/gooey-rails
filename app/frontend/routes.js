@@ -601,6 +601,14 @@ export const feeds_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[1,[2
 
 /**
  * Generates rails route to
+ * /items(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const items_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"items"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
  * /accounts/password/new(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
