@@ -5,10 +5,11 @@ Rails.application.routes.draw do
 
   devise_scope :account do
     authenticated :account do
-      root to: 'hello_world#index', as: :authenticated_account_root
+      root to: 'items#index', as: :authenticated_account_root
       resources :feeds, only: [:create, :index, :destroy] do
         patch :refresh, on: :member
       end
+      resources :items, only: [:index]
     end
   end
 
