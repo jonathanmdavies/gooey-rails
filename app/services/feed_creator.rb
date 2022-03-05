@@ -6,8 +6,8 @@ class FeedCreator
 
   def create_feed(current_account, url:)
     feed = current_account.feeds.build
-    title, feed_url = retreive_feed(url)
-    feed.assign_attributes(name: title, url: feed_url)
+    parsed_feed = retrieve_feed(url)
+    feed.assign_attributes(name: parsed_feed.title, url: url)
     feed.save
 
     Result.new(created: feed.valid?, feed: feed)
@@ -18,10 +18,9 @@ class FeedCreator
 
   private
 
-  def retreive_feed(url)
+  def retrieve_feed(url)
     xml = @http.get(url).body
-    feed = @parser.parse(xml)
-    [feed.title, feed.feed_url]
+    @parser.parse(xml)
   end
 
   class Result
