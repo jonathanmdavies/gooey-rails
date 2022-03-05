@@ -3,7 +3,7 @@
   password: 'Password12'
 )
 
-30.times.each do |i|
+15.times.each do |i|
   Feed.create(
     name: Faker::App.name,
     url: Faker::Internet.url(path: '/feed'),

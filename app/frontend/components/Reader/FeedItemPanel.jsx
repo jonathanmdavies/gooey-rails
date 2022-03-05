@@ -7,7 +7,7 @@ export default function FeedItemPanel({
   item: { content, title, published_at },
 }) {
   return (
-    <div className="flex flex-1 flex-col overflow-y-scroll bg-white">
+    <div className="flex flex-1 flex-col bg-white">
       <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90  px-6 py-2 backdrop-blur-sm">
         <div className="mx-auto flex max-w-3xl items-center justify-between">
           <div className="">

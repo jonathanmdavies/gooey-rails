@@ -593,6 +593,15 @@ export const feed_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6
 
 /**
  * Generates rails route to
+ * /feeds/:feed_id/items(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_items_path = __jsr.r({"feed_id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"items"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /feeds(.:format)
  * @param {object | undefined} options
  * @returns {string} route path

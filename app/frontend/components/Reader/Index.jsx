@@ -27,9 +27,9 @@ export default function Reader() {
   }, [items]);
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <FeedSidebar />
-      <div className="flex-1">
+      <div className="flex-1 overflow-y-scroll">
         <ul className="">
           {scrollItems?.map((item) => (
             <FeedItemPanel key={item.id} item={item} />
