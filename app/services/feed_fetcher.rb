@@ -3,11 +3,14 @@ class FeedFetcher
     @http = HTTParty
     @parser = Feedjira
     @feed = feed
+    @current_account = feed.account
   end
 
   def fetch_items
     items = []
     get_entries.each do |entry|
+      next if item_already_present?(entry)
+
       result = ItemCreator.new(entry: entry, feed: @feed).create_item
       items << result.item if result.created?
     end
@@ -24,6 +27,10 @@ class FeedFetcher
   def get_entries
     xml = @http.get(@feed.url).body
     @parser.parse(xml).entries
+  end
+
+  def item_already_present?(entry)
+    @current_account.items.find_by(entry_id: entry.entry_id).present?
   end
 
   class Result
