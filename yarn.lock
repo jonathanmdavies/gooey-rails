@@ -273,10 +273,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@headlessui/react@^1.4.3":
-  version "1.4.3"
-  resolved "https://registry.npmjs.org/@headlessui/react/-/react-1.4.3.tgz"
-  integrity sha512-n2IQkaaw0aAAlQS5MEXsM4uRK+w18CrM72EqnGRl/UBOQeQajad8oiKXR9Nk15jOzTFQjpxzrZMf1NxHidFBiw==
+"@headlessui/react@^0.0.0-dev.0ce63d8":
+  version "0.0.0-dev.0ce63d8"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-0.0.0-dev.0ce63d8.tgz#e3ec320669adc3d380774696d7cda5f9d2b65b14"
+  integrity sha512-jocCGaKgQUoVf61BpwJfcv5hemOvhZ2n7UF0HnvSvfq4dazBi+ZWBa365Oirtfh+zNHsJGQITA76lEiQMe4bOw==
 
 "@heroicons/react@^1.0.5":
   version "1.0.5"
