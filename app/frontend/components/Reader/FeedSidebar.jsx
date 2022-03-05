@@ -5,7 +5,7 @@ import {
   CollectionIcon,
   EyeIcon,
 } from "@heroicons/react/solid";
-import { Tab, Disclosure, Transition } from "@headlessui/react";
+import { Tab, Disclosure } from "@headlessui/react";
 import { items_path, feed_items_path } from "@/routes";
 
 export default function FeedSidebar() {
