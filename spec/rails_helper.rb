@@ -54,6 +54,9 @@ RSpec.configure do |config|
     driven_by :cuprite
   end
 
+  # Alternative to TimeCop
+  config.include ActiveSupport::Testing::TimeHelpers
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
