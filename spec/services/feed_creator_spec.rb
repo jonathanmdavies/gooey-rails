@@ -15,6 +15,19 @@ RSpec.describe FeedCreator, type: :model do
       end
     end
 
+    it 'sets correct last_fetched_date for initial fetch' do
+      VCR.use_cassette :valid_feed do
+        freeze_time do
+          account = create(:account)
+          url = 'https://daringfireball.net/feeds/main'
+
+          result = FeedCreator.new.create_feed(account, url: url, initially_fetch: :one_week_ago)
+
+          expect(result.feed.last_fetched_at).to eq(7.days.ago)
+        end
+      end
+    end
+
     it 'returns failure result object with invalid url' do
       account = create(:account)
       url = 'wefwef'

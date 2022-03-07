@@ -11,6 +11,7 @@ describe 'Managing Feeds', type: :system do
       visit feeds_path
       find('#new-feed-button').click
       fill_in 'URL', with: 'https://daringfireball.net/feeds/main'
+      select 'Last 7 Days', from: 'Initially Fetch'
       click_on 'Add Feed'
 
       expect(page).to have_content('Feed was successfully added.')
@@ -44,7 +45,7 @@ describe 'Managing Feeds', type: :system do
       find('.feed-menu-button').click
       click_on 'Refresh'
 
-      expect(page).to have_content "48 new item added to #{feed.name}."
+      expect(page).to have_content "0 new item added to #{feed.name}."
     end
   end
 end
