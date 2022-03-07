@@ -15,7 +15,11 @@ class FeedsController < ApplicationController
   end
 
   def create
-    result = FeedCreator.new.create_feed(current_account, url: feed_params[:url])
+    result = FeedCreator.new.create_feed(
+      current_account,
+      url: feed_params[:url],
+      initially_fetch: feed_params[:initially_fetch]
+    )
 
     if result.created?
       flash[:notice] = 'Feed was successfully added.'
@@ -53,6 +57,6 @@ class FeedsController < ApplicationController
   private
 
   def feed_params
-    params.require(:feed).permit(:url)
+    params.require(:feed).permit(:url, :initially_fetch)
   end
 end

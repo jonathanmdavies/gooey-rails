@@ -4,10 +4,14 @@ class FeedCreator
     @parser = Feedjira
   end
 
-  def create_feed(current_account, url:)
+  def create_feed(current_account, url:, initially_fetch: :one_week_ago)
     feed = current_account.feeds.build
     parsed_feed = retrieve_feed(url)
-    feed.assign_attributes(name: parsed_feed.title, url: url)
+    feed.assign_attributes(
+      name: parsed_feed.title,
+      url: url,
+      last_fetched_at: set_last_fetched_at(initially_fetch)
+    )
     feed.save
 
     Result.new(created: feed.valid?, feed: feed)
@@ -21,6 +25,10 @@ class FeedCreator
   def retrieve_feed(url)
     xml = @http.get(url).body
     @parser.parse(xml)
+  end
+
+  def set_last_fetched_at(initial_fetch)
+    TimeStringParser.parse(initial_fetch)
   end
 
   class Result

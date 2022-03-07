@@ -9,6 +9,7 @@ class FeedFetcher
   def fetch_items
     items = []
     get_entries.each do |entry|
+      break if entry_published_before_last_fetch?(entry)
       next if item_already_present?(entry)
 
       result = ItemCreator.new(entry: entry, feed: @feed).create_item
@@ -27,6 +28,10 @@ class FeedFetcher
   def get_entries
     xml = @http.get(@feed.url).body
     @parser.parse(xml).entries
+  end
+
+  def entry_published_before_last_fetch?(entry)
+    entry.published.to_time < @feed.last_fetched_at
   end
 
   def item_already_present?(entry)

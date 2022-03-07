@@ -19,6 +19,7 @@ export default function NewFeedButton() {
     clearErrors,
   } = useForm({
     url: "",
+    initially_fetch: "three_days_ago",
   });
 
   function closeModal() {
@@ -86,26 +87,54 @@ export default function NewFeedButton() {
                   </div>
                 </div>
               </div>
-              <div className="p-6">
-                <div className="relative rounded-lg border border-slate-300 px-3 py-2 focus-within:border-cyan-600 focus-within:ring-0 focus-within:ring-cyan-600">
-                  <label
-                    htmlFor="name"
-                    className="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-mono text-xs font-medium text-slate-800"
-                  >
-                    URL
-                  </label>
-                  <input
-                    value={data.url}
-                    onChange={(e) => setData("url", e.target.value)}
-                    type="text"
-                    name="name"
-                    id="name"
-                    className="block w-full border-0 p-0 text-sm text-slate-800 placeholder-gray-500 focus:ring-0"
-                    placeholder="https://daringfireball.net/feed"
-                  />
+              <div className="space-y-6 p-6">
+                <div className="">
+                  <div className="relative rounded-lg border border-slate-300 px-3 py-2 focus-within:border-cyan-600 focus-within:ring-0 focus-within:ring-cyan-600">
+                    <label
+                      htmlFor="name"
+                      className="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-mono text-xs font-medium text-slate-800"
+                    >
+                      URL
+                    </label>
+                    <input
+                      value={data.url}
+                      onChange={(e) => setData("url", e.target.value)}
+                      type="text"
+                      name="name"
+                      id="name"
+                      className="block w-full border-0 p-0 text-sm text-slate-800 placeholder-gray-500 focus:ring-0"
+                      placeholder="https://daringfireball.net/feeds/main"
+                    />
+                  </div>
+                  {errors.url && <div className="">{errors.url}</div>}
                 </div>
-                {errors.url && <div className="">{errors.url}</div>}
+                <div className="">
+                  <div className="relative rounded-lg border border-slate-300 px-3 py-2 focus-within:border-cyan-600 focus-within:ring-0 focus-within:ring-cyan-600">
+                    <label
+                      htmlFor="initially-fetch"
+                      className="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-mono text-xs font-medium text-slate-800"
+                    >
+                      Initially Fetch
+                    </label>
+                    <select
+                      id="initially-fetch"
+                      value={data.initially_fetch}
+                      onChange={(e) =>
+                        setData("initially_fetch", e.target.value)
+                      }
+                      className="block w-full border-0 p-0 text-sm text-slate-800 placeholder-gray-500 focus:ring-0"
+                    >
+                      <option value="one_day_ago">Last 24 Hours</option>
+                      <option value="three_days_ago" selected="selected">
+                        Last 3 Days
+                      </option>
+                      <option value="one_week_ago">Last 7 Days</option>
+                      <option value="two_weeks_ago">Last 2 Weeks</option>
+                    </select>
+                  </div>
+                </div>
               </div>
+
               <div className="p-6 pt-0 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                 <button
                   disabled={processing}
