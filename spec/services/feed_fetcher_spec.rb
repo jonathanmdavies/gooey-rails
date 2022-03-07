@@ -15,16 +15,7 @@ RSpec.describe FeedFetcher, type: :model do
       feed_fetcher = FeedFetcher.new(feed: feed)
 
       allow(feed_fetcher).to receive(:get_entries) do
-        [
-          double(
-            :entry,
-            title: 'New Item',
-            url: 'url',
-            published: 1.day.ago,
-            content: 'Content',
-            entry_id: '1'
-          ),
-        ]
+        [build(:entry)]
       end
 
       result = feed_fetcher.fetch_items
@@ -39,22 +30,8 @@ RSpec.describe FeedFetcher, type: :model do
       feed_fetcher = FeedFetcher.new(feed: feed)
       allow(feed_fetcher).to receive(:get_entries) do
         [
-          double(
-            :entry,
-            title: 'New Item',
-            url: 'url',
-            published: 1.day.ago,
-            content: 'Content',
-            entry_id: '1'
-          ),
-          double(
-            :entry,
-            title: 'Old Item',
-            url: 'url',
-            published: 2.weeks.ago,
-            content: 'Content',
-            entry_id: '1'
-          ),
+          build(:entry, published: 1.day.ago),
+          build(:entry, published: 2.weeks.ago),
         ]
       end
 
