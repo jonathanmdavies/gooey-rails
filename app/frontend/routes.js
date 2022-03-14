@@ -593,6 +593,16 @@ export const feed_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6
 
 /**
  * Generates rails route to
+ * /feeds/:feed_id/items/:id(.:format)
+ * @param {any} feed_id
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_item_path = __jsr.r({"feed_id":{"r":true},"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"items"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /feeds/:feed_id/items(.:format)
  * @param {any} feed_id
  * @param {object | undefined} options
@@ -607,6 +617,15 @@ export const feed_items_path = __jsr.r({"feed_id":{"r":true},"format":{}}, [2,[7
  * @returns {string} route path
  */
 export const feeds_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
+ * /items/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const item_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"items"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]);
 
 /**
  * Generates rails route to
@@ -655,6 +674,24 @@ export const new_rails_conductor_inbound_email_path = __jsr.r({"format":{}}, [2,
  * @returns {string} route path
  */
 export const new_rails_conductor_inbound_email_source_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"rails"],[2,[7,"/"],[2,[6,"conductor"],[2,[7,"/"],[2,[6,"action_mailbox"],[2,[7,"/"],[2,[6,"inbound_emails"],[2,[7,"/"],[2,[6,"sources"],[2,[7,"/"],[2,[6,"new"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /feeds/:feed_id/items/next(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const next_feed_items_path = __jsr.r({"feed_id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"items"],[2,[7,"/"],[2,[6,"next"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /feeds/:feed_id/items/previous(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const previous_feed_items_path = __jsr.r({"feed_id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"items"],[2,[7,"/"],[2,[6,"previous"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
 
 /**
  * Generates rails route to

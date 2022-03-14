@@ -8,9 +8,12 @@ Rails.application.routes.draw do
       root to: 'items#index', as: :authenticated_account_root
       resources :feeds, only: [:create, :index, :destroy] do
         patch :refresh, on: :member
-        resources :items, only: [:index], module: 'feeds'
+        resources :items, only: [:index, :show], module: 'feeds' do
+          get :next, on: :collection
+          get :previous, on: :collection
+        end
       end
-      resources :items, only: [:index]
+      resources :items, only: [:index, :show]
     end
   end
 

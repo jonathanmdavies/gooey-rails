@@ -1,17 +1,17 @@
 class Feeds::ItemsController < ApplicationController
   before_action :authenticate_account!
 
-  def index
-    feeds = current_account.feeds.order(created_at: :desc).select(:id, :name)
-    feed = current_account.feeds.find(params[:feed_id])
-    pagy, items = pagy(feed.items.unread.order(published_at: :desc))
+  def show
+    feeds = current_account.feeds.order_by_created_at_and_item_published_at
+    feed = feeds.find { |f| f.id == params[:feed_id].to_i }
+    item = feed.items.find { |f| f.id == params[:id].to_i }
 
     render inertia: 'Unread/Index',
            props: {
-             items: items,
-             feeds: feeds,
+             feeds: feeds.map { |f| FeedSerializer.new(f) },
              feed: feed,
-             pagy: pagy_metadata(pagy),
+             items: feed.items,
+             item: ItemSerializer.new(item),
            }
   end
 end

@@ -13,4 +13,12 @@ class Item < ApplicationRecord
   def self.unread
     where(read_at: nil)
   end
+
+  def next
+    feed.items.order(published_at: :desc).where('published_at < ?', published_at).first&.id
+  end
+
+  def previous
+    feed.items.order(published_at: :desc).where('published_at > ?', published_at).last&.id
+  end
 end
