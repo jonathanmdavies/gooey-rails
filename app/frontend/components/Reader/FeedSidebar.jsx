@@ -73,7 +73,7 @@ export default function FeedSidebar() {
                                 : "text-slate-700 hover:bg-slate-100"
                             } sidebar-item-link flex w-full items-center justify-between rounded-full px-4 py-2 text-sm font-semibold  transition `}
                           >
-                            <span className="text-sm font-medium">
+                            <span className="mr-2 min-w-0 truncate text-sm font-medium">
                               {feed.name}
                             </span>
                             <span className="ml-auto font-mono text-xs font-semibold text-slate-400">
