@@ -1,4 +1,2 @@
-
-vite: bin/vite dev
 web: bin/rails s
 worker: bundle exec sidekiq  -C config/sidekiq.yml

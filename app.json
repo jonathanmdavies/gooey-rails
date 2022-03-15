@@ -1,6 +1,16 @@
 {
   "name": "Gooey",
   "description": "An RSS Reader.",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "standard-1x"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "standard-1x"
+    }
+  },
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -13,7 +23,8 @@
     "review": {
       "scripts": {
         "postdeploy": "bundle exec rake db:schema:load db:seed"
-      }
+      },
+      "addons": ["heroku-redis:hobby-dev"]
     }
   }
 }
