@@ -13,7 +13,8 @@
     "review": {
       "scripts": {
         "postdeploy": "bundle exec rake db:schema:load db:seed"
-      }
+      },
+      "addons": ["heroku-redis:hobby-dev"]
     }
   }
 }
