@@ -22,6 +22,7 @@ class Manage::FeedsController < ApplicationController
     )
 
     if result.created?
+      RefreshFeedJob.perform_async(result.feed.id)
       flash[:notice] = 'Feed was successfully added.'
       redirect_to feeds_path
     else

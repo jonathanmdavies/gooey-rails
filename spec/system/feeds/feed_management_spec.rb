@@ -15,6 +15,7 @@ describe 'Managing Feeds', type: :system do
       click_on 'Add Feed'
 
       expect(page).to have_content('Feed was successfully added.')
+      expect(RefreshFeedJob.jobs.length).to eq(1)
     end
   end
 
