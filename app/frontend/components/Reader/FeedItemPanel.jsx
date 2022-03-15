@@ -16,16 +16,13 @@ export default function FeedItemPanel() {
     );
   }
   return (
-    <div className="flex flex-1 flex-col bg-white">
-      <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90  px-6 py-2 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-3xl items-center justify-between">
-          <div className="">
-            <h1 className="font-mono text-sm font-semibold text-slate-800">
+    <div className="flex flex-1 flex-col overflow-y-scroll bg-white">
+      <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90 py-2 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-6">
+          <div className="min-w-0 py-3">
+            <h1 className="truncate font-mono text-sm font-semibold text-slate-800">
               {item.title}
             </h1>
-            <h6 className="font-mono text-xs text-slate-400">
-              {new Date(item.published_at).toLocaleDateString()}
-            </h6>
           </div>
           <div className="flex space-x-2">
             <button
@@ -51,7 +48,7 @@ export default function FeedItemPanel() {
           </div>
         </div>
       </div>
-      <div className="prose prose-cyan max-w-3xl self-center">
+      <div className="prose prose-cyan max-w-3xl self-center p-6">
         <div dangerouslySetInnerHTML={{ __html: item.content }} />
       </div>
     </div>
