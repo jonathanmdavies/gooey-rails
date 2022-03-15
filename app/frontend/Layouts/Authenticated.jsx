@@ -65,7 +65,7 @@ function Header() {
         <Link
           href={root_path()}
           className={`${
-            url === root_path()
+            !url.startsWith("/manage")
               ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white hover:text-slate-100"
               : "text-slate-500"
           } rounded-full  px-6 py-2 text-sm font-medium  transition  active:scale-95`}
@@ -76,7 +76,7 @@ function Header() {
         <Link
           href={feeds_path()}
           className={`${
-            url.startsWith(feeds_path())
+            url.startsWith("/manage")
               ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white hover:text-slate-100"
               : "text-slate-500"
           } rounded-full px-6 py-2 text-sm font-medium transition active:scale-95`}

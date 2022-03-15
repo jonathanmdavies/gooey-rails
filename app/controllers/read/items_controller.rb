@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Read::ItemsController < ApplicationController
   before_action :authenticate_account!
 
   def index
