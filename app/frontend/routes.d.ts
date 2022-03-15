@@ -189,6 +189,20 @@ export const feed_path: ((
 
 /**
  * Generates rails route to
+ * /feeds/:feed_id/items/:id(.:format)
+ * @param {any} feed_id
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_item_path: ((
+  feed_id: RequiredRouteParameter,
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /feeds/:feed_id/items(.:format)
  * @param {any} feed_id
  * @param {object | undefined} options
@@ -206,6 +220,18 @@ export const feed_items_path: ((
  * @returns {string} route path
  */
 export const feeds_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /items/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const item_path: ((
+  id: RequiredRouteParameter,
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
