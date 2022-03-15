@@ -4,6 +4,7 @@ import { item_path, feed_item_path } from "@/routes";
 
 export default function ItemsSidebar() {
   const { items, feed } = usePage().props;
+  const { url } = usePage();
 
   const dynamicItemPath = (itemId) => {
     if (feed) {
@@ -21,7 +22,9 @@ export default function ItemsSidebar() {
               href={dynamicItemPath(id)}
               preserveScroll
               preserveState
-              className=" block p-3 transition hover:bg-slate-100 active:bg-white active:hover:bg-white"
+              className={` ${
+                url === dynamicItemPath(id) ? "bg-white" : ""
+              } block p-3 transition hover:bg-white active:bg-white`}
             >
               <h3 className="truncate text-sm font-medium text-slate-700">
                 {title}
