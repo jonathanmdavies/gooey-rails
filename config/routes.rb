@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+
   devise_for :accounts, controllers: {
     sessions: 'accounts/sessions',
   }
@@ -24,5 +26,9 @@ Rails.application.routes.draw do
 
   unauthenticated do
     root 'accounts/sessions#new', as: :root
+  end
+
+  if Rails.env.development?
+    mount Sidekiq::Web => '/sidekiq'
   end
 end

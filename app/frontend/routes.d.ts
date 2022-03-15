@@ -559,6 +559,16 @@ export const root_path: ((
 
 /**
  * Generates rails route to
+ * /sidekiq
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const sidekiq_web_path: ((
+  options?: {} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /rails/active_storage/disk/:encoded_token(.:format)
  * @param {any} encoded_token
  * @param {object | undefined} options

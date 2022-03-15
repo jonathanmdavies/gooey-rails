@@ -877,6 +877,14 @@ export const root_path = __jsr.r({}, [7,"/"]);
 
 /**
  * Generates rails route to
+ * /sidekiq
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const sidekiq_web_path = __jsr.r({}, [2,[7,"/"],[6,"sidekiq"]]);
+
+/**
+ * Generates rails route to
  * /rails/active_storage/disk/:encoded_token(.:format)
  * @param {any} encoded_token
  * @param {object | undefined} options
