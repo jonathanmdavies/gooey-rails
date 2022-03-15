@@ -22,7 +22,7 @@ export default function Index() {
 
   useEffect(() => {
     Inertia.get(
-      `/feeds`,
+      `/manage/feeds`,
       {
         column: sorted.column,
         order: sorted.order,

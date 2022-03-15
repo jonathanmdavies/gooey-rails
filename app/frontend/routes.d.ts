@@ -177,7 +177,7 @@ export const edit_rails_conductor_inbound_email_path: ((
 
 /**
  * Generates rails route to
- * /feeds/:id(.:format)
+ * /manage/feeds/:id(.:format)
  * @param {any} id
  * @param {object | undefined} options
  * @returns {string} route path
@@ -215,7 +215,7 @@ export const feed_items_path: ((
 
 /**
  * Generates rails route to
- * /feeds(.:format)
+ * /manage/feeds(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
  */
@@ -537,7 +537,7 @@ export const rails_service_blob_proxy_path: ((
 
 /**
  * Generates rails route to
- * /feeds/:id/refresh(.:format)
+ * /manage/feeds/:id/refresh(.:format)
  * @param {any} id
  * @param {object | undefined} options
  * @returns {string} route path

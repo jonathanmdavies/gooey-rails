@@ -1,4 +1,4 @@
-class FeedsController < ApplicationController
+class Manage::FeedsController < ApplicationController
   before_action :authenticate_account!
 
   def index
