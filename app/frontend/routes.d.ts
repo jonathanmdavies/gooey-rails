@@ -237,6 +237,18 @@ export const item_path: ((
 
 /**
  * Generates rails route to
+ * /items/:item_id/read(.:format)
+ * @param {any} item_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const item_read_path: ((
+  item_id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /items(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
