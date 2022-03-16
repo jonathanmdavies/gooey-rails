@@ -629,6 +629,15 @@ export const item_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6
 
 /**
  * Generates rails route to
+ * /items/:item_id/read(.:format)
+ * @param {any} item_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const item_read_path = __jsr.r({"item_id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"items"],[2,[7,"/"],[2,[3,"item_id"],[2,[7,"/"],[2,[6,"read"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /items(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
