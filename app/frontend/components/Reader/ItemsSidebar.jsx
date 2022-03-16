@@ -27,7 +27,7 @@ export default function ItemsSidebar() {
       style={{ width }}
       className="relative flex w-80 flex-row-reverse justify-between overflow-y-scroll border-r border-slate-100"
     >
-      <div className="absolute right-0 h-full cursor-col-resize transition hover:bg-cyan-500/50">
+      <div className="absolute right-0 z-20 h-full cursor-col-resize transition hover:bg-cyan-500/50">
         <Draggable axis="x" onStart={start} onDrag={resize} onStop={end}>
           <div className="h-full w-[3px]" />
         </Draggable>
