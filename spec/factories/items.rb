@@ -9,4 +9,14 @@ FactoryBot.define do
     bookmarked_at { nil }
     association :feed
   end
+
+  trait :with_account do
+    transient do
+      account { nil }
+    end
+
+    feed do
+      association :feed, account: account
+    end
+  end
 end

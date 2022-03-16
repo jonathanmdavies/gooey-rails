@@ -17,7 +17,9 @@ Rails.application.routes.draw do
         resources :feeds, only: [] do
           resources :items, only: [:index, :show], module: :feeds
         end
-        resources :items, only: [:index, :show]
+        resources :items, only: [:index, :show] do
+          resource :read, only: [:create, :destroy]
+        end
       end
     end
   end

@@ -4,7 +4,7 @@ class Read::Feeds::ItemsController < ApplicationController
   def index
     feeds = current_account.feeds.order(created_at: :desc).select(:id, :name)
     feed = current_account.feeds.find(params[:feed_id])
-    items = feed.items.unread.order(published_at: :desc)
+    items = feed.items.order(published_at: :desc)
 
     render inertia: 'Unread/Index',
            props: {
@@ -17,7 +17,7 @@ class Read::Feeds::ItemsController < ApplicationController
   def show
     feeds = current_account.feeds.order(created_at: :desc).select(:id, :name)
     feed = current_account.feeds.find(params[:feed_id])
-    items = feed.items.unread.order(published_at: :desc)
+    items = feed.items.order(published_at: :desc)
     item = items.find { |i| i.id == params[:id].to_i }
 
     render inertia: 'Unread/Index',

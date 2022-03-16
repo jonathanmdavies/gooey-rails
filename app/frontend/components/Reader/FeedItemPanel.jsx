@@ -1,7 +1,13 @@
 /* eslint-disable react/no-danger */
 import React from "react";
-import { ExternalLinkIcon, EyeOffIcon, StarIcon } from "@heroicons/react/solid";
-import { usePage } from "@inertiajs/inertia-react";
+import {
+  ExternalLinkIcon,
+  EyeOffIcon,
+  EyeIcon,
+  StarIcon,
+} from "@heroicons/react/solid";
+import { Link, usePage } from "@inertiajs/inertia-react";
+import { item_read_path } from "@/routes";
 
 export default function FeedItemPanel() {
   const { item } = usePage().props;
@@ -31,12 +37,7 @@ export default function FeedItemPanel() {
             >
               <StarIcon className="h-4 w-4 text-white" />
             </button>
-            <button
-              type="button"
-              className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95"
-            >
-              <EyeOffIcon className="h-4 w-4 text-white" />
-            </button>
+            <ToggleReadButton />
             <a
               href={item.permalink}
               rel="noreferrer"
@@ -52,5 +53,37 @@ export default function FeedItemPanel() {
         <div dangerouslySetInnerHTML={{ __html: item.content }} />
       </div>
     </div>
+  );
+}
+
+function ToggleReadButton() {
+  const { item } = usePage().props;
+
+  const read = item.read_at !== null;
+  return (
+    <>
+      {read && (
+        <Link
+          href={item_read_path(item.id)}
+          method="delete"
+          as="button"
+          className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95"
+        >
+          <span className="sr-only">Mark as unread</span>
+          <EyeOffIcon className="h-4 w-4 text-white" />
+        </Link>
+      )}
+      {!read && (
+        <Link
+          href={item_read_path(item.id)}
+          method="post"
+          as="button"
+          className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95"
+        >
+          <span className="sr-only">Mark as read</span>
+          <EyeIcon className="h-4 w-4 text-white" />
+        </Link>
+      )}
+    </>
   );
 }
