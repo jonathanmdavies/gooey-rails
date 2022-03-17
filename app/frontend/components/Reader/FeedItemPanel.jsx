@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/solid";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import { item_read_path } from "@/routes";
+import Tooltip from "../Tooltip";
 
 export default function FeedItemPanel() {
   const { item } = usePage().props;
@@ -22,7 +23,7 @@ export default function FeedItemPanel() {
     );
   }
   return (
-    <div className="flex flex-1 flex-col overflow-y-scroll bg-white">
+    <div className="flex flex-1 flex-col bg-white">
       <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90 py-2 backdrop-blur-sm">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6">
           <div className="min-w-0 py-3">
@@ -63,15 +64,24 @@ function ToggleReadButton() {
   return (
     <>
       {read && (
-        <Link
-          href={item_read_path(item.id)}
-          method="delete"
-          as="button"
-          className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95"
-        >
-          <span className="sr-only">Mark as unread</span>
-          <EyeOffIcon className="h-4 w-4 text-white" />
-        </Link>
+        <div className="">
+          <Tooltip
+            tooltipContent="Mark as unread"
+            button={
+              <Link
+                href={item_read_path(item.id)}
+                method="delete"
+                as="button"
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 transition hover:bg-slate-900 active:scale-95"
+              >
+                <span className="sr-only">Mark as unread</span>
+                <EyeOffIcon className="h-4 w-4 text-white" />
+              </Link>
+            }
+          >
+            Mark as Unread
+          </Tooltip>
+        </div>
       )}
       {!read && (
         <Link
