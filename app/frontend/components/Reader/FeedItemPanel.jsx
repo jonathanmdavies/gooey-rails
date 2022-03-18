@@ -23,7 +23,7 @@ export default function FeedItemPanel() {
     );
   }
   return (
-    <div className="flex flex-1 flex-col bg-white">
+    <div className="flex h-screen flex-1 flex-col overflow-y-scroll bg-white">
       <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90 py-2 backdrop-blur-sm">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6">
           <div className="min-w-0 py-3">
@@ -32,21 +32,26 @@ export default function FeedItemPanel() {
             </h1>
           </div>
           <div className="flex space-x-2">
-            <button
-              type="button"
-              className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95"
-            >
-              <StarIcon className="h-4 w-4 text-white" />
-            </button>
+            <Tooltip content="Bookmark">
+              <button
+                type="button"
+                className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition hover:text-cyan-50 active:scale-95"
+              >
+                <StarIcon className="h-4 w-4 transition group-hover:scale-95" />
+              </button>
+            </Tooltip>
+
             <ToggleReadButton />
-            <a
-              href={item.permalink}
-              rel="noreferrer"
-              target="_blank"
-              className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-slate-500 to-slate-400 text-white hover:text-slate-200 active:scale-95"
-            >
-              <ExternalLinkIcon className="h-4 w-4 " />
-            </a>
+            <Tooltip content="Read Original">
+              <a
+                href={item.permalink}
+                rel="noreferrer"
+                target="_blank"
+                className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition hover:text-cyan-50 active:scale-95"
+              >
+                <ExternalLinkIcon className="h-4 w-4 transition group-hover:scale-95" />
+              </a>
+            </Tooltip>
           </div>
         </div>
       </div>
@@ -64,35 +69,34 @@ function ToggleReadButton() {
   return (
     <>
       {read && (
-        <div className="">
-          <Tooltip
-            tooltipContent="Mark as unread"
-            button={
-              <Link
-                href={item_read_path(item.id)}
-                method="delete"
-                as="button"
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-800 transition hover:bg-slate-900 active:scale-95"
-              >
-                <span className="sr-only">Mark as unread</span>
-                <EyeOffIcon className="h-4 w-4 text-white" />
-              </Link>
-            }
+        <Tooltip content="Mark as Unread">
+          <Link
+            preserveState
+            preserveScroll
+            href={item_read_path(item.id)}
+            method="delete"
+            as="button"
+            className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition hover:text-cyan-50 active:scale-95"
           >
-            Mark as Unread
-          </Tooltip>
-        </div>
+            <span className="sr-only">Mark as unread</span>
+            <EyeOffIcon className="h-4 w-4 group-hover:scale-95" />
+          </Link>
+        </Tooltip>
       )}
       {!read && (
-        <Link
-          href={item_read_path(item.id)}
-          method="post"
-          as="button"
-          className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-400 transition active:scale-95"
-        >
-          <span className="sr-only">Mark as read</span>
-          <EyeIcon className="h-4 w-4 text-white" />
-        </Link>
+        <Tooltip content="Mark as Read">
+          <Link
+            preserveState
+            preserveScroll
+            href={item_read_path(item.id)}
+            method="post"
+            as="button"
+            className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition active:scale-95"
+          >
+            <span className="sr-only">Mark as read</span>
+            <EyeIcon className="h-4 w-4 transition group-hover:scale-95" />
+          </Link>
+        </Tooltip>
       )}
     </>
   );
