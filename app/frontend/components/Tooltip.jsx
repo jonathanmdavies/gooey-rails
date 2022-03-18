@@ -1,53 +1,54 @@
-import React, { useState } from "react";
-import { Transition } from "@headlessui/react";
-import { useFloating, shift, flip, offset } from "@floating-ui/react-dom";
+/* eslint-disable react/jsx-props-no-spreading */
+import React from "react";
+import Tippy from "@tippyjs/react/headless";
 import propTypes from "prop-types";
+import { useSpring, motion } from "framer-motion";
 
-export default function Tooltip({ tooltipContent, button }) {
-  const [showTooltip, setShowTooltip] = useState(false);
+export default function Tooltip({ content, children }) {
+  const springConfig = { damping: 50, stiffness: 500 };
+  const initialScale = 0.2;
+  const opacity = useSpring(0, springConfig);
+  const scale = useSpring(initialScale, springConfig);
 
-  const { x, y, reference, floating, strategy } = useFloating({
-    placement: "top",
-    middleware: [shift(), flip(), offset(4)],
-  });
+  const onMount = () => {
+    scale.set(1);
+    opacity.set(1);
+  };
+
+  const onHide = ({ unmount }) => {
+    const cleanup = scale.onChange((value) => {
+      if (value <= initialScale) {
+        cleanup();
+        unmount();
+      }
+    });
+
+    scale.set(initialScale);
+    opacity.set(0);
+  };
 
   return (
-    <div className="relative">
-      <Transition
-        show={showTooltip}
-        enter="transition-opacity duration-1000"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="transition-opacity duration-1000"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
-      >
-        <div
-          ref={floating}
-          style={{
-            position: strategy,
-            top: y ?? "",
-            left: x ?? "",
-          }}
-          className="absolute w-auto whitespace-nowrap rounded-xl bg-slate-800 px-3 py-2 text-center font-mono text-xs font-medium text-white transition"
+    <Tippy
+      animation
+      onMount={onMount}
+      onHide={onHide}
+      render={(attrs) => (
+        <motion.div
+          style={{ scale, opacity }}
+          className="rounded-xl bg-gradient-to-br from-slate-800 to-slate-700 px-3 py-1 text-xs font-medium text-white"
+          role="tooltip"
+          {...attrs}
         >
-          {tooltipContent}
-        </div>
-      </Transition>
-
-      <div
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-        ref={reference}
-        className=""
-      >
-        {button}
-      </div>
-    </div>
+          {content}
+        </motion.div>
+      )}
+    >
+      {children}
+    </Tippy>
   );
 }
 
 Tooltip.propTypes = {
-  tooltipContent: propTypes.string.isRequired,
-  button: propTypes.element.isRequired,
+  content: propTypes.string.isRequired,
+  children: propTypes.element.isRequired,
 };
