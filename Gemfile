@@ -52,6 +52,9 @@ gem 'httparty'
 
 gem 'active_model_serializers', '~> 0.10.12'
 
+# Alternative to ActiveModelSerializers
+gem 'alba'
+
 gem 'pagy'
 
 # In Production for Test Seed Data Generation

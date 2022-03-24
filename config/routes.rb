@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     authenticated :account do
       root to: 'read/items#index', as: :authenticated_account_root
 
+      resource :dashboard, only: [:show]
+
       scope module: 'manage', path: 'manage' do
         resources :feeds, only: [:create, :index, :destroy] do
           patch :refresh, on: :member
