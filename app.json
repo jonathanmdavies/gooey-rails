@@ -1,6 +1,16 @@
 {
   "name": "Gooey",
   "description": "An RSS Reader.",
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "standard-1x"
+    }
+  },
   "buildpacks": [
     {
       "url": "heroku/nodejs"
