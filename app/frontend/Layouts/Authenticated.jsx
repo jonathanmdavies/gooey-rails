@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { usePage, Link } from "@inertiajs/inertia-react";
-import { CogIcon } from "@heroicons/react/solid";
+import { CogIcon, RefreshIcon } from "@heroicons/react/solid";
 
-import { destroy_account_session_path, feeds_path, root_path } from "@/routes";
+import {
+  destroy_account_session_path,
+  feeds_path,
+  root_path,
+  refresh_all_feeds_path,
+} from "@/routes";
 import FlashMessages from "@/components/FlashMessages";
 import NewFeedButton from "@/components/NewFeedButton";
 import Dropdown from "@/components/Dropdown";
@@ -86,6 +91,14 @@ function Header() {
       </div>
 
       <div className="flex w-40 justify-end space-x-2">
+        <Link
+          href={refresh_all_feeds_path()}
+          as="button"
+          method="patch"
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 active:scale-95"
+        >
+          <RefreshIcon className="h-4 w-4 text-white" />
+        </Link>
         <NewFeedButton />
       </div>
     </header>

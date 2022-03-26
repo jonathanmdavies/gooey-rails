@@ -869,6 +869,14 @@ export const rails_service_blob_proxy_path = __jsr.r({"signed_id":{"r":true},"fi
 
 /**
  * Generates rails route to
+ * /manage/feeds/refresh_all(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const refresh_all_feeds_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"manage"],[2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[6,"refresh_all"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /manage/feeds/:id/refresh(.:format)
  * @param {any} id
  * @param {object | undefined} options
