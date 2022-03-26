@@ -9,7 +9,7 @@ class Manage::FeedsController < ApplicationController
     # Safe as of Rails 6 [https://www.bigbinary.com/blog/rails-5-2-disallows-raw-sql-in-active-record]
     pagy, records = pagy(current_account.feeds.order("#{column} #{order}"))
     # rubocop:enable Airbnb/RiskyActiverecordInvocation`
-    feeds = records.map { |feed| FeedSerializer.new(feed) }
+    feeds = FeedSerializer.new(records).serializable_hash
 
     render inertia: 'Feeds/Index', props: { feeds: feeds, pagy: pagy_metadata(pagy) }
   end

@@ -50,7 +50,7 @@ gem 'feedjira'
 
 gem 'httparty'
 
-gem 'active_model_serializers', '~> 0.10.12'
+gem 'alba'
 
 gem 'pagy'
 
