@@ -3,12 +3,26 @@
   password: 'Password12'
 )
 
-15.times.each do |i|
-  Feed.create(
-    name: Faker::App.name,
-    url: Faker::Internet.url(path: '/feed'),
-    status: [0, 1].sample,
+Feed.create(
+    name: 'Daring Fireball',
+    url: 'https://daringfireball.net/feeds/main',
+    status: :active,
     account_id: @account.id,
-    last_fetched_at: Faker::Time.between(from: 1.day.ago, to: Time.now)
+    last_fetched_at: 3.days.ago
   )
-end
+
+  Feed.create(
+    name: 'Six Colors',
+    url: 'https://sixcolors.com/feed/',
+    status: :active,
+    account_id: @account.id,
+    last_fetched_at: 3.days.ago
+  )
+
+  Feed.create(
+    name: 'David Heinemeier Hansson',
+    url: 'https://world.hey.com/dhh/feed.atom',
+    status: :active,
+    account_id: @account.id,
+    last_fetched_at: 3.days.ago
+  )
