@@ -58,6 +58,10 @@ RSpec.configure do |config|
   # Alternative to TimeCop
   config.include ActiveSupport::Testing::TimeHelpers
 
+  config.before(:each) do
+    Sidekiq::Worker.clear_all
+  end
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 

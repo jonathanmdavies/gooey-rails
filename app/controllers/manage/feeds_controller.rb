@@ -55,6 +55,15 @@ class Manage::FeedsController < ApplicationController
     end
   end
 
+  def refresh_all
+    current_account.feeds.active.each do |feed|
+      RefreshFeedJob.perform_async(feed.id)
+    end
+
+    flash[:notice] = 'Checking for new items...'
+    redirect_back fallback_location: feeds_path
+  end
+
   private
 
   def feed_params
