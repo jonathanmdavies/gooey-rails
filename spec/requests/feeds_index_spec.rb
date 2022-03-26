@@ -12,7 +12,7 @@ describe 'Feeds Index', type: :request, inertia: true do
     create(:feed, created_at: 3.days.ago, account: @account, name: 'Oldest')
     get feeds_path
 
-    names = inertia.props[:feeds].map(&:object).map(&:name)
+    names = inertia.props[:feeds].pluck(:name)
 
     expect(names).to eq(['Newest', 'Old', 'Oldest'])
   end
@@ -23,7 +23,7 @@ describe 'Feeds Index', type: :request, inertia: true do
     create(:feed, created_at: 3.days.ago, account: @account, name: 'Oldest')
     get feeds_path(column: 'created_at', order: 'asc')
 
-    names = inertia.props[:feeds].map(&:object).map(&:name)
+    names = inertia.props[:feeds].pluck(:name)
 
     expect(names).to eq(['Oldest', 'Old', 'Newest'])
   end
@@ -34,7 +34,7 @@ describe 'Feeds Index', type: :request, inertia: true do
     create(:feed, account: @account, name: 'C')
     get feeds_path(column: 'name', order: 'asc')
 
-    names = inertia.props[:feeds].map(&:object).map(&:name)
+    names = inertia.props[:feeds].pluck(:name)
 
     expect(names).to eq(['A', 'B', 'C'])
   end
@@ -45,7 +45,7 @@ describe 'Feeds Index', type: :request, inertia: true do
     create(:feed, account: @account, name: 'C')
     get feeds_path(column: 'name', order: 'desc')
 
-    names = inertia.props[:feeds].map(&:object).map(&:name)
+    names = inertia.props[:feeds].pluck(:name)
 
     expect(names).to eq(['C', 'B', 'A'])
   end
@@ -56,9 +56,9 @@ describe 'Feeds Index', type: :request, inertia: true do
     create(:feed, account: @account, status: :inactive)
     get feeds_path(column: 'status', order: 'asc')
 
-    statuses = inertia.props[:feeds].map(&:object).map(&:status)
+    statuses = inertia.props[:feeds].pluck(:status)
 
-    expect(statuses).to eq(['active', 'inactive', 'inactive'])
+    expect(statuses).to eq(['Active', 'Inactive', 'Inactive'])
   end
 
   it 'sorts status DESC' do
@@ -67,8 +67,8 @@ describe 'Feeds Index', type: :request, inertia: true do
     create(:feed, account: @account, status: :inactive)
     get feeds_path(column: 'status', order: 'desc')
 
-    statuses = inertia.props[:feeds].map(&:object).map(&:status)
+    statuses = inertia.props[:feeds].pluck(:status)
 
-    expect(statuses).to eq(['inactive', 'inactive', 'active'])
+    expect(statuses).to eq(['Inactive', 'Inactive', 'Active'])
   end
 end

@@ -1,11 +1,13 @@
-class FeedSerializer < ActiveModel::Serializer
+class FeedSerializer
+  include Alba::Resource
+
   attributes :id, :name, :url, :status, :created_at
 
-  def status
-    object.status.humanize
+  attribute :status do |feed|
+    feed.status.humanize
   end
 
-  def created_at
-    object.created_at.strftime('%b %d, %Y')
+  attribute :created_at do |feed|
+    feed.created_at.strftime('%b %d, %Y')
   end
 end
