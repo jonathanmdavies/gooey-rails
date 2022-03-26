@@ -18,7 +18,7 @@ class FeedFetcher
 
     @feed.update(last_fetched_at: Time.now, status: :active)
     Result.new(successful: true, fetched_items_count: items.size)
-  rescue Errno::ECONNREFUSED, Feedjira::NoParserAvailable, Addressable::URI::InvalidURIError
+  rescue Errno::ECONNREFUSED, Feedjira::NoParserAvailable, Addressable::URI::InvalidURIError, SocketError
     @feed.update(status: :inactive)
     Result.new(successful: false, feed: @feed)
   end

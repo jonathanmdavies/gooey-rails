@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       scope module: 'manage', path: 'manage' do
         resources :feeds, only: [:create, :index, :destroy] do
           patch :refresh, on: :member
+          patch :refresh_all, on: :collection
         end
       end
 
