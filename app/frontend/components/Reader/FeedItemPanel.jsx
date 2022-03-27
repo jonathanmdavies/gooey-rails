@@ -11,9 +11,9 @@ import { item_read_path } from "@/routes";
 import Tooltip from "../Tooltip";
 
 export default function FeedItemPanel() {
-  const { item } = usePage().props;
+  const { item, feed } = usePage().props;
 
-  if (item === undefined) {
+  if (!item) {
     return (
       <div className="flex flex-1 items-center justify-center bg-white">
         <h2 className="text-sm font-medium text-slate-700">
@@ -27,11 +27,11 @@ export default function FeedItemPanel() {
       <div className="sticky top-0 border-b border-slate-100 bg-slate-50/90 py-2 backdrop-blur-sm">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6">
           <div className="min-w-0 py-3">
-            <h1 className="truncate font-mono text-sm font-semibold text-slate-800">
-              {item.title}
+            <h1 className="truncate text-sm font-semibold text-slate-700">
+              {feed.name}
             </h1>
           </div>
-          <div className="flex space-x-2">
+          <div className="ml-3 flex space-x-2">
             <Tooltip content="Bookmark">
               <button
                 type="button"
@@ -55,17 +55,18 @@ export default function FeedItemPanel() {
           </div>
         </div>
       </div>
-      <div className="prose prose-cyan max-w-3xl self-center p-6">
+      <article className="prose prose-slate w-full max-w-3xl self-center p-6 prose-a:text-cyan-600 prose-a:no-underline  hover:prose-a:text-cyan-500">
+        <h1>{item.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: item.content }} />
-      </div>
+      </article>
     </div>
   );
 }
 
 function ToggleReadButton() {
   const { item } = usePage().props;
+  const read = item.read_at;
 
-  const read = item.read_at !== null;
   return (
     <>
       {read && (
@@ -83,6 +84,7 @@ function ToggleReadButton() {
           </Link>
         </Tooltip>
       )}
+
       {!read && (
         <Tooltip content="Mark as Read">
           <Link
