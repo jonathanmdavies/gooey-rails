@@ -10,7 +10,7 @@ class Read::Feeds::ItemsController < ApplicationController
            props: {
              feeds: feeds,
              feed: feed,
-             items: items,
+             items: ItemResource.new(items, params: { context: :feed }).serializable_hash,
            }
   end
 
@@ -24,7 +24,7 @@ class Read::Feeds::ItemsController < ApplicationController
            props: {
              feeds: feeds,
              feed: feed,
-             items: items,
+             items: ItemResource.new(items, params: { context: :feed }).serializable_hash,
              item: item,
            }
   end

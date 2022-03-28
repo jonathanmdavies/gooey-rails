@@ -1,19 +1,11 @@
 import React, { useRef } from "react";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import Draggable from "react-draggable";
-import { item_path, feed_item_path } from "@/routes";
 import { useResizableX } from "@/utils/hooks";
 
 export default function ItemsSidebar() {
-  const { items, feed } = usePage().props;
+  const { items } = usePage().props;
   const { url } = usePage();
-
-  const dynamicItemPath = (itemId) => {
-    if (feed) {
-      return feed_item_path(feed.id, itemId);
-    }
-    return item_path(itemId);
-  };
 
   const resizeable = useRef(null);
   const { start, resize, width, end } = useResizableX(
@@ -34,14 +26,14 @@ export default function ItemsSidebar() {
       </div>
 
       <div className="w-full divide-y divide-slate-100 overflow-y-scroll">
-        {items.map(({ id, title, published_at }) => (
+        {items.map(({ id, title, published_at, item_path }) => (
           <div key={id} className="w-full">
             <Link
-              href={dynamicItemPath(id)}
+              href={item_path}
               preserveScroll
               preserveState
               className={` ${
-                url === dynamicItemPath(id) ? "bg-white" : ""
+                url === item_path ? "bg-white" : ""
               } block p-3 transition hover:bg-white active:bg-white`}
             >
               <h3 className="truncate text-sm font-medium text-slate-700">

@@ -5,7 +5,10 @@ class Read::ItemsController < ApplicationController
     feeds = current_account.feeds.order(created_at: :desc).select(:id, :name)
     items = current_account.items.order(published_at: :desc)
 
-    render inertia: 'Unread/Index', props: { items: items, feeds: feeds }
+    render inertia: 'Unread/Index', props: {
+      items: ItemResource.new(items).serializable_hash,
+      feeds: feeds,
+    }
   end
 
   def show
@@ -15,7 +18,7 @@ class Read::ItemsController < ApplicationController
     feed = item.feed
 
     render inertia: 'Unread/Index', props: {
-      items: items,
+      items: ItemResource.new(items).serializable_hash,
       feeds: feeds,
       feed: feed,
       item: item,
