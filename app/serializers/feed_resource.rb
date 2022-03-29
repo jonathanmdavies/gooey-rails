@@ -1,5 +1,6 @@
-class FeedSerializer
+class FeedResource
   include Alba::Resource
+  include Rails.application.routes.url_helpers
 
   attributes :id, :name, :url, :status, :created_at
 
