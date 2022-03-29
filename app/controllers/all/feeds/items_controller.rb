@@ -1,4 +1,4 @@
-class Read::Feeds::ItemsController < ApplicationController
+class All::Feeds::ItemsController < ApplicationController
   before_action :authenticate_account!
 
   def show
