@@ -3,7 +3,7 @@ class Read::Feeds::ItemsController < ApplicationController
 
   def show
     feeds = current_account.feeds.order_by_created_at_and_item_published_at
-    feed = feeds.find(params[:feed_id])
+    feed = feeds.find { |i| i.id == params[:feed_id].to_i }
     items = feed.items
     item = items.find { |i| i.id == params[:id].to_i }
 
