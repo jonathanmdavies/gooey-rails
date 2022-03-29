@@ -19,5 +19,14 @@ RSpec.describe ItemCreator, type: :model do
 
       expect(result.created?).to eq(false)
     end
+
+    it 'uses summary if no content present' do
+      feed = create(:feed)
+      entry = build(:entry, content: nil, summary: 'summary')
+
+      result = ItemCreator.new(entry: entry, feed: feed).create_item
+
+      expect(result.item.content).to eq(entry.summary)
+    end
   end
 end

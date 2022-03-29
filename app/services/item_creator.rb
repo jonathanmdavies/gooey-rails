@@ -9,7 +9,7 @@ class ItemCreator
       title: @entry.title,
       permalink: @entry.url,
       published_at: @entry.published,
-      content: @entry.content,
+      content: @entry.content || @entry.summary,
       feed_id: @feed.id,
       entry_id: @entry.entry_id
     )
