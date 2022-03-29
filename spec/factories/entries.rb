@@ -5,10 +5,11 @@
 # usage: `build(:entry)` (and pass in override values as necessary)
 
 class Entry
-  attr_reader :title, :content, :url, :published, :entry_id
-  def initialize(title, content, url, published, entry_id)
+  attr_reader :title, :content, :summary, :url, :published, :entry_id
+  def initialize(title, content, summary, url, published, entry_id)
     @title = title
     @content = content
+    @summary = summary
     @url = url
     @published = published
     @entry_id = entry_id
@@ -22,8 +23,9 @@ FactoryBot.define do
     url { Faker::Internet.url }
     published { 1.day.ago }
     sequence(:entry_id) { |n| "entry-id-#{n}" }
+    summary { "Summary" }
 
     skip_create
-    initialize_with { new(title, content, url, published, entry_id) }
+    initialize_with { new(title, content, summary, url, published, entry_id) }
   end
 end
