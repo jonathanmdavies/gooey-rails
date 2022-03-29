@@ -1,28 +1,15 @@
 class Read::Feeds::ItemsController < ApplicationController
   before_action :authenticate_account!
 
-  def index
-    feeds = current_account.feeds.order(created_at: :desc).select(:id, :name)
-    feed = current_account.feeds.find(params[:feed_id])
-    items = feed.items.order(published_at: :desc)
-
-    render inertia: 'Unread/Index',
-           props: {
-             feeds: feeds,
-             feed: feed,
-             items: ItemResource.new(items, params: { context: :feed }).serializable_hash,
-           }
-  end
-
   def show
-    feeds = current_account.feeds.order(created_at: :desc).select(:id, :name)
-    feed = current_account.feeds.find(params[:feed_id])
-    items = feed.items.order(published_at: :desc)
+    feeds = current_account.feeds.order_by_created_at_and_item_published_at
+    feed = feeds.find(params[:feed_id])
+    items = feed.items
     item = items.find { |i| i.id == params[:id].to_i }
 
     render inertia: 'Unread/Index',
            props: {
-             feeds: feeds,
+             feeds: Read::FeedResource.new(feeds).serializable_hash,
              feed: feed,
              items: ItemResource.new(items, params: { context: :feed }).serializable_hash,
              item: item,
