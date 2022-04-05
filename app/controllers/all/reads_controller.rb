@@ -1,4 +1,4 @@
-class Read::ReadsController < ApplicationController
+class All::ReadsController < ApplicationController
   before_action :authenticate_account!
 
   def create
