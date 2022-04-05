@@ -591,6 +591,42 @@ export const sidekiq_web_path: ((
 
 /**
  * Generates rails route to
+ * /unread/feeds/:feed_id/items/:id(.:format)
+ * @param {any} feed_id
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_feed_item_path: ((
+  feed_id: RequiredRouteParameter,
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /unread/items/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_item_path: ((
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
+ * /unread/items(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_items_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /rails/active_storage/disk/:encoded_token(.:format)
  * @param {any} encoded_token
  * @param {object | undefined} options

@@ -6,6 +6,7 @@ import {
   EyeIcon,
   StarIcon,
 } from "@heroicons/react/solid";
+import { Inertia } from "@inertiajs/inertia";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import { item_read_path } from "@/routes";
 import Tooltip from "../Tooltip";
@@ -67,21 +68,29 @@ function ToggleReadButton() {
   const { item } = usePage().props;
   const read = item.read_at;
 
+  const markAsUnread = () => {
+    Inertia.visit(item_read_path(item.id), {
+      method: "delete",
+      data: {},
+      replace: false,
+      preserveState: true,
+      preserveScroll: true,
+      onSuccess: () => {},
+    });
+  };
+
   return (
     <>
       {read && (
         <Tooltip content="Mark as Unread">
-          <Link
-            preserveState
-            preserveScroll
-            href={item_read_path(item.id)}
-            method="delete"
-            as="button"
+          <button
+            type="button"
+            onClick={() => markAsUnread()}
             className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition hover:text-cyan-50 active:scale-95"
           >
             <span className="sr-only">Mark as unread</span>
             <EyeOffIcon className="h-4 w-4 group-hover:scale-95" />
-          </Link>
+          </button>
         </Tooltip>
       )}
 

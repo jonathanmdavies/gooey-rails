@@ -16,14 +16,12 @@ Rails.application.routes.draw do
         end
       end
 
-      # scope module: 'unread' do
-      #   resources :feeds, only: [] do
-      #     resources :items, only: [:show], module: :feeds
-      #   end
-      #   resources :items, only: [:index, :show] do
-      #     resource :read, only: [:create, :destroy]
-      #   end
-      # end
+      namespace 'unread' do
+        resources :feeds, only: [] do
+          resources :items, only: [:show], module: :feeds
+        end
+        resources :items, only: [:index, :show]
+      end
 
       scope module: 'all' do
         resources :feeds, only: [] do

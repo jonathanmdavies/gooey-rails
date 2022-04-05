@@ -902,6 +902,33 @@ export const sidekiq_web_path = __jsr.r({}, [2,[7,"/"],[6,"sidekiq"]]);
 
 /**
  * Generates rails route to
+ * /unread/feeds/:feed_id/items/:id(.:format)
+ * @param {any} feed_id
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_feed_item_path = __jsr.r({"feed_id":{"r":true},"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"unread"],[2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"items"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /unread/items/:id(.:format)
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_item_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"unread"],[2,[7,"/"],[2,[6,"items"],[2,[7,"/"],[2,[3,"id"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
+ * /unread/items(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_items_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"unread"],[2,[7,"/"],[2,[6,"items"],[1,[2,[8,"."],[3,"format"]]]]]]]);
+
+/**
+ * Generates rails route to
  * /rails/active_storage/disk/:encoded_token(.:format)
  * @param {any} encoded_token
  * @param {object | undefined} options

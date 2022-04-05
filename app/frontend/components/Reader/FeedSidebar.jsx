@@ -6,7 +6,7 @@ import {
   EyeIcon,
 } from "@heroicons/react/solid";
 import { Tab, Disclosure } from "@headlessui/react";
-import { items_path, feed_items_path } from "@/routes";
+import { unread_items_path, feed_items_path } from "@/routes";
 
 export default function FeedSidebar() {
   const accordianRef = useRef(null);
@@ -30,9 +30,9 @@ export default function FeedSidebar() {
           <Tab.Panels className="mt-4 overflow-y-scroll">
             <Tab.Panel className="">
               <Link
-                href={items_path()}
+                href={unread_items_path()}
                 className={`${
-                  url.startsWith("/items")
+                  url.startsWith("/unread")
                     ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white"
                     : "text-slate-700 hover:bg-slate-100"
                 } flex w-full items-center justify-between rounded-full px-4 py-2 text-sm font-medium transition `}
@@ -91,7 +91,6 @@ export default function FeedSidebar() {
                 )}
               </Disclosure>
             </Tab.Panel>
-            <Tab.Panel>Content 2</Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
       </div>

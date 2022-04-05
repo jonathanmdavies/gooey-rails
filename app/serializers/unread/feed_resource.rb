@@ -1,4 +1,4 @@
-class Read::FeedResource
+class Unread::FeedResource
   include Alba::Resource
   include Rails.application.routes.url_helpers
 
@@ -13,6 +13,6 @@ class Read::FeedResource
   end
 
   attribute :first_item_url do |feed|
-    feed.items.first ? feed_item_path(feed, feed.items.first) : nil
+    feed.unread_items.first ? unread_feed_item_path(feed, feed.unread_items.first) : nil
   end
 end
