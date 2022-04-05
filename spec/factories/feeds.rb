@@ -6,13 +6,23 @@ FactoryBot.define do
     last_fetched_at { Faker::Time.between(from: 1.day.ago, to: Time.now) }
     association :account
 
-    factory :feed_with_items do
+    factory :feed_with_unread_items do
       transient do
         items_count { 1 }
       end
 
       after(:create) do |feed, evaluator|
-        create_list(:item, evaluator.items_count, feed: feed)
+        create_list(:unread_item, evaluator.items_count, feed: feed)
+      end
+    end
+
+    factory :feed_with_read_items do
+      transient do
+        items_count { 1 }
+      end
+
+      after(:create) do |feed, evaluator|
+        create_list(:read_item, evaluator.items_count, feed: feed)
       end
     end
   end

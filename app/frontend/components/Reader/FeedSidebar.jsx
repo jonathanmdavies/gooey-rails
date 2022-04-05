@@ -6,7 +6,7 @@ import {
   EyeIcon,
 } from "@heroicons/react/solid";
 import { Disclosure } from "@headlessui/react";
-import { items_path, feed_items_path } from "@/routes";
+import { items_path, feed_items_path, unread_items_path } from "@/routes";
 
 export default function FeedSidebar() {
   const accordianRef = useRef(null);
@@ -19,7 +19,7 @@ export default function FeedSidebar() {
         <div>
           <div className="flex space-x-2 rounded-full border border-slate-100 bg-white p-1 shadow-sm">
             <Link
-              href="/"
+              href={unread_items_path()}
               preserveState
               preserveScroll
               className={`${
@@ -32,7 +32,7 @@ export default function FeedSidebar() {
               <span className="sr-only">Unread Items</span>
             </Link>
             <Link
-              href="/items"
+              href={items_path()}
               preserveState
               preserveScroll
               className={`${
@@ -47,16 +47,6 @@ export default function FeedSidebar() {
           </div>
           <div className="mt-4 overflow-y-scroll">
             <div className="">
-              <Link
-                href={items_path()}
-                className={`${
-                  url.startsWith("/items")
-                    ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white"
-                    : "text-slate-700 hover:bg-slate-100"
-                } flex w-full items-center justify-between rounded-full px-4 py-2 text-sm font-medium transition `}
-              >
-                All
-              </Link>
               <Disclosure
                 as="div"
                 defaultOpen

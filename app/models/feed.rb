@@ -1,6 +1,7 @@
 class Feed < ApplicationRecord
   belongs_to :account
   has_many :items, -> { order(published_at: :desc) }, dependent: :destroy
+  has_many :unread_items, -> { unread }, class_name: 'Item'
 
   enum status: { active: 0, inactive: 1 }
 
