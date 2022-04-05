@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'Reading Feeds', type: :system do
+RSpec.describe 'Reading All Items', type: :system do
   before(:each) do
     @account = create(:account)
     login_as(@account)
   end
 
-  context 'all items' do
-    it 'shows all unread feed items' do
-      first_feed = create(:feed_with_items, account: @account)
-      second_feed = create(:feed_with_items, account: @account)
+  context 'all' do
+    it 'shows all feed items' do
+      first_feed = create(:feed_with_read_items, account: @account)
+      second_feed = create(:feed_with_read_items, account: @account)
       first_feed_item = first_feed.items.first
       second_feed_item = second_feed.items.first
 
@@ -20,11 +20,11 @@ RSpec.describe 'Reading Feeds', type: :system do
       expect(page).to have_content "Select an item to start reading!"
     end
 
-    it 'clicks to view an unread item' do
-      feed = create(:feed_with_items, account: @account, name: 'First Feed', items_count: 1)
+    it 'clicks to view an item' do
+      feed = create(:feed_with_read_items, account: @account, name: 'First Feed', items_count: 1)
       item = feed.items.first
 
-      visit root_path
+      visit items_path
       click_link item.title
 
       expect(page).to have_selector 'h1', text: item.title
@@ -35,7 +35,7 @@ RSpec.describe 'Reading Feeds', type: :system do
 
   context 'individual feed' do
     it 'shows first item' do
-      feed = create(:feed_with_items, account: @account, name: 'First Feed')
+      feed = create(:feed_with_read_items, account: @account, name: 'First Feed')
       item = feed.items.first
       visit root_path
 

@@ -24,6 +24,10 @@ Rails.application.routes.draw do
           resource :read, only: [:create, :destroy]
         end
       end
+
+      namespace 'unread' do
+        resources :items, only: [:index, :show]
+      end
     end
   end
 
