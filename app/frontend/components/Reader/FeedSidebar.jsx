@@ -5,7 +5,7 @@ import {
   CollectionIcon,
   EyeIcon,
 } from "@heroicons/react/solid";
-import { Tab, Disclosure } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { items_path, feed_items_path } from "@/routes";
 
 export default function FeedSidebar() {
@@ -16,19 +16,37 @@ export default function FeedSidebar() {
   return (
     <div className="relative w-80 border-r border-slate-100 bg-slate-50">
       <div className="sticky top-2 p-4">
-        <Tab.Group>
-          <Tab.List className="flex space-x-2 rounded-full border border-slate-100 bg-white p-1 shadow-sm">
-            <Tab className="flex w-full items-center justify-center rounded-full border border-slate-100 bg-gradient-to-br from-slate-700 to-slate-800 py-2 font-mono text-sm font-semibold text-slate-100 transition hover:text-slate-200 active:scale-95">
+        <div>
+          <div className="flex space-x-2 rounded-full border border-slate-100 bg-white p-1 shadow-sm">
+            <Link
+              href="/"
+              preserveState
+              preserveScroll
+              className={`${
+                url.startsWith("/unread")
+                  ? "bg-gradient-to-br from-slate-700 to-slate-800 text-slate-100"
+                  : "bg-slate-50 text-slate-400"
+              } flex w-full items-center justify-center rounded-full py-2 transition active:scale-95 active:text-cyan-500`}
+            >
               <EyeIcon className="h-4 w-4 " />
               <span className="sr-only">Unread Items</span>
-            </Tab>
-            <Tab className="flex w-full items-center justify-center rounded-full bg-slate-50 py-2 font-mono text-sm font-semibold text-slate-400 transition active:scale-95 active:text-cyan-500">
+            </Link>
+            <Link
+              href="/items"
+              preserveState
+              preserveScroll
+              className={`${
+                !url.startsWith("/unread")
+                  ? "bg-gradient-to-br from-slate-700 to-slate-800 text-slate-100"
+                  : "bg-slate-50 text-slate-400"
+              } flex w-full items-center justify-center rounded-full py-2 transition active:scale-95 active:text-cyan-500`}
+            >
               <CollectionIcon className="h-4 w-4" />
               <span className="sr-only">All Items</span>
-            </Tab>
-          </Tab.List>
-          <Tab.Panels className="mt-4 overflow-y-scroll">
-            <Tab.Panel className="">
+            </Link>
+          </div>
+          <div className="mt-4 overflow-y-scroll">
+            <div className="">
               <Link
                 href={items_path()}
                 className={`${
@@ -37,7 +55,7 @@ export default function FeedSidebar() {
                     : "text-slate-700 hover:bg-slate-100"
                 } flex w-full items-center justify-between rounded-full px-4 py-2 text-sm font-medium transition `}
               >
-                All Unread
+                All
               </Link>
               <Disclosure
                 as="div"
@@ -90,10 +108,9 @@ export default function FeedSidebar() {
                   </>
                 )}
               </Disclosure>
-            </Tab.Panel>
-            <Tab.Panel>Content 2</Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
