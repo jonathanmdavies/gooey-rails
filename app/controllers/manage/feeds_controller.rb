@@ -7,7 +7,7 @@ class Manage::FeedsController < ApplicationController
 
     # rubocop:disable Airbnb/RiskyActiverecordInvocation`
     # Safe as of Rails 6 [https://www.bigbinary.com/blog/rails-5-2-disallows-raw-sql-in-active-record]
-    pagy, records = pagy(current_account.feeds.order("#{column} #{order}"))
+    pagy, records = pagy(current_account.feeds.unscoped.order("#{column} #{order}"))
     # rubocop:enable Airbnb/RiskyActiverecordInvocation`
     feeds = FeedResource.new(records).serializable_hash
 

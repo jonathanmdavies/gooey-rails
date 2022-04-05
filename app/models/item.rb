@@ -10,7 +10,5 @@ class Item < ApplicationRecord
 
   html_fragment :content, scrub: :prune
 
-  def self.unread
-    where(read_at: nil)
-  end
+  scope :unread, -> { where(read_at: nil) }
 end

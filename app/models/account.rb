@@ -4,6 +4,6 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :feeds, dependent: :destroy
-  has_many :items, through: :feeds
+  has_many :feeds, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :items, -> { order(published_at: :desc) }, through: :feeds
 end
