@@ -8,6 +8,14 @@ FactoryBot.define do
     read_at { nil }
     bookmarked_at { nil }
     association :feed
+
+    factory :read_item do
+      read_at { 1.day.ago }
+    end
+
+    factory :unread_item do
+      read_at { nil }
+    end
   end
 
   trait :with_account do
