@@ -7,7 +7,7 @@ import {
   destroy_account_session_path,
   feeds_path,
   unread_items_path,
-  refresh_all_feeds_path,
+  refresh_path,
 } from "@/routes";
 import FlashMessages from "@/components/FlashMessages";
 import NewFeedButton from "@/components/NewFeedButton";
@@ -92,9 +92,9 @@ function Header() {
 
       <div className="flex w-40 justify-end space-x-2">
         <Link
-          href={refresh_all_feeds_path()}
+          href={refresh_path()}
           as="button"
-          method="patch"
+          method="post"
           className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 active:scale-95"
         >
           <RefreshIcon className="h-4 w-4 text-white" />

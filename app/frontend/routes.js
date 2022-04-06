@@ -612,6 +612,15 @@ export const feed_items_path = __jsr.r({"feed_id":{"r":true},"format":{}}, [2,[7
 
 /**
  * Generates rails route to
+ * /manage/feeds/:feed_id/refresh(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_refresh_path = __jsr.r({"feed_id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"manage"],[2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"feed_id"],[2,[7,"/"],[2,[6,"refresh"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /manage/feeds(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -869,20 +878,11 @@ export const rails_service_blob_proxy_path = __jsr.r({"signed_id":{"r":true},"fi
 
 /**
  * Generates rails route to
- * /manage/feeds/refresh_all(.:format)
+ * /manage/refresh(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
  */
-export const refresh_all_feeds_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"manage"],[2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[6,"refresh_all"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
-
-/**
- * Generates rails route to
- * /manage/feeds/:id/refresh(.:format)
- * @param {any} id
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const refresh_feed_path = __jsr.r({"id":{"r":true},"format":{}}, [2,[7,"/"],[2,[6,"manage"],[2,[7,"/"],[2,[6,"feeds"],[2,[7,"/"],[2,[3,"id"],[2,[7,"/"],[2,[6,"refresh"],[1,[2,[8,"."],[3,"format"]]]]]]]]]]]);
+export const refresh_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"manage"],[2,[7,"/"],[2,[6,"refresh"],[1,[2,[8,"."],[3,"format"]]]]]]]);
 
 /**
  * Generates rails route to

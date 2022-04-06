@@ -6,7 +6,7 @@ describe 'Refreshing all feeds', type: :request, inertia: true do
     login_as(account)
     create_list(:feed, 3, account: account)
 
-    patch refresh_all_feeds_path
+    post refresh_path
     follow_redirect!
 
     expect(inertia.props[:flash][:success]).to include('Checking for new items...')

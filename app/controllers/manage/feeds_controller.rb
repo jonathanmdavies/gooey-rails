@@ -42,28 +42,6 @@ class Manage::FeedsController < ApplicationController
     end
   end
 
-  def refresh
-    feed = current_account.feeds.find(params[:id])
-    result = FeedFetcher.new(feed: feed).fetch_items
-
-    if result.successful?
-      flash[:notice] = "#{result.fetched_items_count} new item added to #{feed.name}."
-      redirect_back fallback_location: feeds_path
-    else
-      flash[:alert] = 'There was a problem refreshing this feed – it has been set to inactive.'
-      redirect_back fallback_location: feeds_path
-    end
-  end
-
-  def refresh_all
-    current_account.feeds.active.each do |feed|
-      RefreshFeedJob.perform_async(feed.id)
-    end
-
-    flash[:notice] = 'Checking for new items...'
-    redirect_back fallback_location: feeds_path
-  end
-
   private
 
   def feed_params
