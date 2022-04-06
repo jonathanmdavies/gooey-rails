@@ -215,6 +215,18 @@ export const feed_items_path: ((
 
 /**
  * Generates rails route to
+ * /manage/feeds/:feed_id/refresh(.:format)
+ * @param {any} feed_id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const feed_refresh_path: ((
+  feed_id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /manage/feeds(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
@@ -549,23 +561,11 @@ export const rails_service_blob_proxy_path: ((
 
 /**
  * Generates rails route to
- * /manage/feeds/refresh_all(.:format)
+ * /manage/refresh(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
  */
-export const refresh_all_feeds_path: ((
-  options?: {format?: OptionalRouteParameter} & RouteOptions
-) => string) & RouteHelperExtras;
-
-/**
- * Generates rails route to
- * /manage/feeds/:id/refresh(.:format)
- * @param {any} id
- * @param {object | undefined} options
- * @returns {string} route path
- */
-export const refresh_feed_path: ((
-  id: RequiredRouteParameter,
+export const refresh_path: ((
   options?: {format?: OptionalRouteParameter} & RouteOptions
 ) => string) & RouteHelperExtras;
 
