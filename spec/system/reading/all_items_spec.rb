@@ -37,7 +37,7 @@ RSpec.describe 'Reading All Items', type: :system do
     it 'shows first item' do
       feed = create(:feed_with_read_items, account: @account, name: 'First Feed')
       item = feed.items.first
-      visit root_path
+      visit items_path
 
       click_link 'First Feed'
 
@@ -50,7 +50,7 @@ RSpec.describe 'Reading All Items', type: :system do
       create(:item, feed: feed, published_at: Time.now)
       last_item = create(:item, feed: feed, published_at: 2.days.ago)
 
-      visit root_path
+      visit items_path
       click_link 'First Feed'
       click_link last_item.title
 
