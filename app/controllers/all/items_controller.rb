@@ -15,7 +15,7 @@ class All::ItemsController < ApplicationController
     feeds = current_account.feeds.includes(:items)
     items = current_account.items.order(published_at: :desc)
     item = items.find { |i| i.id == params[:id].to_i }
-    feed = item.feed
+    feed = feeds.find { |i| i.id == item.feed_id }
 
     render inertia: 'Unread/Index', props: {
       items: ItemResource.new(items).serializable_hash,
