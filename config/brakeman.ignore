@@ -1,0 +1,46 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "00f39306f549c1d6d9477096633f7cad377a9d0d60940ac47b7d715f071d5b43",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/reads_controller.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(Navigator.new(:item => current_account.items.find(params[:item_id]), :scope => referrer_scope, :target => :next).navigate)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ReadsController",
+        "method": "destroy"
+      },
+      "user_input": "Navigator.new(:item => current_account.items.find(params[:item_id]), :scope => referrer_scope, :target => :next).navigate",
+      "confidence": "High",
+      "note": "No user params are directly used in this request"
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "9a4b3cb1f031fc0a70fd997fe5468b1eb02cbaa589f7491eaa6e2240ccdac3db",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/reads_controller.rb",
+      "line": 9,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(Navigator.new(:item => current_account.items.find(params[:item_id]), :scope => referrer_scope, :target => :next).navigate)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "ReadsController",
+        "method": "create"
+      },
+      "user_input": "Navigator.new(:item => current_account.items.find(params[:item_id]), :scope => referrer_scope, :target => :next).navigate",
+      "confidence": "High",
+      "note": "No user params are directly used in this request"
+    }
+  ],
+  "updated": "2022-04-06 14:52:43 +0100",
+  "brakeman_version": "5.2.1"
+}
