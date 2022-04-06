@@ -6,5 +6,5 @@ class Account < ApplicationRecord
 
   has_many :feeds, -> { order(created_at: :desc) }, dependent: :destroy
   has_many :items, -> { order(published_at: :desc) }, through: :feeds
-  has_many :unread_items, -> { unread }, through: :feeds, class_name: 'Item'
+  has_many :unread_items, -> { order(published_at: :desc).unread }, through: :feeds, class_name: 'Item'
 end
