@@ -20,9 +20,7 @@ Rails.application.routes.draw do
         resources :feeds, only: [] do
           resources :items, only: [:index, :show], module: :feeds
         end
-        resources :items, only: [:index, :show] do
-          resource :read, only: [:create, :destroy]
-        end
+        resources :items, only: [:index, :show]
       end
 
       namespace 'unread' do
@@ -30,6 +28,10 @@ Rails.application.routes.draw do
         resources :feeds, only: [] do
           resources :items, only: [:show], module: :feeds
         end
+      end
+
+      resources :items, only: [] do
+        resource :read, only: [:create, :destroy]
       end
     end
   end
