@@ -591,6 +591,20 @@ export const sidekiq_web_path: ((
 
 /**
  * Generates rails route to
+ * /unread/feeds/:feed_id/items/:id(.:format)
+ * @param {any} feed_id
+ * @param {any} id
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const unread_feed_item_path: ((
+  feed_id: RequiredRouteParameter,
+  id: RequiredRouteParameter,
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /unread/items/:id(.:format)
  * @param {any} id
  * @param {object | undefined} options

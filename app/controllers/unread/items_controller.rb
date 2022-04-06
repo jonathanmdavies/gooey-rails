@@ -7,7 +7,7 @@ class Unread::ItemsController < ApplicationController
 
     render inertia: 'Unread/Index', props: {
       items: Unread::ItemResource.new(items).serializable_hash,
-      feeds: Read::FeedResource.new(feeds).serializable_hash,
+      feeds: Unread::FeedResource.new(feeds).serializable_hash,
     }
   end
 
@@ -19,7 +19,7 @@ class Unread::ItemsController < ApplicationController
 
     render inertia: 'Unread/Index', props: {
       items: Unread::ItemResource.new(items).serializable_hash,
-      feeds: Read::FeedResource.new(feeds).serializable_hash,
+      feeds: Unread::FeedResource.new(feeds).serializable_hash,
       feed: feed,
       item: item,
     }

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   devise_scope :account do
     authenticated :account do
-      root to: 'all/items#index', as: :authenticated_account_root
+      root to: 'unread/items#index', as: :authenticated_account_root
 
       scope module: 'manage', path: 'manage' do
         resources :feeds, only: [:create, :index, :destroy] do
@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
       namespace 'unread' do
         resources :items, only: [:index, :show]
+        resources :feeds, only: [] do
+          resources :items, only: [:show], module: :feeds
+        end
       end
     end
   end

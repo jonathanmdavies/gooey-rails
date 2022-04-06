@@ -6,7 +6,7 @@ import {
   EyeIcon,
 } from "@heroicons/react/solid";
 import { Disclosure } from "@headlessui/react";
-import { items_path, feed_items_path, unread_items_path } from "@/routes";
+import { items_path, unread_items_path } from "@/routes";
 
 export default function FeedSidebar() {
   const accordianRef = useRef(null);
@@ -78,7 +78,7 @@ export default function FeedSidebar() {
                                 preserveScroll
                                 key={feed.id}
                                 className={`${
-                                  url.startsWith(feed_items_path(feed.id))
+                                  url.includes(`feeds/${feed.id}`)
                                     ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white"
                                     : "text-slate-700 hover:bg-slate-100"
                                 } sidebar-item-link flex w-full items-center justify-between rounded-full px-4 py-2 text-sm font-semibold  transition `}

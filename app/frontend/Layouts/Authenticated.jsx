@@ -6,7 +6,7 @@ import { CogIcon, RefreshIcon } from "@heroicons/react/solid";
 import {
   destroy_account_session_path,
   feeds_path,
-  root_path,
+  unread_items_path,
   refresh_all_feeds_path,
 } from "@/routes";
 import FlashMessages from "@/components/FlashMessages";
@@ -68,7 +68,7 @@ function Header() {
 
       <div className="flex items-center space-x-2">
         <Link
-          href={root_path()}
+          href={unread_items_path()}
           className={`${
             !url.startsWith("/manage")
               ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white hover:text-slate-100"
