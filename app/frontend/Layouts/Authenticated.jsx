@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Inertia } from "@inertiajs/inertia";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import { CogIcon, RefreshIcon } from "@heroicons/react/solid";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import {
   destroy_account_session_path,
   feeds_path,
@@ -12,6 +13,7 @@ import {
 import FlashMessages from "@/components/FlashMessages";
 import NewFeedButton from "@/components/NewFeedButton";
 import Dropdown from "@/components/Dropdown";
+import Toast from "@/components/Toast";
 
 export default function Authenticated({ children }) {
   return (
@@ -47,6 +49,21 @@ function Header() {
       method: "delete",
     },
   ];
+
+  const refreshFeeds = () => {
+    Inertia.visit(refresh_path(), {
+      method: "post",
+      preserveState: true,
+      preserveScroll: true,
+      onSuccess: () => {
+        toast.custom((t) => (
+          <Toast toast={t} icon="RefreshIcon" type="success">
+            Checking for new items...
+          </Toast>
+        ));
+      },
+    });
+  };
 
   return (
     <header className="flex items-center justify-between border-b border-slate-100 bg-white py-2 px-4">
@@ -92,14 +109,13 @@ function Header() {
       </div>
 
       <div className="flex w-40 justify-end space-x-2">
-        <Link
-          href={refresh_path()}
-          as="button"
-          method="post"
+        <button
+          onClick={() => refreshFeeds()}
+          type="button"
           className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 active:scale-95"
         >
           <RefreshIcon className="h-4 w-4 text-white" />
-        </Link>
+        </button>
         <NewFeedButton />
       </div>
     </header>
