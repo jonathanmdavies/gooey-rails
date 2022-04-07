@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import { CogIcon, RefreshIcon } from "@heroicons/react/solid";
-
+import { Toaster } from "react-hot-toast";
 import {
   destroy_account_session_path,
   feeds_path,
@@ -19,6 +19,7 @@ export default function Authenticated({ children }) {
       <Header />
       <FlashMessages />
       <div className="">{children}</div>
+      <Toaster position="bottom-center" toastOptions={{ duration: 1500 }} />
     </div>
   );
 }
