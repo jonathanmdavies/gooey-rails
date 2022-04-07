@@ -6,7 +6,6 @@ class Manage::RefreshesController < ApplicationController
       RefreshFeedJob.perform_async(feed.id)
     end
 
-    flash[:notice] = 'Checking for new items...'
     redirect_back fallback_location: feeds_path
   end
 end
