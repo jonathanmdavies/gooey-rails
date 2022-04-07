@@ -6,9 +6,12 @@ import {
   EyeIcon,
   StarIcon,
 } from "@heroicons/react/solid";
-import { Link, usePage } from "@inertiajs/inertia-react";
+import toast from "react-hot-toast";
+import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-react";
 import { item_read_path } from "@/routes";
-import Tooltip from "../Tooltip";
+import Tooltip from "@/components/Tooltip";
+import Toast from "@/components/Toast";
 
 export default function FeedItemPanel() {
   const { item, feed } = usePage().props;
@@ -67,37 +70,61 @@ function ToggleReadButton() {
   const { item } = usePage().props;
   const read = item.read_at;
 
+  const markAsRead = () => {
+    Inertia.visit(item_read_path(item.id), {
+      method: "post",
+      preserveState: true,
+      preserveScroll: true,
+      onSuccess: () => {
+        toast.custom((t) => (
+          <Toast toast={t} icon="CheckCircleIcon" type="success">
+            Marked as Read
+          </Toast>
+        ));
+      },
+    });
+  };
+
+  const markAsUnread = () => {
+    Inertia.visit(item_read_path(item.id), {
+      method: "delete",
+      preserveState: true,
+      preserveScroll: true,
+      onSuccess: () => {
+        toast.custom((t) => (
+          <Toast toast={t} icon="CheckCircleIcon" type="success">
+            Marked as Unread
+          </Toast>
+        ));
+      },
+    });
+  };
+
   return (
     <>
       {read && (
         <Tooltip content="Mark as Unread">
-          <Link
-            preserveState
-            preserveScroll
-            href={item_read_path(item.id)}
-            method="delete"
-            as="button"
+          <button
+            type="button"
+            onClick={() => markAsUnread()}
             className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition hover:text-cyan-50 active:scale-95"
           >
             <span className="sr-only">Mark as unread</span>
             <EyeOffIcon className="h-4 w-4 group-hover:scale-95" />
-          </Link>
+          </button>
         </Tooltip>
       )}
 
       {!read && (
         <Tooltip content="Mark as Read">
-          <Link
-            preserveState
-            preserveScroll
-            href={item_read_path(item.id)}
-            method="post"
-            as="button"
+          <button
+            type="button"
+            onClick={() => markAsRead()}
             className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition active:scale-95"
           >
             <span className="sr-only">Mark as read</span>
             <EyeIcon className="h-4 w-4 transition group-hover:scale-95" />
-          </Link>
+          </button>
         </Tooltip>
       )}
     </>
