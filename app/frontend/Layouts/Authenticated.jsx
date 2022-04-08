@@ -61,6 +61,9 @@ function Header() {
             Checking for new items...
           </Toast>
         ));
+        setTimeout(() => {
+          Inertia.reload();
+        }, 5000);
       },
     });
   };
