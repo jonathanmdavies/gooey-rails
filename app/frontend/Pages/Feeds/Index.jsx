@@ -2,15 +2,10 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Inertia } from "@inertiajs/inertia";
 import { Link, usePage } from "@inertiajs/inertia-react";
-import {
-  SearchIcon,
-  DotsHorizontalIcon,
-  ChevronUpIcon,
-} from "@heroicons/react/solid";
-import { feed_path, feed_refresh_path } from "@/routes";
+import { SearchIcon, ChevronUpIcon } from "@heroicons/react/solid";
+import FeedDropdown from "@/components/manage/FeedDropdown";
 
 import Authenticated from "@/Layouts/Authenticated";
-import Dropdown from "@/components/Dropdown";
 
 export default function Index() {
   const { feeds, pagy } = usePage().props;
@@ -156,34 +151,7 @@ export default function Index() {
                             </td>
                             <td className="px-6 py-4">
                               <div className="flex items-center justify-end">
-                                <Dropdown
-                                  button={
-                                    <button
-                                      type="button"
-                                      className="feed-menu-button flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-bl from-slate-800 to-slate-700 transition active:scale-95"
-                                    >
-                                      <span className="sr-only">Edit</span>
-                                      <DotsHorizontalIcon className="h-4 w-4 text-slate-100 hover:text-slate-50" />
-                                    </button>
-                                  }
-                                  primaryItems={[
-                                    {
-                                      label: "Refresh",
-                                      href: feed_refresh_path(id),
-                                      icon: "RefreshIcon",
-                                      method: "post",
-                                    },
-                                  ]}
-                                  secondaryItems={[
-                                    {
-                                      label: "Unsubscribe",
-                                      href: feed_path(id),
-                                      icon: "TrashIcon",
-                                      method: "delete",
-                                    },
-                                  ]}
-                                  position="top-7 right-0"
-                                />
+                                <FeedDropdown id={id} />
                               </div>
                             </td>
                           </tr>
