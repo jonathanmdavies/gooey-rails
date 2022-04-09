@@ -11,4 +11,8 @@ class Item < ApplicationRecord
   html_fragment :content, scrub: :prune
 
   scope :unread, -> { where(read_at: nil) }
+
+  counter_culture :feed,
+    column_name: proc { |item| item.read_at.nil? ? 'unread_items_count' : nil },
+    column_names: { Item.unread => :unread_items_count }
 end

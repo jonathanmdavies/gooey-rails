@@ -81,13 +81,19 @@ export default function FeedSidebar() {
                                   url.includes(`feeds/${feed.id}`)
                                     ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white"
                                     : "text-slate-700 hover:bg-slate-100"
-                                } sidebar-item-link flex w-full items-center justify-between rounded-full px-4 py-2 text-sm font-semibold  transition `}
+                                } sidebar-item-link flex w-full items-center justify-between rounded-full px-4 py-1.5 text-sm transition-all duration-300`}
                               >
                                 <span className="mr-2 min-w-0 truncate text-sm font-medium">
                                   {feed.name}
                                 </span>
-                                <span className="ml-auto font-mono text-xs font-semibold text-slate-400">
-                                  10
+                                <span
+                                  className={`${
+                                    url.includes(`feeds/${feed.id}`)
+                                      ? "text-slate-100"
+                                      : "text-slate-500"
+                                  } ml-auto text-xs font-medium `}
+                                >
+                                  {feed.unread_items_count}
                                 </span>
                               </Link>
                             )}
