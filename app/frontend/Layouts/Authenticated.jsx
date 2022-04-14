@@ -2,8 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Inertia } from "@inertiajs/inertia";
 import { usePage, Link } from "@inertiajs/inertia-react";
-import { CogIcon, RefreshIcon } from "@heroicons/react/solid";
+import {
+  CogIcon,
+  LogoutIcon,
+  RefreshIcon,
+  UserIcon,
+} from "@heroicons/react/solid";
 import toast, { Toaster } from "react-hot-toast";
+import { Menu } from "@headlessui/react";
 import {
   destroy_account_session_path,
   feeds_path,
@@ -12,7 +18,7 @@ import {
 } from "@/routes";
 import FlashMessages from "@/components/FlashMessages";
 import NewFeedButton from "@/components/NewFeedButton";
-import Dropdown from "@/components/Dropdown";
+import Dropdown from "../components/Dropdown/Index";
 import Toast from "@/components/Toast";
 
 export default function Authenticated({ children }) {
@@ -27,28 +33,7 @@ export default function Authenticated({ children }) {
 }
 
 function Header() {
-  const {
-    current_account: { email },
-  } = usePage().props;
   const { url } = usePage();
-
-  const primaryNavigationItems = [
-    {
-      label: email,
-      icon: "UserIcon",
-      href: "/",
-      method: "get",
-    },
-  ];
-
-  const secondaryNavigationItems = [
-    {
-      label: "Log out",
-      icon: "LogoutIcon",
-      href: destroy_account_session_path(),
-      method: "delete",
-    },
-  ];
 
   const refreshFeeds = () => {
     Inertia.visit(refresh_path(), {
@@ -75,16 +60,43 @@ function Header() {
           button={
             <button
               type="button"
-              className="settings-menu-button mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-slate-100 to-slate-200 transition active:scale-95"
+              className="settings-menu-button mr-3 flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-slate-100 to-slate-200 transition focus:outline-none active:scale-95"
             >
-              <CogIcon className="h-6 w-6 text-slate-600" />
+              <CogIcon className="h-5 w-5 text-slate-600" />
               <span className="sr-only">Settings</span>
             </button>
           }
-          primaryItems={primaryNavigationItems}
-          secondaryItems={secondaryNavigationItems}
-          position="left-0 z-10 mt-1"
-        />
+        >
+          <Menu.Item>
+            {({ active }) => (
+              <Link
+                className={`${
+                  active ? "bg-slate-800 text-white" : "bg-white text-slate-700"
+                } group flex w-full items-center rounded-md px-3 py-2 text-sm font-medium transition hover:bg-slate-800 hover:text-white focus:outline-none`}
+                href={destroy_account_session_path()}
+                as="button"
+                method="delete"
+              >
+                <LogoutIcon className="mr-2 h-4 w-4" />
+                Log out
+              </Link>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+              <Link
+                className={`${
+                  active ? "bg-slate-800 text-white" : "bg-white text-slate-700"
+                } group flex w-full items-center rounded-md px-3 py-2 text-sm font-medium transition hover:bg-slate-800 hover:text-white focus:outline-none`}
+                href="/"
+                as="button"
+              >
+                <UserIcon className="mr-2 h-4 w-4" />
+                My Account
+              </Link>
+            )}
+          </Menu.Item>
+        </Dropdown>
       </div>
 
       <div className="flex items-center space-x-2">
@@ -94,7 +106,7 @@ function Header() {
             !url.startsWith("/manage")
               ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white hover:text-slate-100"
               : "text-slate-500"
-          } rounded-full  px-6 py-2 text-sm font-medium  transition  active:scale-95`}
+          } rounded-full  px-6 py-1.5 text-sm font-medium  transition  active:scale-95`}
         >
           Read
         </Link>
@@ -105,17 +117,17 @@ function Header() {
             url.startsWith("/manage")
               ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white hover:text-slate-100"
               : "text-slate-500"
-          } rounded-full px-6 py-2 text-sm font-medium transition active:scale-95`}
+          } rounded-full px-6 py-1.5 text-sm font-medium transition active:scale-95`}
         >
           Manage
         </Link>
       </div>
 
-      <div className="flex w-40 justify-end space-x-2">
+      <div className="flex w-40 items-center justify-end space-x-2">
         <button
           onClick={() => refreshFeeds()}
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 active:scale-95"
+          className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 active:scale-95"
         >
           <RefreshIcon className="h-4 w-4 text-white" />
         </button>
