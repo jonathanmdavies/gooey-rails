@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
       resources :items, only: [] do
         resource :read, only: [:create, :destroy]
+        resource :bookmark, only: [:create, :destroy]
       end
     end
   end

@@ -9,7 +9,7 @@ import {
 import toast from "react-hot-toast";
 import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/inertia-react";
-import { item_read_path } from "@/routes";
+import { item_read_path, item_bookmark_path } from "@/routes";
 import Tooltip from "@/components/Tooltip";
 import Toast from "@/components/Toast";
 
@@ -35,14 +35,7 @@ export default function FeedItemPanel() {
             </h1>
           </div>
           <div className="ml-3 flex space-x-2">
-            <Tooltip content="Bookmark">
-              <button
-                type="button"
-                className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition hover:text-cyan-50 active:scale-95"
-              >
-                <StarIcon className="h-4 w-4 transition group-hover:scale-95" />
-              </button>
-            </Tooltip>
+            <ToggleBookmarkButton />
 
             <ToggleReadButton />
             <Tooltip content="Read Original">
@@ -58,12 +51,77 @@ export default function FeedItemPanel() {
           </div>
         </div>
       </div>
-      <article className="prose prose-slate w-full max-w-3xl self-center p-6 prose-a:text-cyan-600 prose-a:no-underline  hover:prose-a:text-cyan-500">
+      <article className="prose prose-slate prose-a:text-cyan-600 prose-a:no-underline hover:prose-a:text-cyan-500 w-full max-w-3xl self-center  p-6">
         <h1>{item.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: item.content }} />
       </article>
     </div>
   );
+}
+
+function ToggleBookmarkButton() {
+  const { item } = usePage().props;
+  const bookmarked = item.bookmarked_at;
+
+  const bookmark = () => {
+    Inertia.visit(item_bookmark_path(item.id), {
+      method: "post",
+      preserveState: true,
+      preserveScroll: true,
+      onSuccess: () => {
+        toast.custom((t) => (
+          <Toast toast={t} icon="CheckCircleIcon" type="success">
+            Saved for later
+          </Toast>
+        ));
+      },
+    });
+  };
+
+  const removeBookmark = () => {
+    Inertia.visit(item_bookmark_path(item.id), {
+      method: "delete",
+      preserveState: true,
+      preserveScroll: true,
+      onSuccess: () => {
+        toast.custom((t) => (
+          <Toast toast={t} icon="CheckCircleIcon" type="success">
+            No longer saved for later
+          </Toast>
+        ));
+      },
+    });
+  };
+
+  if (bookmarked) {
+    return (
+      <Tooltip content="Remove Bookmark">
+        <button
+          type="button"
+          onClick={() => removeBookmark()}
+          className="group flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-amber-500 transition hover:text-amber-400 active:scale-95"
+        >
+          <span className="sr-only">Remove Bookmark</span>
+          <StarIcon className="h-4 w-4 transition group-hover:scale-95" />
+        </button>
+      </Tooltip>
+    );
+  }
+
+  if (!bookmarked) {
+    return (
+      <Tooltip content="Bookmark">
+        <button
+          type="button"
+          onClick={() => bookmark()}
+          className="group flex h-6 w-6 items-center justify-center rounded-full bg-slate-300 text-white transition hover:text-amber-200 active:scale-95"
+        >
+          <span className="sr-only">Bookmark</span>
+          <StarIcon className="h-4 w-4 transition group-hover:scale-95" />
+        </button>
+      </Tooltip>
+    );
+  }
 }
 
 function ToggleReadButton() {
