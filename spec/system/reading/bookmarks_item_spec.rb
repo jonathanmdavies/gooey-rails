@@ -8,7 +8,7 @@ RSpec.describe 'Bookmarking an item', type: :system do
 
   it 'bookmarks an item' do
     feed = create(:feed, account: @account)
-    item = create(:unread_item, :with_account, account: @account, feed: feed)
+    item = create(:unread_item, account: @account, feed: feed)
 
     visit item_path(item)
     click_on 'Bookmark'
@@ -18,7 +18,7 @@ RSpec.describe 'Bookmarking an item', type: :system do
 
   it 'removes a bookmark from an item' do
     feed = create(:feed, account: @account)
-    item = create(:unread_item, :with_account, account: @account, feed: feed, bookmarked_at: Time.now)
+    item = create(:unread_item, account: @account, feed: feed, bookmarked_at: Time.now)
 
     visit item_path(item)
     click_on 'Remove Bookmark'

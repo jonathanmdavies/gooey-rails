@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :feed
+  belongs_to :account
 
   validates_presence_of :title
   validates_presence_of :content
@@ -13,6 +14,10 @@ class Item < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
 
   counter_culture :feed,
+    column_name: proc { |item| item.read_at.nil? ? 'unread_items_count' : nil },
+    column_names: { Item.unread => :unread_items_count }
+
+  counter_culture :account,
     column_name: proc { |item| item.read_at.nil? ? 'unread_items_count' : nil },
     column_names: { Item.unread => :unread_items_count }
 end

@@ -4,7 +4,12 @@ import Authenticated from "@/Layouts/Authenticated";
 import { item_path } from "@/routes";
 
 export default function Show() {
-  const { items, items_published_today, current_account } = usePage().props;
+  const {
+    items,
+    items_published_today,
+    account_unread_account,
+    current_account,
+  } = usePage().props;
   const firstName = current_account.first_name;
 
   return (
@@ -22,7 +27,9 @@ export default function Show() {
 
           <ul className="flex divide-x divide-slate-200">
             <li className="pr-4">
-              <div className="text-2xl font-bold text-slate-700">000</div>
+              <div className="text-2xl font-bold text-slate-700">
+                {account_unread_account}
+              </div>
               <div className="text-xs font-medium text-slate-400">
                 Unread Items
               </div>
