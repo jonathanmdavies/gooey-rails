@@ -7,7 +7,8 @@ export default function Show() {
   const {
     items,
     items_published_today,
-    account_unread_account,
+    unread_items_count,
+    unread_bookmarks_count,
     current_account,
   } = usePage().props;
   const firstName = current_account.first_name;
@@ -28,14 +29,16 @@ export default function Show() {
           <ul className="flex divide-x divide-slate-200">
             <li className="pr-4">
               <div className="text-2xl font-bold text-slate-700">
-                {account_unread_account}
+                {unread_items_count}
               </div>
               <div className="text-xs font-medium text-slate-400">
                 Unread Items
               </div>
             </li>
             <li className="pl-4">
-              <div className="text-2xl font-bold text-slate-700">00</div>
+              <div className="text-2xl font-bold text-slate-700">
+                {unread_bookmarks_count}
+              </div>
               <div className="text-xs font-medium text-slate-400">
                 Unread Bookmarks
               </div>
