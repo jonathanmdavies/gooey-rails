@@ -9,8 +9,8 @@ RSpec.describe 'Marking items as read', type: :system do
   context 'all' do
     it 'marks an item as read' do
       feed = create(:feed, account: @account)
-      item = create(:unread_item, :with_account, account: @account, feed: feed, published_at: 1.day.ago)
-      next_item = create(:read_item, :with_account, account: @account, feed: feed, published_at: 2.days.ago)
+      item = create(:unread_item, account: @account, feed: feed, published_at: 1.day.ago)
+      next_item = create(:read_item, account: @account, feed: feed, published_at: 2.days.ago)
 
       visit item_path(item)
       click_on 'Mark as read'
@@ -21,8 +21,8 @@ RSpec.describe 'Marking items as read', type: :system do
 
     it 'marks feed item as read' do
       feed = create(:feed, account: @account)
-      item = create(:unread_item, :with_account, account: @account, feed: feed, published_at: 1.day.ago)
-      next_item = create(:read_item, :with_account, account: @account, feed: feed, published_at: 2.days.ago)
+      item = create(:unread_item, account: @account, feed: feed, published_at: 1.day.ago)
+      next_item = create(:read_item, account: @account, feed: feed, published_at: 2.days.ago)
 
       visit feed_item_path(item.feed, item)
       click_on 'Mark as read'
@@ -35,8 +35,8 @@ RSpec.describe 'Marking items as read', type: :system do
   context 'unread' do
     it 'marks item as read' do
       feed = create(:feed, account: @account)
-      item = create(:unread_item, :with_account, account: @account, feed: feed, published_at: 1.day.ago)
-      next_item = create(:unread_item, :with_account, account: @account, feed: feed, published_at: 2.days.ago)
+      item = create(:unread_item, account: @account, feed: feed, published_at: 1.day.ago)
+      next_item = create(:unread_item, account: @account, feed: feed, published_at: 2.days.ago)
 
       visit unread_item_path(item)
       click_on 'Mark as read'
@@ -48,8 +48,8 @@ RSpec.describe 'Marking items as read', type: :system do
 
     it 'marks feed item as read' do
       feed = create(:feed, account: @account)
-      item = create(:unread_item, :with_account, account: @account, feed: feed, published_at: 1.day.ago)
-      next_item = create(:unread_item, :with_account, account: @account, feed: feed, published_at: 2.days.ago)
+      item = create(:unread_item, account: @account, feed: feed, published_at: 1.day.ago)
+      next_item = create(:unread_item, account: @account, feed: feed, published_at: 2.days.ago)
 
       visit unread_feed_item_path(item.feed, item)
       click_on 'Mark as read'

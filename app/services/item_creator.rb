@@ -11,7 +11,8 @@ class ItemCreator
       published_at: @entry.published,
       content: @entry.content || @entry.summary,
       feed_id: @feed.id,
-      entry_id: @entry.entry_id
+      entry_id: @entry.entry_id,
+      account_id: @feed.account_id
     )
 
     Result.new(created: item.valid?, item: item)
