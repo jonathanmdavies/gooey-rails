@@ -12,7 +12,7 @@ FactoryBot.define do
       end
 
       after(:create) do |feed, evaluator|
-        create_list(:unread_item, evaluator.items_count, feed: feed)
+        create_list(:unread_item, evaluator.items_count, feed: feed, account: feed.account)
       end
     end
 
@@ -22,7 +22,7 @@ FactoryBot.define do
       end
 
       after(:create) do |feed, evaluator|
-        create_list(:read_item, evaluator.items_count, feed: feed)
+        create_list(:read_item, evaluator.items_count, feed: feed, account: feed.account)
       end
     end
   end

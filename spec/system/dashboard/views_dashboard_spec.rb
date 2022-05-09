@@ -7,7 +7,7 @@ RSpec.describe 'Dashboard', type: :system do
   end
 
   it 'shows most recent unread items' do
-    create(:unread_item, :with_account, account: @account, title: 'Unread Item')
+    create(:unread_item, account: @account, title: 'Unread Item')
 
     visit dashboard_path
 
