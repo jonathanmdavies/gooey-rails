@@ -4,7 +4,7 @@ import Authenticated from "@/Layouts/Authenticated";
 import { item_path } from "@/routes";
 
 export default function Show() {
-  const { items, current_account } = usePage().props;
+  const { items, items_published_today, current_account } = usePage().props;
   const firstName = current_account.first_name;
 
   return (
@@ -16,7 +16,7 @@ export default function Show() {
               Welcome, {firstName}
             </h1>
             <p className="mt-1 text-sm font-medium text-slate-400">
-              00 Items Published Today
+              {items_published_today} Items Published Today
             </p>
           </div>
 
