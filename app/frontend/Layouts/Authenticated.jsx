@@ -7,6 +7,7 @@ import {
   LogoutIcon,
   RefreshIcon,
   UserIcon,
+  LightningBoltIcon,
 } from "@heroicons/react/solid";
 import toast, { Toaster } from "react-hot-toast";
 import { Menu } from "@headlessui/react";
@@ -15,6 +16,7 @@ import {
   feeds_path,
   unread_items_path,
   refresh_path,
+  dashboard_path,
 } from "@/routes";
 import FlashMessages from "@/components/FlashMessages";
 import NewFeedButton from "@/components/NewFeedButton";
@@ -73,12 +75,11 @@ function Header() {
                 className={`${
                   active ? "bg-slate-800 text-white" : "bg-white text-slate-700"
                 } group flex w-full items-center rounded-md px-3 py-2 text-sm font-medium transition hover:bg-slate-800 hover:text-white focus:outline-none`}
-                href={destroy_account_session_path()}
+                href={dashboard_path()}
                 as="button"
-                method="delete"
               >
-                <LogoutIcon className="mr-2 h-4 w-4" />
-                Log out
+                <LightningBoltIcon className="mr-2 h-4 w-4" />
+                Dashboard
               </Link>
             )}
           </Menu.Item>
@@ -96,6 +97,21 @@ function Header() {
               </Link>
             )}
           </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+              <Link
+                className={`${
+                  active ? "bg-slate-800 text-white" : "bg-white text-slate-700"
+                } group flex w-full items-center rounded-md px-3 py-2 text-sm font-medium transition hover:bg-slate-800 hover:text-white focus:outline-none`}
+                href={destroy_account_session_path()}
+                as="button"
+                method="delete"
+              >
+                <LogoutIcon className="mr-2 h-4 w-4" />
+                Log out
+              </Link>
+            )}
+          </Menu.Item>
         </Dropdown>
       </div>
 
@@ -103,7 +119,7 @@ function Header() {
         <Link
           href={unread_items_path()}
           className={`${
-            !url.startsWith("/manage")
+            !url.startsWith("/manage") && !url.startsWith("/dashboard")
               ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white hover:text-slate-100"
               : "text-slate-500"
           } rounded-full  px-6 py-1.5 text-sm font-medium  transition  active:scale-95`}

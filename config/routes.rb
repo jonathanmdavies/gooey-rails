@@ -30,6 +30,8 @@ Rails.application.routes.draw do
         end
       end
 
+      resource :dashboard, only: [:show]
+
       resources :items, only: [] do
         resource :read, only: [:create, :destroy]
         resource :bookmark, only: [:create, :destroy]

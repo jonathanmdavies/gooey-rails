@@ -551,6 +551,14 @@ export const cancel_account_registration_path = __jsr.r({"format":{}}, [2,[7,"/"
 
 /**
  * Generates rails route to
+ * /dashboard(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const dashboard_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"dashboard"],[1,[2,[8,"."],[3,"format"]]]]]);
+
+/**
+ * Generates rails route to
  * /accounts/sign_out(.:format)
  * @param {object | undefined} options
  * @returns {string} route path

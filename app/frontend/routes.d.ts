@@ -135,6 +135,16 @@ export const cancel_account_registration_path: ((
 
 /**
  * Generates rails route to
+ * /dashboard(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const dashboard_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /accounts/sign_out(.:format)
  * @param {object | undefined} options
  * @returns {string} route path
