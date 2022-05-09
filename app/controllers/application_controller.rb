@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
     if current_account
       {
         email: current_account.email,
+        first_name: current_account.first_name,
+        last_name: current_account.last_name,
       }
     end
   }
