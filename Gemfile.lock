@@ -129,6 +129,8 @@ GEM
       websocket-driver (>= 0.6, < 0.8)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    groupdate (6.1.0)
+      activesupport (>= 5.2)
     hashdiff (1.0.1)
     httparty (0.20.0)
       mime-types (~> 3.0)
@@ -348,6 +350,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   feedjira
+  groupdate
   httparty
   inertia_rails
   jbuilder
