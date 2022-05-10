@@ -14,6 +14,7 @@ class Item < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
   scope :bookmarked, -> { where.not(bookmarked_at: nil) }
   scope :unread_bookmarked, -> { where(read_at: nil).where.not(bookmarked_at: nil) }
+  scope :published_today, -> { where(published_at: Date.today.beginning_of_day..Date.today.end_of_day) }
 
   # Unread Feed Items Counter Cache
   counter_culture :feed,

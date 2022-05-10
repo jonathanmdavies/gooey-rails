@@ -17,6 +17,15 @@ FactoryBot.define do
     factory :unread_item do
       read_at { nil }
     end
+
+    factory :read_bookmarked_item do
+      read_at { 1.day.ago }
+      bookmarked_at { 1.day.ago }
+    end
+
+    factory :unread_bookmarked_item do
+      bookmarked_at { 1.day.ago }
+    end
   end
 
   trait :with_account do
