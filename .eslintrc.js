@@ -14,6 +14,7 @@ module.exports = {
   plugins: ["react"],
   ignorePatterns: ["routes.d.ts", "routes.js"],
   rules: {
+    "react/jsx-props-no-spreading": 0,
     "import/extensions": 0,
     "import/no-unresolved": 0,
     camelcase: 0,
