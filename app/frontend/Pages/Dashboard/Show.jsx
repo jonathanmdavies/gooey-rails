@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import propTypes from "prop-types";
 import { LineChart, Line, XAxis, ResponsiveContainer } from "recharts";
+import { AnimatePresence, motion, usePresence } from "framer-motion";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import { ArrowCircleRightIcon } from "@heroicons/react/solid";
 import Authenticated from "@/Layouts/Authenticated";
@@ -167,22 +168,11 @@ function BookmarkedItems({ bookmarked_items }) {
         </span>
       </div>
       <ul className="divide-y divide-slate-100">
-        {filteredItems.map((item) => (
-          <li key={item.id} className="py-2">
-            <Link
-              href={item_path(item.id)}
-              className="group flex items-center justify-between"
-            >
-              <div className="truncate">
-                <span className="text-sm font-medium text-slate-600 transition group-hover:text-slate-500">
-                  {item.title}
-                </span>
-                <p className="mt-1 text-xs text-slate-500">{item.feed.name}</p>
-              </div>
-              <ArrowCircleRightIcon className="ml-2 h-4 w-4 flex-shrink-0 text-slate-300 transition group-hover:text-slate-400" />
-            </Link>
-          </li>
-        ))}
+        <AnimatePresence>
+          {filteredItems.map((item, i) => (
+            <BookmarkItem item={item} i={i} key={item.id} />
+          ))}
+        </AnimatePresence>
       </ul>
     </div>
   );
@@ -190,6 +180,52 @@ function BookmarkedItems({ bookmarked_items }) {
 
 BookmarkedItems.propTypes = {
   bookmarked_items: propTypes.arrayOf(propTypes.object).isRequired,
+};
+
+function BookmarkItem({ item, i }) {
+  const [isPresent, safetoRemove] = usePresence();
+
+  const animations = {
+    layout: true,
+    initial: "out",
+    animate: isPresent ? "in" : "out",
+    variants: {
+      in: () => ({
+        y: 0,
+        opacity: 1,
+        transition: { delay: i * 0.025 },
+      }),
+      out: () => ({
+        y: -25,
+        opacity: 0,
+
+        transition: { delay: i * 0.025 },
+      }),
+    },
+    onAnimationComplete: () => !isPresent && safetoRemove(),
+  };
+
+  return (
+    <motion.li {...animations} className="py-2">
+      <Link
+        href={item_path(item.id)}
+        className="group flex items-center justify-between"
+      >
+        <div className="truncate">
+          <span className="text-sm font-medium text-slate-600 transition group-hover:text-slate-500">
+            {item.title}
+          </span>
+          <p className="mt-1 text-xs text-slate-500">{item.feed.name}</p>
+        </div>
+        <ArrowCircleRightIcon className="ml-2 h-4 w-4 flex-shrink-0 text-slate-300 transition group-hover:text-slate-400" />
+      </Link>
+    </motion.li>
+  );
+}
+
+BookmarkItem.propTypes = {
+  item: propTypes.shape.isRequired,
+  i: propTypes.number.isRequired,
 };
 
 function ReadingHabits({ habits }) {
