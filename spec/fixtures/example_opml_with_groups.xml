@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+    <head>
+        <title>Sample OPML file for RSSReader</title>
+    </head>
+    <body>
+        <outline title="News" text="News">
+            <outline text="Big News Finland" title="Big News Finland" type="rss" xmlUrl="http://www.bignewsnetwork.com/?rss=37e8860164ce009a"/>
+        </outline>
+        <outline title="Leisure" text="Leisure">
+            <outline text="CNN Entertainment" title="CNN Entertainment" type="rss" xmlUrl="http://rss.cnn.com/rss/edition_entertainment.rss"/>
+        </outline>
+    </body>
+</opml>
