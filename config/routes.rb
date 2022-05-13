@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       root to: 'unread/items#index', as: :authenticated_account_root
 
       scope module: 'manage', path: 'manage' do
+        resource :import, only: [:create]
         resources :feeds, only: [:create, :index, :destroy] do
           resource :refresh, only: [:create], module: 'feeds'
         end
