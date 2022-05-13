@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+  <head>
+    <title>RSS subscriptions for hello@example.com</title>
+    <dateCreated>Fri, 13 May 2022 07:40:53 +0000</dateCreated>
+    <ownerEmail>hello@example.com</ownerEmail>
+  </head>
+  <body>
+    <outline text="All in the head" title="All in the head" type="rss" xmlUrl="http://allinthehead.com/rss/" htmlUrl="https://allinthehead.com/"/>
+    <outline text="Jason Santa Maria" title="Jason Santa Maria" type="rss" xmlUrl="http://feeds.feedburner.com/jsm-rss" htmlUrl="http://jasonsantamaria.com/"/>
+    <outline text="Jonathan Snook" title="Jonathan Snook" type="rss" xmlUrl="http://feeds.feedburner.com/snookca" htmlUrl="https://snook.ca/"/>
+  </body>
+</opml>
