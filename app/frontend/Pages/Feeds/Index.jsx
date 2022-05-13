@@ -4,6 +4,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import { SearchIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import FeedDropdown from "@/components/manage/FeedDropdown";
+import NewOpmlFileImportButton from "@/components/NewOpmlFileImportButton";
 
 import Authenticated from "@/Layouts/Authenticated";
 
@@ -38,7 +39,7 @@ export default function Index() {
       <div className="">
         <div className="container mx-auto max-w-7xl">
           <div className="my-12 overflow-hidden rounded-lg border border-slate-200">
-            <div className="grid grid-cols-8 gap-6 bg-slate-50 p-6">
+            <div className="grid grid-cols-8 items-center gap-6 bg-slate-50 p-6">
               <div className="col-span-4">
                 <label
                   htmlFor="email"
@@ -62,7 +63,10 @@ export default function Index() {
                   />
                 </div>
               </div>
-              <div className="col-span-2" />
+              <div className="col-span-3" />
+              <div className="col-span-1">
+                <NewOpmlFileImportButton />
+              </div>
             </div>
             <div className="flex flex-col border-t border-slate-200">
               <div className="-my-2 overflow-x-auto  sm:-mx-6 lg:-mx-8">
