@@ -6,6 +6,7 @@ import {
   EyeIcon,
 } from "@heroicons/react/solid";
 import { Disclosure } from "@headlessui/react";
+import { motion } from "framer-motion";
 import { items_path, unread_items_path } from "@/routes";
 
 export default function FeedSidebar() {
@@ -23,12 +24,17 @@ export default function FeedSidebar() {
               preserveState
               preserveScroll
               className={`${
-                url.startsWith("/unread")
-                  ? "bg-gradient-to-br from-slate-700 to-slate-800 text-slate-100"
-                  : "bg-slate-50 text-slate-400"
-              } flex w-full items-center justify-center rounded-full py-2 transition active:scale-95 active:text-cyan-500`}
+                url.startsWith("/unread") ? "text-slate-100" : " text-slate-400"
+              } relative flex w-full items-center justify-center rounded-full py-2 transition active:scale-95 active:text-cyan-500`}
             >
-              <EyeIcon className="h-4 w-4 " />
+              {url.startsWith("/unread") ? (
+                <motion.div
+                  layoutId="bg"
+                  className="absolute z-10 h-full w-full rounded-full bg-gradient-to-br from-slate-700 to-slate-800"
+                />
+              ) : null}
+
+              <EyeIcon className="z-20 h-4 w-4" />
               <span className="sr-only">Unread Items</span>
             </Link>
             <Link
@@ -37,11 +43,17 @@ export default function FeedSidebar() {
               preserveScroll
               className={`${
                 !url.startsWith("/unread")
-                  ? "bg-gradient-to-br from-slate-700 to-slate-800 text-slate-100"
-                  : "bg-slate-50 text-slate-400"
-              } flex w-full items-center justify-center rounded-full py-2 transition active:scale-95 active:text-cyan-500`}
+                  ? " text-slate-100"
+                  : " text-slate-400"
+              } relative flex w-full items-center justify-center rounded-full py-2 transition active:scale-95 active:text-cyan-500`}
             >
-              <CollectionIcon className="h-4 w-4" />
+              {!url.startsWith("/unread") ? (
+                <motion.div
+                  layoutId="bg"
+                  className="absolute z-10 h-full w-full rounded-full bg-gradient-to-br from-slate-700 to-slate-800"
+                />
+              ) : null}
+              <CollectionIcon className="z-20 h-4 w-4" />
               <span className="sr-only">All Items</span>
             </Link>
           </div>
@@ -78,7 +90,7 @@ export default function FeedSidebar() {
                                 preserveScroll
                                 key={feed.id}
                                 className={`${
-                                  url.includes(`feeds/${feed.id}`)
+                                  url.includes(`feeds/${feed.id}/`)
                                     ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white"
                                     : "text-slate-700 hover:bg-slate-100"
                                 } sidebar-item-link flex w-full items-center justify-between rounded-full px-4 py-1.5 text-sm transition-all duration-300`}
