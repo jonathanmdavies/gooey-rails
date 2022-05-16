@@ -2,13 +2,10 @@ class Manage::FeedsController < ApplicationController
   before_action :authenticate_account!
 
   def index
-    column = params[:column] || 'created_at'
-    order = params[:order] || 'desc'
+    column = params[:column].present? ? params[:column] : 'created_at'
+    order = params[:order].present? ? params[:order] : 'desc'
 
-    # rubocop:disable Airbnb/RiskyActiverecordInvocation`
-    # Safe as of Rails 6 [https://www.bigbinary.com/blog/rails-5-2-disallows-raw-sql-in-active-record]
-    pagy, records = pagy(current_account.feeds.unscoped.order("#{column} #{order}"))
-    # rubocop:enable Airbnb/RiskyActiverecordInvocation`
+    pagy, records = pagy(current_account.feeds.reorder(column => order))
     feeds = FeedResource.new(records).serializable_hash
 
     render inertia: 'Feeds/Index', props: { feeds: feeds, pagy: pagy_metadata(pagy) }
