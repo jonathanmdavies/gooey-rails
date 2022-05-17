@@ -47,8 +47,8 @@ RSpec.describe 'Reading All Items', type: :system do
 
     it 'clicks on item to view content' do
       feed = create(:feed, account: @account, name: 'First Feed')
-      create(:item, feed: feed, published_at: Time.now)
-      last_item = create(:item, feed: feed, published_at: 2.days.ago)
+      create(:item, feed: feed, published_at: Time.now, account: @account)
+      last_item = create(:item, feed: feed, published_at: 2.days.ago, account: @account)
 
       visit items_path
       click_link 'First Feed'
@@ -57,6 +57,7 @@ RSpec.describe 'Reading All Items', type: :system do
       # Currently getting strange Capybara error that I can't debug
       # expect(page).to have_selector 'h1', text: last_item.title
       expect(page).to have_content last_item.content
+      sleep(0.1)
       expect(page.current_path).to eq feed_item_path(feed, last_item)
     end
   end
