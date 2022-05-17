@@ -1,11 +1,19 @@
 import React, { useRef } from "react";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import Draggable from "react-draggable";
+import { Inertia } from "@inertiajs/inertia";
 import { useResizableX } from "@/utils/hooks";
 
 export default function ItemsSidebar() {
-  const { items } = usePage().props;
+  const { items, pagy } = usePage().props;
   const { url } = usePage();
+
+  const nextPage = () => {
+    Inertia.visit(pagy.next_url, {
+      preserveState: true,
+      preserveScroll: true,
+    });
+  };
 
   const resizeable = useRef(null);
   const { start, resize, width, end } = useResizableX(
@@ -46,6 +54,14 @@ export default function ItemsSidebar() {
             </Link>
           </div>
         ))}
+        <button
+          type="button"
+          disabled={pagy.page === pagy.last}
+          onClick={nextPage}
+          className="block w-full py-2 text-sm font-medium text-slate-500 transition hover:bg-slate-100"
+        >
+          {pagy.page === pagy.last ? "That's all for now!" : "Next"}
+        </button>
       </div>
     </div>
   );
