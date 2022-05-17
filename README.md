@@ -1,27 +1,26 @@
-# README
+# About Gooey Reader
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![dashboard](https://user-images.githubusercontent.com/15249275/168856928-a1767d23-d524-48f1-b61f-bc42e305629b.jpg)
 
-Things you may want to cover:
+![unread-feed](https://user-images.githubusercontent.com/15249275/168856986-cd1137bc-53eb-496e-b7eb-2658f9785f7d.jpg)
 
-- Ruby version
+Gooey Reader (aka GUI, Graphical User Interface...) is an RSS Reader web app designed to act as a playground for ideas, patterns and concepts.
 
-- System dependencies
+It uses [Ruby on Rails](https://rubyonrails.org), with a [React](https://reactjs.org) front-end. However, unlike most other projects – it's not an SPA. Gooey uses [InertiaJS](https://inertiajs.com) to act as glue between to the two. Allowing the app to continue to use server-side routing and controllers.
 
-- Configuration
+It's development is driven by it's creator's whims (does an RSS Reader need a Dashboard? No, but I made one anyway). Sometimes I just want to play around in the front-end, sometimes I want to try something in the backend. So if elements seem over-refined compared to others that is probably why.
 
-- Database creation
+Some things I like / find interesting:
 
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
+- It uses [Vite Ruby](https://vite-ruby.netlify.app) instead of Webpacker.
+- It uses InertiaJS (as discussed above)
+- It uses a result object pattern for returning service objects
+- [Lefthook](https://github.com/evilmartians/lefthook) for pre-commit git hooks
+- [Alba](https://github.com/okuramasafumi/alba) for generating serialized objects (finally leaving behind Active Model Serializers)
+- [Cuprite](https://cuprite.rubycdp.com) for driving headless-Chrome
+- It uses [HeadlessUI](https://headlessui.dev) to provide accessible, but visually customisable components like dropdowns and modals.
+- Webmock and VCR for stubbing external API requests (super useful for creating feeds)
+- Broadly, it's trying to retain a server-side approach, and limit the amount of front-end state while still feeling responsive like an API-driven SPA. This has worked better in some places than others.
 
 ### Rubocop
 
