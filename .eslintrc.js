@@ -3,7 +3,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier"],
+  extends: [
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "plugin:storybook/recommended",
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -12,7 +17,7 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["react"],
-  ignorePatterns: ["routes.d.ts", "routes.js"],
+  ignorePatterns: ["routes.d.ts", "routes.js", "storybook", "stories"],
   rules: {
     "react/jsx-props-no-spreading": 0,
     "import/extensions": 0,
