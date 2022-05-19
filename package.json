@@ -1,10 +1,21 @@
 {
   "scripts": {
-    "lint": "npx eslint --ext .js,.jsx --ignore-path .gitignore app"
+    "lint": "npx eslint --ext .js,.jsx --ignore-path .gitignore app",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.12",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/builder-vite": "^0.1.33",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.11",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.1",
+    "babel-loader": "^8.2.5",
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.4.0",
@@ -12,6 +23,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-storybook": "^0.5.12",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.7",
     "vite": "^2.7.7",
