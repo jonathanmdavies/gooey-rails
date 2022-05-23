@@ -1,38 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Inertia } from "@inertiajs/inertia";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import { SearchIcon, ChevronUpIcon } from "@heroicons/react/solid";
+import Authenticated from "@/Layouts/Authenticated";
 import FeedDropdown from "@/components/manage/FeedDropdown";
 import NewOpmlFileImportButton from "@/components/NewOpmlFileImportButton";
 
-import Authenticated from "@/Layouts/Authenticated";
-
 export default function Index() {
   const { feeds, pagy } = usePage().props;
-
-  const [sorted, setSorted] = useState({
-    column: "",
-    order: "",
-  });
-
-  useEffect(() => {
-    Inertia.get(
-      `/manage/feeds`,
-      {
-        column: sorted.column,
-        order: sorted.order,
-      },
-      {
-        only: ["feeds", "pagy"],
-        preserveState: true,
-      }
-    );
-  }, [sorted]);
-
-  const sortResults = (column, order) => {
-    setSorted({ column, order });
-  };
 
   return (
     <Authenticated>
@@ -79,25 +54,15 @@ export default function Index() {
                             scope="col"
                             className="px-6 py-3 text-left text-sm font-semibold text-slate-800"
                           >
-                            <SortableButton
-                              activeSort={sorted.column}
-                              onSort={sortResults}
-                              order={sorted.order}
-                              column="name"
-                              label="Feed"
-                            />
+                            <SortableButton column="name">Feed</SortableButton>
                           </th>
                           <th
                             scope="col"
                             className="px-6 py-3 text-left text-sm "
                           >
-                            <SortableButton
-                              activeSort={sorted.column}
-                              onSort={sortResults}
-                              order={sorted.order}
-                              column="status"
-                              label="Status"
-                            />
+                            <SortableButton column="status">
+                              Status
+                            </SortableButton>
                           </th>
 
                           <th
@@ -108,15 +73,11 @@ export default function Index() {
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-sm "
+                            className="px-6 py-3 text-left text-sm"
                           >
-                            <SortableButton
-                              activeSort={sorted.column}
-                              onSort={sortResults}
-                              order={sorted.order}
-                              column="created_at"
-                              label="Added"
-                            />
+                            <SortableButton column="created_at">
+                              Added
+                            </SortableButton>
                           </th>
                           <th scope="col" className="relative px-6 py-3">
                             <span className="sr-only">Edit</span>
@@ -254,29 +215,35 @@ StatusIndicator.propTypes = {
   status: PropTypes.string.isRequired,
 };
 
-function SortableButton({ activeSort, onSort, column, order, label }) {
+function SortableButton({ column, children }) {
+  const { url } = usePage();
+  const urlParams = new URLSearchParams(url);
+
+  const active = urlParams.get("column") === column;
+  const order = urlParams.get("order");
+
+  const newOrder = order === "asc" ? "desc" : "asc";
+
   return (
-    <button
+    <Link
+      href={`/manage/feeds?&column=${column}&order=${newOrder}`}
+      preserveState
       type="button"
       className="flex items-center font-semibold text-slate-800"
-      onClick={() => onSort(column, order === "desc" ? "asc" : "desc")}
     >
-      {label}
-      {activeSort === column && (
+      {children}
+      {active && (
         <ChevronUpIcon
           className={`${
             order === "desc" ? "rotate-180" : ""
           } h-4 w-4 transform transition`}
         />
       )}
-    </button>
+    </Link>
   );
 }
 
 SortableButton.propTypes = {
   column: PropTypes.string.isRequired,
-  order: PropTypes.string.isRequired,
-  onSort: PropTypes.func.isRequired,
-  activeSort: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
