@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import BackgroundImage from "../images/unauthenticated_background.jpg";
 
 export default function Unauthenticated({ children }) {
   return (
@@ -14,7 +15,7 @@ export default function Unauthenticated({ children }) {
       </div>
       <div className="relative hidden w-0 flex-1 items-center justify-center lg:flex">
         <img
-          src="/images/unauthenticated_background.jpg"
+          src={BackgroundImage}
           alt="background"
           className="absolute inset-0 h-full w-full object-cover"
         />
