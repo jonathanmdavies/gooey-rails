@@ -69,6 +69,9 @@ gem 'counter_culture', '~> 2.0'
 # Temporally Group Data
 gem "groupdate"
 
+# Presenting names
+gem 'name_of_person'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
