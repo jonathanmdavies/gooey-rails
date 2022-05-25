@@ -167,6 +167,8 @@ GEM
     minitest (5.15.0)
     msgpack (1.4.5)
     multi_xml (0.6.0)
+    name_of_person (1.1.1)
+      activesupport (>= 5.2.0)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -357,6 +359,7 @@ DEPENDENCIES
   js-routes
   lefthook
   loofah-activerecord
+  name_of_person
   pagy
   pg (~> 1.1)
   puma (~> 5.0)

@@ -66,4 +66,8 @@ RSpec.describe Account, type: :model do
       expect(account.unread_bookmarks_count).to eq(0)
     end
   end
+
+  context 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+  end
 end
