@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "@inertiajs/inertia-react";
 import Unauthenticated from "@/Layouts/Unauthenticated";
 import FlashMessages from "@/components/FlashMessages";
-
+import Input from "@/components/Base/Input";
 import { account_session_path } from "@/routes";
 
 export default function New() {
@@ -34,39 +34,22 @@ export default function New() {
           </p>
         </div>
         <form onSubmit={submit} className="mt-12 space-y-8">
-          <div className="relative rounded-lg border border-slate-300 px-3 py-2 focus-within:border-cyan-600 focus-within:ring-0 focus-within:ring-cyan-600">
-            <label
-              htmlFor="email"
-              className="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-mono text-xs font-medium text-slate-800"
-            >
-              Email Address
-            </label>
-            <input
-              value={data.email}
-              onChange={(e) => setData("email", e.target.value)}
-              type="email"
-              name="email"
-              id="email"
-              className="block w-full border-0 p-0 text-sm text-slate-800 placeholder-slate-500 focus:ring-0"
-            />
-          </div>
-
-          <div className="relative rounded-lg border border-slate-300 px-3 py-2 focus-within:border-cyan-600 focus-within:ring-0 focus-within:ring-cyan-600">
-            <label
-              htmlFor="password"
-              className="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-mono text-xs font-medium text-slate-800"
-            >
-              Password
-            </label>
-            <input
-              value={data.password}
-              onChange={(e) => setData("password", e.target.value)}
-              type="password"
-              name="password"
-              id="password"
-              className="block w-full border-0 p-0 text-sm text-slate-800 placeholder-gray-500 focus:ring-0"
-            />
-          </div>
+          <Input
+            label="Email Address"
+            value={data.email}
+            onChange={(e) => setData("email", e.target.value)}
+            type="email"
+            name="email"
+            id="email"
+          />
+          <Input
+            label="Password"
+            value={data.password}
+            onChange={(e) => setData("password", e.target.value)}
+            type="password"
+            name="password"
+            id="password"
+          />
           <div className="flex justify-between">
             <div className="flex items-center">
               <input

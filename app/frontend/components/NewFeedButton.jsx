@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { PlusSmIcon, RssIcon } from "@heroicons/react/solid";
 import { useForm } from "@inertiajs/inertia-react";
 import { feeds_path } from "@/routes";
+import Input from "@/components/Base/Input";
 
 export default function NewFeedButton() {
   const [open, setOpen] = useState(false);
@@ -88,26 +89,14 @@ export default function NewFeedButton() {
                 </div>
               </div>
               <div className="space-y-6 p-6">
-                <div className="">
-                  <div className="relative rounded-lg border border-slate-300 px-3 py-2 focus-within:border-cyan-600 focus-within:ring-0 focus-within:ring-cyan-600">
-                    <label
-                      htmlFor="name"
-                      className="absolute -top-2 left-2 -mt-px inline-block bg-white px-1 font-mono text-xs font-medium text-slate-800"
-                    >
-                      URL
-                    </label>
-                    <input
-                      value={data.url}
-                      onChange={(e) => setData("url", e.target.value)}
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="block w-full border-0 p-0 text-sm text-slate-800 placeholder-gray-500 focus:ring-0"
-                      placeholder="https://daringfireball.net/feeds/main"
-                    />
-                  </div>
-                  {errors.url && <div className="">{errors.url}</div>}
-                </div>
+                <Input
+                  label="Feed URL"
+                  value={data.url}
+                  onChange={(e) => setData("url", e.target.value)}
+                  name="name"
+                  id="name"
+                  errors={errors.url}
+                />
                 <div className="">
                   <div className="relative rounded-lg border border-slate-300 px-3 py-2 focus-within:border-cyan-600 focus-within:ring-0 focus-within:ring-cyan-600">
                     <label
