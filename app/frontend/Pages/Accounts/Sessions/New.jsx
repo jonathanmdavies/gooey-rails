@@ -1,9 +1,9 @@
 import React from "react";
-import { useForm } from "@inertiajs/inertia-react";
+import { useForm, Link } from "@inertiajs/inertia-react";
 import Unauthenticated from "@/Layouts/Unauthenticated";
 import FlashMessages from "@/components/FlashMessages";
 import Input from "@/components/Base/Input";
-import { account_session_path } from "@/routes";
+import { account_session_path, new_account_registration_path } from "@/routes";
 
 export default function New() {
   const { data, setData, post, processing, transform } = useForm({
@@ -27,10 +27,13 @@ export default function New() {
         <div className="">
           <h2 className="text-2xl font-semibold text-slate-800">Sign in</h2>
           <p className="mt-2 font-mono text-sm font-medium text-slate-600">
-            New to Gooey?{" "}
-            <a href="/" className="text-cyan-600 hover:text-cyan-700">
-              Sign up for an account.
-            </a>
+            New to RSS Reader?{" "}
+            <Link
+              href={new_account_registration_path()}
+              className="text-cyan-600 hover:text-cyan-700"
+            >
+              Create an account.
+            </Link>
           </p>
         </div>
         <form onSubmit={submit} className="mt-12 space-y-8">
