@@ -1,14 +1,15 @@
 /* eslint-disable react/no-danger */
 import React from "react";
-import { ExternalLinkIcon } from "@heroicons/react/solid";
 import { usePage } from "@inertiajs/inertia-react";
 import Tooltip from "@/components/Tooltip";
 import IconButton from "@/components/Base/IconButton";
 import useBookmark from "@/hooks/useBookmark";
 import useMarkAsRead from "@/hooks/useMarkAsRead";
+import useOpenLink from "@/hooks/useOpenLink";
 
 export default function FeedItemPanel() {
   const { item, feed } = usePage().props;
+  const { openLink } = useOpenLink(item);
 
   if (!item) {
     return (
@@ -34,14 +35,7 @@ export default function FeedItemPanel() {
             <ToggleReadButton />
 
             <Tooltip content="Read Original">
-              <a
-                href={item.permalink}
-                rel="noreferrer"
-                target="_blank"
-                className="group flex h-7 w-7 items-center justify-center rounded-xl bg-slate-200 text-slate-800 hover:bg-slate-300 active:scale-95"
-              >
-                <ExternalLinkIcon className="h-4 w-4" />
-              </a>
+              <IconButton icon="ExternalLinkIcon" onClick={openLink} />
             </Tooltip>
           </div>
         </div>
