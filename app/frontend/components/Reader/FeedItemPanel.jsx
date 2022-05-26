@@ -7,7 +7,8 @@ import { usePage } from "@inertiajs/inertia-react";
 import Tooltip from "@/components/Tooltip";
 import Toast from "@/components/Toast";
 import IconButton from "@/components/Base/IconButton";
-import { item_read_path, item_bookmark_path } from "@/routes";
+import useBookmark from "@/hooks/useBookmark";
+import { item_read_path } from "@/routes";
 
 export default function FeedItemPanel() {
   const { item, feed } = usePage().props;
@@ -58,43 +59,13 @@ export default function FeedItemPanel() {
 
 function ToggleBookmarkButton() {
   const { item } = usePage().props;
-  const bookmarked = item.bookmarked_at;
-
-  const bookmark = () => {
-    Inertia.visit(item_bookmark_path(item.id), {
-      method: "post",
-      preserveState: true,
-      preserveScroll: true,
-      onSuccess: () => {
-        toast.custom((t) => (
-          <Toast toast={t} icon="CheckCircleIcon" type="success">
-            Saved for later
-          </Toast>
-        ));
-      },
-    });
-  };
-
-  const removeBookmark = () => {
-    Inertia.visit(item_bookmark_path(item.id), {
-      method: "delete",
-      preserveState: true,
-      preserveScroll: true,
-      onSuccess: () => {
-        toast.custom((t) => (
-          <Toast toast={t} icon="CheckCircleIcon" type="success">
-            No longer saved for later
-          </Toast>
-        ));
-      },
-    });
-  };
+  const { bookmarked, createBookmark, destroyBookmark } = useBookmark(item);
 
   if (bookmarked) {
     return (
       <Tooltip content="Remove Bookmark">
         <IconButton
-          onClick={() => removeBookmark()}
+          onClick={() => destroyBookmark()}
           icon="StarIcon"
           size="md"
           label="Remove Bookmark"
@@ -109,7 +80,7 @@ function ToggleBookmarkButton() {
       <Tooltip content="Bookmark">
         <IconButton
           label="Bookmark"
-          onClick={() => bookmark()}
+          onClick={() => createBookmark()}
           icon="StarIcon"
           size="md"
           className="hover:text-amber-400"
