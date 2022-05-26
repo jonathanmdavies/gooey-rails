@@ -31,7 +31,7 @@ describe 'Managing Feeds', type: :system do
     feed = create(:feed, account: @account)
 
     visit feeds_path
-    find('.feed-menu-button').click
+    click_on "Edit Feed"
     click_on 'Unsubscribe'
 
     expect(page).not_to have_content feed.name
@@ -43,7 +43,7 @@ describe 'Managing Feeds', type: :system do
       feed = create(:feed, account: @account, url: 'https://daringfireball.net/feeds/main')
 
       visit feeds_path
-      find('.feed-menu-button').click
+      click_on "Edit Feed"
       click_on 'Refresh'
 
       expect(page).to have_content "0 new item added to #{feed.name}."

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { CloudUploadIcon } from "@heroicons/react/solid";
 import { import_path } from "@/routes";
 import Toast from "@/components/Toast";
+import Button from "./Base/Button";
 
 export default function NewOpmlFileImportButton() {
   const [open, setOpen] = useState(false);
@@ -34,13 +35,14 @@ export default function NewOpmlFileImportButton() {
 
   return (
     <div className="relative">
-      <button
+      <Button
         type="button"
         onClick={() => setOpen(true)}
-        className="rounded-full bg-slate-200 px-5 py-2 font-mono text-xs font-medium text-slate-800 hover:bg-slate-300"
+        icon="BookmarkAltIcon"
+        color="darkSlate"
       >
         Import OPML
-      </button>
+      </Button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -105,21 +107,21 @@ export default function NewOpmlFileImportButton() {
               </div>
 
               <div className="p-6 pt-0 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
-                <button
+                <Button
                   disabled={processing || !data.opml_file}
+                  color="cyan"
                   type="submit"
-                  className="rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 px-5 py-2 font-mono text-xs font-medium text-white  hover:bg-cyan-700"
                 >
                   Upload File
-                </button>
-                <button
+                </Button>
+
+                <Button
                   ref={cancelButtonRef}
                   type="button"
                   onClick={() => closeModal()}
-                  className="rounded-full bg-slate-200 px-5 py-2 font-mono text-xs font-medium text-slate-800 hover:bg-slate-300"
                 >
                   Cancel
-                </button>
+                </Button>
               </div>
             </form>
           </div>
