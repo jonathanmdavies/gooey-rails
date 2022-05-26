@@ -1,14 +1,11 @@
 /* eslint-disable react/no-danger */
 import React from "react";
 import { ExternalLinkIcon } from "@heroicons/react/solid";
-import toast from "react-hot-toast";
-import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/inertia-react";
 import Tooltip from "@/components/Tooltip";
-import Toast from "@/components/Toast";
 import IconButton from "@/components/Base/IconButton";
 import useBookmark from "@/hooks/useBookmark";
-import { item_read_path } from "@/routes";
+import useMarkAsRead from "@/hooks/useMarkAsRead";
 
 export default function FeedItemPanel() {
   const { item, feed } = usePage().props;
@@ -92,59 +89,29 @@ function ToggleBookmarkButton() {
 
 function ToggleReadButton() {
   const { item } = usePage().props;
-  const read = item.read_at;
+  const { read, createRead, destroyRead } = useMarkAsRead(item);
 
-  const markAsRead = () => {
-    Inertia.visit(item_read_path(item.id), {
-      method: "post",
-      preserveState: true,
-      preserveScroll: true,
-      onSuccess: () => {
-        toast.custom((t) => (
-          <Toast toast={t} icon="CheckCircleIcon" type="success">
-            Marked as Read
-          </Toast>
-        ));
-      },
-    });
-  };
+  if (read) {
+    return (
+      <Tooltip content="Mark as Unread">
+        <IconButton
+          label="Mark as unread"
+          onClick={() => destroyRead()}
+          icon="EyeOffIcon"
+        />
+      </Tooltip>
+    );
+  }
 
-  const markAsUnread = () => {
-    Inertia.visit(item_read_path(item.id), {
-      method: "delete",
-      preserveState: true,
-      preserveScroll: true,
-      onSuccess: () => {
-        toast.custom((t) => (
-          <Toast toast={t} icon="CheckCircleIcon" type="success">
-            Marked as Unread
-          </Toast>
-        ));
-      },
-    });
-  };
-
-  return (
-    <>
-      {read && (
-        <Tooltip content="Mark as Unread">
-          <IconButton
-            label="Mark as unread"
-            onClick={() => markAsUnread()}
-            icon="EyeOffIcon"
-          />
-        </Tooltip>
-      )}
-
-      {!read && (
-        <Tooltip content="Mark as Read">
-          <IconButton
-            label="Mark as read"
-            onClick={() => markAsRead()}
-            icon="EyeIcon"
-          />
-        </Tooltip>
-      )}
-    </>
-  );
+  if (!read) {
+    return (
+      <Tooltip content="Mark as Read">
+        <IconButton
+          label="Mark as read"
+          onClick={() => createRead()}
+          icon="EyeIcon"
+        />
+      </Tooltip>
+    );
+  }
 }
