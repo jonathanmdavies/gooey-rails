@@ -3,6 +3,7 @@ import { useForm, Link } from "@inertiajs/inertia-react";
 import Unauthenticated from "@/Layouts/Unauthenticated";
 import FlashMessages from "@/components/FlashMessages";
 import Input from "@/components/Base/Input";
+import Button from "@/components/Base/Button";
 import { new_account_session_path, account_registration_path } from "@/routes";
 
 export default function New() {
@@ -78,13 +79,14 @@ export default function New() {
             errors={errors.password_confirmation}
           />
 
-          <button
+          <Button
             type="submit"
+            color="darkSlate"
+            size="md"
             disabled={processing}
-            className="rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 px-5 py-2 font-mono text-xs font-medium text-white transition hover:bg-cyan-700 active:scale-95"
           >
             Sign up
-          </button>
+          </Button>
         </form>
       </>
     </Unauthenticated>

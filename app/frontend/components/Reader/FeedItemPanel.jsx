@@ -1,17 +1,13 @@
 /* eslint-disable react/no-danger */
 import React from "react";
-import {
-  ExternalLinkIcon,
-  EyeOffIcon,
-  EyeIcon,
-  StarIcon,
-} from "@heroicons/react/solid";
+import { ExternalLinkIcon } from "@heroicons/react/solid";
 import toast from "react-hot-toast";
 import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/inertia-react";
-import { item_read_path, item_bookmark_path } from "@/routes";
 import Tooltip from "@/components/Tooltip";
 import Toast from "@/components/Toast";
+import IconButton from "@/components/Base/IconButton";
+import { item_read_path, item_bookmark_path } from "@/routes";
 
 export default function FeedItemPanel() {
   const { item, feed } = usePage().props;
@@ -38,20 +34,21 @@ export default function FeedItemPanel() {
             <ToggleBookmarkButton />
 
             <ToggleReadButton />
+
             <Tooltip content="Read Original">
               <a
                 href={item.permalink}
                 rel="noreferrer"
                 target="_blank"
-                className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition hover:text-cyan-50 active:scale-95"
+                className="group flex h-7 w-7 items-center justify-center rounded-xl bg-slate-200 text-slate-800 hover:bg-slate-300 active:scale-95"
               >
-                <ExternalLinkIcon className="h-4 w-4 transition group-hover:scale-95" />
+                <ExternalLinkIcon className="h-4 w-4" />
               </a>
             </Tooltip>
           </div>
         </div>
       </div>
-      <article className="prose prose-slate prose-a:text-cyan-600 prose-a:no-underline hover:prose-a:text-cyan-500 w-full max-w-3xl self-center  p-6">
+      <article className="prose prose-slate w-full max-w-3xl self-center p-6 prose-a:text-cyan-600 prose-a:no-underline  hover:prose-a:text-cyan-500">
         <h1>{item.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: item.content }} />
       </article>
@@ -96,14 +93,13 @@ function ToggleBookmarkButton() {
   if (bookmarked) {
     return (
       <Tooltip content="Remove Bookmark">
-        <button
-          type="button"
+        <IconButton
           onClick={() => removeBookmark()}
-          className="group flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-amber-500 transition hover:text-amber-400 active:scale-95"
-        >
-          <span className="sr-only">Remove Bookmark</span>
-          <StarIcon className="h-4 w-4 transition group-hover:scale-95" />
-        </button>
+          icon="StarIcon"
+          size="md"
+          label="Remove Bookmark"
+          className="text-amber-500 hover:text-amber-400"
+        />
       </Tooltip>
     );
   }
@@ -111,14 +107,13 @@ function ToggleBookmarkButton() {
   if (!bookmarked) {
     return (
       <Tooltip content="Bookmark">
-        <button
-          type="button"
+        <IconButton
+          label="Bookmark"
           onClick={() => bookmark()}
-          className="group flex h-6 w-6 items-center justify-center rounded-full bg-slate-300 text-white transition hover:text-amber-200 active:scale-95"
-        >
-          <span className="sr-only">Bookmark</span>
-          <StarIcon className="h-4 w-4 transition group-hover:scale-95" />
-        </button>
+          icon="StarIcon"
+          size="md"
+          className="hover:text-amber-400"
+        />
       </Tooltip>
     );
   }
@@ -162,27 +157,21 @@ function ToggleReadButton() {
     <>
       {read && (
         <Tooltip content="Mark as Unread">
-          <button
-            type="button"
+          <IconButton
+            label="Mark as unread"
             onClick={() => markAsUnread()}
-            className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition hover:text-cyan-50 active:scale-95"
-          >
-            <span className="sr-only">Mark as unread</span>
-            <EyeOffIcon className="h-4 w-4 group-hover:scale-95" />
-          </button>
+            icon="EyeOffIcon"
+          />
         </Tooltip>
       )}
 
       {!read && (
         <Tooltip content="Mark as Read">
-          <button
-            type="button"
+          <IconButton
+            label="Mark as read"
             onClick={() => markAsRead()}
-            className="group flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-600 text-white transition active:scale-95"
-          >
-            <span className="sr-only">Mark as read</span>
-            <EyeIcon className="h-4 w-4 transition group-hover:scale-95" />
-          </button>
+            icon="EyeIcon"
+          />
         </Tooltip>
       )}
     </>

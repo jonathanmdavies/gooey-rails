@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 import { Inertia } from "@inertiajs/inertia";
 import { usePage, Link } from "@inertiajs/inertia-react";
 import {
-  CogIcon,
   LogoutIcon,
-  RefreshIcon,
   UserIcon,
   LightningBoltIcon,
 } from "@heroicons/react/solid";
@@ -14,7 +12,6 @@ import { Menu } from "@headlessui/react";
 import {
   destroy_account_session_path,
   feeds_path,
-  unread_items_path,
   refresh_path,
   dashboard_path,
 } from "@/routes";
@@ -22,6 +19,8 @@ import FlashMessages from "@/components/FlashMessages";
 import NewFeedButton from "@/components/NewFeedButton";
 import Dropdown from "../components/Dropdown/Index";
 import Toast from "@/components/Toast";
+import LinkButton from "../components/Base/LinkButton";
+import IconButton from "../components/Base/IconButton";
 
 export default function Authenticated({ children }) {
   return (
@@ -58,17 +57,7 @@ function Header() {
   return (
     <header className="flex items-center justify-between border-b border-slate-100 bg-white py-2 px-4">
       <div className="flex w-40 items-center">
-        <Dropdown
-          button={
-            <button
-              type="button"
-              className="settings-menu-button mr-3 flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-slate-100 to-slate-200 transition focus:outline-none active:scale-95"
-            >
-              <CogIcon className="h-5 w-5 text-slate-600" />
-              <span className="sr-only">Settings</span>
-            </button>
-          }
-        >
+        <Dropdown button={<IconButton label="Settings" icon="CogIcon" />}>
           <Menu.Item>
             {({ active }) => (
               <Link
@@ -116,37 +105,29 @@ function Header() {
       </div>
 
       <div className="flex items-center space-x-2">
-        <Link
-          href={unread_items_path()}
-          className={`${
-            !url.startsWith("/manage") && !url.startsWith("/dashboard")
-              ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white hover:text-slate-100"
-              : "text-slate-500"
-          } rounded-full  px-6 py-1.5 text-sm font-medium  transition  active:scale-95`}
+        <LinkButton
+          color={!url.startsWith("/manage") ? "darkSlate" : "lightSlate"}
+          href="/"
         >
           Read
-        </Link>
+        </LinkButton>
 
-        <Link
+        <LinkButton
           href={feeds_path()}
-          className={`${
-            url.startsWith("/manage")
-              ? "bg-gradient-to-br from-slate-800 to-slate-700 text-white hover:text-slate-100"
-              : "text-slate-500"
-          } rounded-full px-6 py-1.5 text-sm font-medium transition active:scale-95`}
+          color={url.startsWith("/manage") ? "darkSlate" : "lightSlate"}
         >
           Manage
-        </Link>
+        </LinkButton>
       </div>
 
       <div className="flex w-40 items-center justify-end space-x-2">
-        <button
+        <IconButton
           onClick={() => refreshFeeds()}
-          type="button"
-          className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600 to-cyan-500 active:scale-95"
-        >
-          <RefreshIcon className="h-4 w-4 text-white" />
-        </button>
+          icon="RefreshIcon"
+          label="Refresh all feeds"
+          color="darkSlate"
+        />
+
         <NewFeedButton />
       </div>
     </header>

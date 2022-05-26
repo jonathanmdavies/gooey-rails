@@ -5,6 +5,7 @@ import { SearchIcon, ChevronUpIcon } from "@heroicons/react/solid";
 import Authenticated from "@/Layouts/Authenticated";
 import FeedDropdown from "@/components/manage/FeedDropdown";
 import NewOpmlFileImportButton from "@/components/NewOpmlFileImportButton";
+import LinkButton from "../../components/Base/LinkButton";
 
 export default function Index() {
   const { feeds, pagy } = usePage().props;
@@ -147,7 +148,7 @@ export default function Index() {
                     </div>
 
                     <div className="space-x-3">
-                      <Link
+                      <LinkButton
                         as="button"
                         preserveState
                         disabled={pagy.page === pagy.from}
@@ -156,12 +157,12 @@ export default function Index() {
                           pagy.page === pagy.from
                             ? " text-slate-400"
                             : "text-slate-700 hover:text-slate-800"
-                        } rounded-full bg-gradient-to-br from-slate-200 to-slate-100 px-5 py-2 font-mono text-xs font-medium active:scale-95`}
+                        } `}
                       >
                         Previous
-                      </Link>
+                      </LinkButton>
 
-                      <Link
+                      <LinkButton
                         as="button"
                         preserveState
                         disabled={pagy.page === pagy.last}
@@ -170,10 +171,10 @@ export default function Index() {
                           pagy.page === pagy.last
                             ? " text-slate-400"
                             : "text-slate-700 hover:text-slate-800"
-                        } rounded-full bg-gradient-to-br from-slate-200 to-slate-100 px-5 py-2 font-mono text-xs font-medium active:scale-95`}
+                        } `}
                       >
                         Next
-                      </Link>
+                      </LinkButton>
                     </div>
                   </nav>
                 </div>
