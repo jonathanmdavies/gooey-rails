@@ -24,10 +24,12 @@ export default function FeedSidebar() {
               preserveState
               preserveScroll
               className={`${
-                url.startsWith("/unread") ? "text-slate-100" : " text-slate-400"
+                url.startsWith("/unread") || url === "/"
+                  ? "text-slate-100"
+                  : " text-slate-400"
               } relative flex w-full items-center justify-center rounded-full py-2 transition active:scale-95 active:text-cyan-500`}
             >
-              {url.startsWith("/unread") ? (
+              {url.startsWith("/unread") || url === "/" ? (
                 <motion.div
                   layoutId="bg"
                   className="absolute z-10 h-full w-full rounded-full bg-gradient-to-br from-slate-700 to-slate-800"
@@ -42,12 +44,12 @@ export default function FeedSidebar() {
               preserveState
               preserveScroll
               className={`${
-                !url.startsWith("/unread")
+                !url.startsWith("/unread") && url !== "/"
                   ? " text-slate-100"
                   : " text-slate-400"
               } relative flex w-full items-center justify-center rounded-full py-2 transition active:scale-95 active:text-cyan-500`}
             >
-              {!url.startsWith("/unread") ? (
+              {!url.startsWith("/unread") && url !== "/" ? (
                 <motion.div
                   layoutId="bg"
                   className="absolute z-10 h-full w-full rounded-full bg-gradient-to-br from-slate-700 to-slate-800"
@@ -100,7 +102,7 @@ export default function FeedSidebar() {
                                 </span>
                                 <span
                                   className={`${
-                                    url.includes(`feeds/${feed.id}`)
+                                    url.includes(`feeds/${feed.id}/`)
                                       ? "text-slate-100"
                                       : "text-slate-500"
                                   } ml-auto text-xs font-medium `}
