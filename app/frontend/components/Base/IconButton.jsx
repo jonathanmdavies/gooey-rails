@@ -1,10 +1,7 @@
 import React, { forwardRef } from "react";
 import propTypes from "prop-types";
 import DynamicIcon from "@/components/DynamicIcon";
-
-function classNames(...args) {
-  return args.filter(Boolean).join(" ");
-}
+import { classNames } from "@/utils";
 
 const sizes = {
   sm: "h-5 w-5",

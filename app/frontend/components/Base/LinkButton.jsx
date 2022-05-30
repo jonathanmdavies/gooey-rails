@@ -2,10 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import DynamicIcon from "@/components/DynamicIcon";
-
-function classNames(...args) {
-  return args.filter(Boolean).join(" ");
-}
+import { classNames } from "@/utils";
 
 const sizes = {
   sm: "text-xs px-4 py-2",

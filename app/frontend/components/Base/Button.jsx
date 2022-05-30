@@ -2,9 +2,7 @@ import React, { forwardRef } from "react";
 import propTypes from "prop-types";
 import DynamicIcon from "../DynamicIcon";
 
-function classNames(...args) {
-  return args.filter(Boolean).join(" ");
-}
+import { classNames } from "@/utils";
 
 const sizes = {
   sm: "text-xs px-4 py-2",
