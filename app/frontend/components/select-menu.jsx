@@ -1,16 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import { classNames } from "@/utils";
 
 const states = [
   { id: 0, name: "All", online: true },
   { id: 1, name: "Active", online: true },
   { id: 2, name: "Inactive", online: false },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function SelectMenu() {
   const [selected, setSelected] = useState(states[0]);

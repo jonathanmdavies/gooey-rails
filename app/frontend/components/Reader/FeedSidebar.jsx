@@ -9,10 +9,7 @@ import { Disclosure } from "@headlessui/react";
 import { motion } from "framer-motion";
 import { items_path, unread_items_path } from "@/routes";
 import BackgroundImage from "@/images/sidebar_background.jpg";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "@/utils";
 
 export default function FeedSidebar() {
   const accordianRef = useRef(null);
@@ -130,7 +127,7 @@ export default function FeedSidebar() {
       </div>
       <img
         src={BackgroundImage}
-        className="absolute inset-0 -z-10 h-full bg-center object-fill opacity-20"
+        className="absolute inset-0 -z-10 h-full w-full object-fill opacity-10"
         alt="Sidebar Background"
       />
     </div>
