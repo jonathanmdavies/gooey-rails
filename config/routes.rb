@@ -18,6 +18,12 @@ Rails.application.routes.draw do
         resource :refresh, only: [:create]
       end
 
+      namespace :api do
+        namespace :command_palette do
+          resources :feeds, only: [:index]
+        end
+      end
+
       scope module: 'all' do
         resources :feeds, only: [] do
           resources :items, only: [:index, :show], module: :feeds
