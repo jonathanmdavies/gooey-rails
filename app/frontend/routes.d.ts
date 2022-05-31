@@ -115,6 +115,16 @@ export const account_session_path: ((
 
 /**
  * Generates rails route to
+ * /api/command_palette/feeds(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const api_command_palette_feeds_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /
  * @param {object | undefined} options
  * @returns {string} route path
