@@ -17,10 +17,11 @@ import {
 } from "@/routes";
 import FlashMessages from "@/components/FlashMessages";
 import NewFeedButton from "@/components/NewFeedButton";
-import Dropdown from "../components/Dropdown/Index";
+import Dropdown from "@/components/Dropdown/Index";
 import Toast from "@/components/Toast";
-import LinkButton from "../components/Base/LinkButton";
-import IconButton from "../components/Base/IconButton";
+import LinkButton from "@/components/Base/LinkButton";
+import IconButton from "@/components/Base/IconButton";
+import CommandPalette from "@/components/CommandPalette";
 
 export default function Authenticated({ children }) {
   return (
@@ -28,6 +29,7 @@ export default function Authenticated({ children }) {
       <Header />
       <FlashMessages />
       <div className="">{children}</div>
+      <CommandPalette />
       <Toaster position="bottom-center" toastOptions={{ duration: 1500 }} />
     </div>
   );

@@ -535,6 +535,14 @@ export const account_session_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"acc
 
 /**
  * Generates rails route to
+ * /api/command_palette/feeds(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const api_command_palette_feeds_path = __jsr.r({"format":{}}, [2,[7,"/"],[2,[6,"api"],[2,[7,"/"],[2,[6,"command_palette"],[2,[7,"/"],[2,[6,"feeds"],[1,[2,[8,"."],[3,"format"]]]]]]]]]);
+
+/**
+ * Generates rails route to
  * /
  * @param {object | undefined} options
  * @returns {string} route path
