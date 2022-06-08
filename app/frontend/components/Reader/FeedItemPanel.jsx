@@ -35,12 +35,16 @@ export default function FeedItemPanel() {
             <ToggleReadButton />
 
             <Tooltip content="Read Original">
-              <IconButton icon="ExternalLinkIcon" onClick={openLink} />
+              <IconButton
+                label="Read Original"
+                icon="ExternalLinkIcon"
+                onClick={openLink}
+              />
             </Tooltip>
           </div>
         </div>
       </div>
-      <article className="prose prose-slate w-full max-w-3xl self-center p-6 prose-a:text-cyan-600 prose-a:no-underline  hover:prose-a:text-cyan-500">
+      <article className="prose prose-slate prose-a:text-cyan-600 prose-a:no-underline hover:prose-a:text-cyan-500 w-full max-w-3xl self-center  p-6">
         <h1>{item.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: item.content }} />
       </article>

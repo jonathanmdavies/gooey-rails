@@ -94,6 +94,7 @@ export default function NewFeedButton() {
                 <Input
                   label="Feed URL"
                   value={data.url}
+                  type="text"
                   onChange={(e) => setData("url", e.target.value)}
                   name="name"
                   id="name"
