@@ -257,6 +257,16 @@ export const feeds_path: ((
 
 /**
  * Generates rails route to
+ * /groups(.:format)
+ * @param {object | undefined} options
+ * @returns {string} route path
+ */
+export const groups_path: ((
+  options?: {format?: OptionalRouteParameter} & RouteOptions
+) => string) & RouteHelperExtras;
+
+/**
+ * Generates rails route to
  * /manage/import(.:format)
  * @param {object | undefined} options
  * @returns {string} route path

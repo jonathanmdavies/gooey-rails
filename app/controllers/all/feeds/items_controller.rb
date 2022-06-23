@@ -9,6 +9,7 @@ class All::Feeds::ItemsController < ApplicationController
 
     render inertia: 'Unread/Index',
            props: {
+             groups: current_account.groups,
              feeds: Read::FeedResource.new(feeds).serializable_hash,
              items: ItemResource.new(records, params: { context: :feed }).serializable_hash,
              feed: feed,

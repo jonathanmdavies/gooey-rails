@@ -6,6 +6,7 @@ class All::ItemsController < ApplicationController
     pagy, records = pagy(current_account.items, items: 30)
 
     render inertia: 'Unread/Index', props: {
+      groups: current_account.groups,
       items: ItemResource.new(records).serializable_hash,
       feeds: Read::FeedResource.new(feeds).serializable_hash,
       pagy: pagy_metadata(pagy),
@@ -19,6 +20,7 @@ class All::ItemsController < ApplicationController
     feed = feeds.find { |i| i.id == item.feed_id }
 
     render inertia: 'Unread/Index', props: {
+      groups: current_account.groups,
       items: ItemResource.new(records).serializable_hash,
       feeds: Read::FeedResource.new(feeds).serializable_hash,
       feed: feed,

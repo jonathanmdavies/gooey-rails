@@ -54,6 +54,8 @@ gem 'alba'
 
 gem 'pagy'
 
+gem 'acts_as_list'
+
 # In Production for Test Seed Data Generation
 gem 'faker'
 

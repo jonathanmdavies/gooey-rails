@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_09_104123) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_21_133835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_104123) do
     t.index ["account_id"], name: "index_feeds_on_account_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "account_id", null: false
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_groups_on_account_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
@@ -61,5 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_104123) do
   end
 
   add_foreign_key "feeds", "accounts"
+  add_foreign_key "groups", "accounts"
   add_foreign_key "items", "feeds"
 end

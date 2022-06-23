@@ -44,6 +44,8 @@ Rails.application.routes.draw do
         resource :read, only: [:create, :destroy]
         resource :bookmark, only: [:create, :destroy]
       end
+
+      resources :groups, only: [:create]
     end
   end
 

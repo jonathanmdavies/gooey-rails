@@ -9,6 +9,7 @@ class Unread::Feeds::ItemsController < ApplicationController
 
     render inertia: 'Unread/Index',
            props: {
+             groups: current_account.groups,
              feed: feed,
              feeds: Unread::FeedResource.new(feeds).serializable_hash,
              items: Unread::Feed::ItemResource.new(records).serializable_hash,

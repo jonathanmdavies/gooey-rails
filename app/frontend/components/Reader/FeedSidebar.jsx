@@ -1,19 +1,21 @@
-import React, { Fragment, useRef } from "react";
+import React, { useRef } from "react";
 import { usePage, Link } from "@inertiajs/inertia-react";
+import { motion } from "framer-motion";
 import {
   ChevronRightIcon,
   CollectionIcon,
   EyeIcon,
 } from "@heroicons/react/solid";
 import { Disclosure } from "@headlessui/react";
-import { motion } from "framer-motion";
+import { classNames } from "@/utils";
 import { items_path, unread_items_path } from "@/routes";
 import BackgroundImage from "@/images/sidebar_background.jpg";
-import { classNames } from "@/utils";
+import GroupItem from "./FeedSidebar/GroupItem";
+import NewGroupButton from "@/components/Reader/FeedSidebar/NewGroupButton";
 
 export default function FeedSidebar() {
   const accordianRef = useRef(null);
-  const { feeds } = usePage().props;
+  const { feeds, groups } = usePage().props;
   const { url } = usePage();
 
   return (
@@ -121,6 +123,20 @@ export default function FeedSidebar() {
                   </>
                 )}
               </Disclosure>
+            </div>
+
+            <div className="">
+              <div className="mx-4 flex items-center justify-between">
+                <div className="font-mono text-xs font-bold uppercase tracking-wide text-slate-700">
+                  Groups
+                </div>
+                <NewGroupButton />
+              </div>
+              <ul className="mt-2 space-y-2">
+                {groups.map((group) => (
+                  <GroupItem key={group.id} group={group} />
+                ))}
+              </ul>
             </div>
           </div>
         </div>
