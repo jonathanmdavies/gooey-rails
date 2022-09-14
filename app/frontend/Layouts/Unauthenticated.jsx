@@ -20,7 +20,7 @@ export default function Unauthenticated({ children }) {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <h1 className="z-10 font-mono text-xl font-semibold uppercase tracking-wide text-white opacity-80">
-          RSS Reader
+          RSS Reader Example for Review Apps
         </h1>
       </div>
     </div>
