@@ -6,9 +6,9 @@
 
 Gooey Reader (aka GUI, Graphical User Interface...) is an RSS Reader web app designed to act as a playground for ideas, patterns and concepts.
 
-It uses [Ruby on Rails](https://rubyonrails.org), with a [React](https://reactjs.org) front-end. However, unlike most other projects – it's not an SPA. Gooey uses [InertiaJS](https://inertiajs.com) to act as glue between to the two. Allowing the app to continue to use server-side routing and controllers.
+It uses [Ruby on Rails](https://rubyonrails.org), with a [React](https://reactjs.org) front-end. However, unlike most other projects, it is not an SPA. Gooey uses [InertiaJS](https://inertiajs.com) to act as glue between the two. This allows the app to continue using server-side routing and controllers.
 
-It's development is driven by it's creator's whims (does an RSS Reader need a Dashboard? No, but I made one anyway). Sometimes I just want to play around in the front-end, sometimes I want to try something in the backend. So if elements seem over-refined compared to others that is probably why.
+Its development is driven by its creator's whims (does an RSS Reader need a Dashboard? No, but I made one anyway). Sometimes I just want to play around in the front-end, sometimes I want to try something in the backend. So if elements seem over-refined compared to others that is probably why.
 
 Some things I like / find interesting:
 
