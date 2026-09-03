@@ -28,5 +28,5 @@ Some things I like / find interesting:
 - Run `rubocop -a` to autocorrect offenses
 - Run `rubocop -x` to fix layout issues
 
-<!-- test edit --><!-- test edit 2 -->
+<!-- test edit --><!-- test edit 2 --><!-- test edit 3 -->
 
