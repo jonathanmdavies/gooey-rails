@@ -4,7 +4,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event post-task || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event post-task || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
@@ -14,7 +14,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event post-todo || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event post-todo || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
@@ -26,7 +26,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event pre-compact || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event pre-compact || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
@@ -38,7 +38,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event pre-tool-use || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event pre-tool-use || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
@@ -48,7 +48,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event pre-task || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event pre-task || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
@@ -60,7 +60,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event session-end || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event session-end || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
@@ -72,7 +72,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event session-start || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event session-start || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
@@ -84,7 +84,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event stop || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event stop || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
@@ -96,7 +96,7 @@
       {
         "hooks": [
           {
-            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy agent-checkpoints hook --adapter claude-code --event user-prompt-submit || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
+            "command": "sh -c 'if command -v vex >/dev/null 2>&1; then vex --ignore-working-copy transcripts hook --adapter claude-code --event user-prompt-submit || true; else printf \"%s\\n\" \"vex CLI not found; Vex checkpoint skipped (https://vex.sc/docs/agents/setup)\" >&2; fi; exit 0'",
             "timeout": 30,
             "type": "command"
           }
