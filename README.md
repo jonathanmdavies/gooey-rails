@@ -27,3 +27,6 @@ Some things I like / find interesting:
 - Run `bundle exec rubocop --auto-gen-config` to generate a todo list of existing exceptions
 - Run `rubocop -a` to autocorrect offenses
 - Run `rubocop -x` to fix layout issues
+
+<!-- test edit -->
+
