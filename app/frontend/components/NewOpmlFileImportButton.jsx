@@ -38,7 +38,7 @@ export default function NewOpmlFileImportButton() {
       <Button
         type="button"
         onClick={() => setOpen(true)}
-        icon="BookmarkAltIcon"
+        icon="CloudUploadIcon"
         color="darkSlate"
       >
         Import OPML
