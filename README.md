@@ -1,5 +1,7 @@
 # About Gooey Reader
 
+Composal smoke test change.
+
 ![dashboard](https://user-images.githubusercontent.com/15249275/168856928-a1767d23-d524-48f1-b61f-bc42e305629b.jpg)
 
 ![unread-feed](https://user-images.githubusercontent.com/15249275/168856986-cd1137bc-53eb-496e-b7eb-2658f9785f7d.jpg)
@@ -32,4 +34,3 @@ Some things I like / find interesting:
 
 clean run 2026-09-04
 second clean run commit 2026-09-04
-
